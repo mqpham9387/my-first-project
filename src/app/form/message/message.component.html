@@ -1,0 +1,65 @@
+<div class="modal-header">
+  <table class="panel">
+    <tr>
+      <td>
+        <h6 class="modal-title"><label class="lbl-custom-left">{{title}}</label></h6>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="modal-body">
+  <div class="scroll">
+    <table class="panel">
+      <tr>
+        <td class="icon">
+          <div *ngIf="isQuestionIcon()" class="input-group">
+            <label class="lbl-i-mandatory-back"><i class="fas fa-circle circle-back"></i></label>
+            <label class="lbl-i-mandatory"><i class="fas fa-question-circle circle"></i></label>
+          </div>
+          <div *ngIf="isInformationIcon()" class="input-group">
+            <label class="lbl-i-mandatory-back"><i class="fas fa-circle  circle-back"></i></label>
+            <label class="lbl-i-mandatory"><i class="fas fa-exclamation-circle circle"></i></label>
+          </div>
+          <div *ngIf="isWarningIcon()" class="input-group">
+            <label class="lbl-i-warning-back"><i class="fas fa-circle triangle-back"></i></label>
+            <label class="lbl-i-warning"><i class="fas fa-exclamation-triangle triangle"></i></label>
+          </div>
+          <div *ngIf="isStopIcon()" class="input-group">
+            <label class="lbl-i-prohibition-back"><i class="fas fa-circle circle-back"></i></label>
+            <label class="lbl-i-prohibition"><i class="fas fa-times-circle circle"></i></label>
+          </div>
+        </td>
+        <td>
+          <label class="lbl-custom-left" textWrap="true">{{message}}</label>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="modal-footer">
+  <table class="panel">
+    <tr>
+      <td></td>
+      <ng-container *ngIf="isCancelVisible()">
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="onButtonClick('cancel')">Cancel</button>
+        </td>
+      </ng-container>
+      <ng-container *ngIf="isOkVisible()">
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="onButtonClick('ok')">Ok</button>
+        </td>
+      </ng-container>
+      <ng-container *ngIf="isNoVisible()">
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="onButtonClick('no')">No</button>
+        </td>
+      </ng-container>
+      <ng-container *ngIf="isYesVisible()">
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="onButtonClick('yes')">Yes</button>
+        </td>
+      </ng-container>
+    </tr>
+  </table>
+</div>

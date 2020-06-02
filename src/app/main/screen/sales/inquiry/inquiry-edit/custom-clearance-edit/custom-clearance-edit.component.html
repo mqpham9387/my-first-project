@@ -1,0 +1,538 @@
+<ng-container>
+  <div class="background">
+    <div class="modal-header">
+      <table class="panel">
+        <tr>
+          <td>
+            <h6 class="modal-title">
+              <label class="lbl-custom-left"
+                >{{ action }} - Customs clearance & trucking
+
+                <span></span
+              ></label>
+            </h6>
+          </td>
+        </tr>
+      </table>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="close()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding-top: 2px;">
+      <form [formGroup]="myForm">
+        <table class="panel">
+          <tr>
+            <ngb-tabset>
+              <ngb-tab title="General">
+                <ng-template ngbTabContent>
+                  <div class="scroll">
+                    <table class="panel">
+                      <tr>
+                        <td style="width: 180px;">
+                          <label class="lbl-custom-left">ID</label>
+                        </td>
+                        <td style="width: 170px;">
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            readonly
+                            formControlName="inquiryID"
+                          />
+                        </td>
+
+                        <td style="width: 40px;"></td>
+                        <td style="width: 170px;"></td>
+                        <td style="width: 185px;"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Cargo Ready Date From
+                          </label>
+                        </td>
+                        <td>
+                          <of1-input-date
+                            placement="bottom"
+                            placementErr="right"
+                            formControlName="cargoReadyDate"
+                            [disabled]="disable"
+                          >
+                          </of1-input-date>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left">To </label>
+                        </td>
+                        <td>
+                          <of1-input-date
+                            fromDate="01/01/2010"
+                            toDate="dateTimeLimit"
+                            placement="bottom"
+                            placementErr="right"
+                            disabled="true"
+                          >
+                          </of1-input-date>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">Commodity* </label>
+                        </td>
+                        <td colspan="3">
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="commodityDescriptions"
+                          />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Commodity Type*
+                          </label>
+                        </td>
+                        <td *ngIf="action == 'EDIT'">
+                          <ng-select
+                            [items]="commodityList"
+                            bindLabel="commodityName"
+                            labelForId="commodity"
+                            [loading]="loading1"
+                            formControlName="commodity"
+                            [appendTo]="'body'"
+                            
+                          >
+                          </ng-select>
+                        </td>
+                        <td *ngIf="action == 'VIEW'">
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            [value]="
+                              myForm.get('commodity').value.commodityName
+                            "
+                          />
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">Client* </label>
+                        </td>
+                        <td colspan="3">
+                          <of1-input-lookup2
+                           
+                            class="customer"
+                            formControlName="client"
+                            [disable]="disable"
+                          >
+                          </of1-input-lookup2>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left">HS Code </label>
+                        </td>
+                        <td>
+                          <input
+                            class="form-control form-control-sm"
+                            type="text"
+                            formControlName="hsCode"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Special requirements
+                          </label>
+                        </td>
+                        <td colspan="3">
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="specialRequirement"
+                          />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Targeted rate & charges
+                          </label>
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="targetRateAndCharges"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">Create By* </label>
+                        </td>
+                        <td colspan="3">
+                          <of1-input-lookup2
+                            [disable]="disable"
+                            class="contact"
+                            formControlName="creator"
+                          >
+                          </of1-input-lookup2>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left">Create On* </label>
+                        </td>
+                        <td>
+                          <of1-input-date
+                            fromDate="01/01/2010"
+                            toDate="dateTimeLimit"
+                            placement="bottom"
+                            placementErr="right"
+                            formControlName="dateCreate"
+                            [disabled]="disable"
+                          >
+                          </of1-input-date>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">Sent to* </label>
+                        </td>
+                        <td colspan="3">
+                          <of1-input-lookup2
+                            
+                            class="contact"
+                            formControlName="sentTo"
+                            [disable]="disable"
+                          >
+                          </of1-input-lookup2>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left">Forwarded to </label>
+                        </td>
+                        <td>
+                          <of1-input-lookup2
+                            class="contact"
+                            formControlName="forwardedTo"
+                            [disable]="disable"
+                          >
+                          </of1-input-lookup2>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">Last Quoted On </label>
+                        </td>
+                        <td colspan="3">
+                          <of1-input-date
+                            fromDate="01/01/2010"
+                            toDate="dateTimeLimit"
+                            placement="bottom"
+                            placementErr="right"
+                            formControlName="lastQuotedOn"
+                            [disabled]="disable"
+                          >
+                          </of1-input-date>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Trucking">
+                <ng-template ngbTabContent>
+                  <div class="scroll">
+                    <table class="panel">
+                      <tr>
+                        <td style="width: 200px;"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="width: 100px;"></td>
+                        <td></td>
+                        <td style="width: 100px;"></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">Pick Up Address</label>
+                        </td>
+                        <td colspan="3">
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="pickupAt"
+                          />
+                        </td>
+                        <td></td>
+                        <td colspan="2">
+                          <div class="custom-control custom-checkbox">
+                            <input
+                              type="checkbox"
+                              class="custom-control-input"
+                              id="cargoIsUnstackable"
+                              formControlName="cargoIsUnstackable"
+                            />
+                            <label
+                              class="custom-control-label"
+                              for="cargoIsUnstackable"
+                              style="color: white; font-size: 14px;"
+                              >Cargo is un-stackable
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Delivery address
+                          </label>
+                        </td>
+                        <td colspan="3">
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="deliveryTo"
+                          />
+                        </td>
+                        <td></td>
+                        <td colspan="2">
+                          <div class="custom-control custom-checkbox">
+                            <input
+                              type="checkbox"
+                              class="custom-control-input"
+                              id="packageCanBeTilted"
+                              formControlName="packageCanBeTilted"
+                            />
+                            <label
+                              class="custom-control-label"
+                              for="packageCanBeTilted"
+                              style="color: white; font-size: 14px;"
+                              >Package can be tilted
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">Volume</label>
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            class="form-control form-control-sm"
+                            formControlName="volume"
+                          />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left">Max length</label>
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            class="form-control form-control-sm"
+                            formControlName="truckingMaxLength"
+                          />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left">Max width </label>
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            class="form-control form-control-sm"
+                            formControlName="truckingMaxWidth"
+                          />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left">Max height </label>
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            class="form-control form-control-sm"
+                            formControlName="truckingMaxHeight"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Max weight per package
+                          </label>
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            class="form-control form-control-sm"
+                            formControlName="truckingMaxWeightPerPackage"
+                          />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left">Gross weight </label>
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            class="form-control form-control-sm"
+                            formControlName="grossWeight"
+                          />
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Customs clearance">
+                <ng-template ngbTabContent>
+                  <div class="scroll">
+                    <table class="panel">
+                      <tr class="no-padding"><td style="width: 270px;"></td>
+                      <td></td></tr>
+                      <tr>
+                        <td colspan="2">
+                        <table >
+                          <tr style="color: white;">
+                            <td>
+                            <div class="custom-control custom-radio">
+                              <input
+                                type="radio"
+                                class="custom-control-input"
+                                id="customRadio"
+                                formControlName="isExport"
+                                [value]="false"
+                              />
+                              <label
+                                class="custom-control-label"
+                                for="customRadio"
+                                >Import</label
+                              >
+                            </div>
+                            </td>
+                            <td style="width:50px"></td><td>
+                            <div class="custom-control custom-radio">
+                            <input
+                                type="radio"
+                                class="custom-control-input"
+                                id="customRadio2"
+                                formControlName="isExport"
+                                [value]="true"
+                              />
+                              <label
+                                class="custom-control-label"
+                                for="customRadio2"
+                                >Export</label
+                              >
+                            </div></td>
+                          </tr>
+                        </table>
+                          
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Clearance terminal
+                          </label>
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="clearanceTerminal"
+                          />
+                        </td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Purpose of import/export
+                          </label>
+                        </td>
+                        <td *ngIf="action=='EDIT'">
+                          <ng-select
+                            [items]="customClearance"
+                            [virtualScroll]="true"
+                            [loading]=loading
+                            bindLabel="customsClearanceTypeName"
+                            bindValue="customsClearanceTypeID"
+                            formControlName="purposeOfImEx"
+                            [appendTo]="'body'"
+                          >
+                          </ng-select>
+                        </td>
+                        <td *ngIf="action=='VIEW'">
+                          <input class="form-control form-control-sm" type="text" formControlName="purposeOfImEx">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Import or export thru which terminal
+                          </label>
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="eachPalletDimension"
+                          />
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <table class="panel">
+        <tr>
+          <td></td>
+          <td style="width: 120px;">
+            <button class="btn btn-custom btn-sm" type="button">
+              Make a Quotation
+            </button>
+          </td>
+          <td style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button">Forward</button>
+          </td>
+          <td *ngIf="action == 'VIEW'" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="delete()">Delete</button>
+          </td>
+          <td *ngIf="action == 'EDIT'" style="width: 71px;">
+            <button
+              class="btn btn-custom btn-sm"
+              type="button"
+              (click)="save()"
+            >
+              Save
+            </button>
+          </td>
+          <td *ngIf="action == 'EDIT'" style="width: 71px;">
+            <button
+              class="btn btn-custom btn-sm"
+              type="button"
+              (click)="cancel()"
+            >
+              Cancel
+            </button>
+          </td>
+          <td *ngIf="action == 'VIEW'" style="width: 71px;">
+            <button
+              class="btn btn-custom btn-sm"
+              type="button"
+              (click)="close()"
+            >
+              Close
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ng-container>

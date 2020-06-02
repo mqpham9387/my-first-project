@@ -1,0 +1,20 @@
+<ag-grid-angular
+#truckingChargeGrid
+style="width: 100%; height: calc(100vh - 268px);"
+class="ag-theme-balham"
+[defaultColDef]="defaultColDef"
+[suppressMenuHide]="true"
+[rowData]="rowData"
+[columnDefs]="columnDefs"
+[gridOptions]="gridOptions"
+[cacheOverflowSize]="cacheOverflowSize"
+[maxConcurrentDatasourceRequests]="maxConcurrentDatasourceRequests"
+[infiniteInitialRowCount]="infiniteInitialRowCount"
+[pagination]=true
+rowSelection="single"
+(gridReady)="onGridReady($event)"
+(paginationChanged)="onPaginationChanged($event)"
+[frameworkComponents]="frameworkComponents"
+rowModelType="infinite"
+>
+</ag-grid-angular>

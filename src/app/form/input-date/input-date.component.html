@@ -1,0 +1,27 @@
+<div class="input-group">
+  <input class="form-control form-control-sm" placeholder="DD/MM/YYYY" name="datepicker" [(ngModel)]="value" (dateSelect)="runOnComplete()"
+    ngbDatepicker #fd="ngbDatepicker" [minDate]="minDate" container="body"
+    [maxDate]="maxDate" [placement]="placement" [positionTarget]="buttonD" [disabled]="disabled" (blur)="onDateBlur($event)">
+  <div class="input-group-append">
+    <button #buttonD class="btn btn-outline-secondary btn-calendar" (click)="fd.toggle()" type="button"
+      [disabled]="disabled">
+      <i class="far fa-calendar-alt"></i>
+    </button>
+  </div>
+  <label class="lbl-error" *ngIf="!isDate && placementErr==='top'" placement="top"
+    ngbTooltip="This field must be a valid date!!" tooltipClass="tooltip-err top" container="body">
+    <i class="fas fa-exclamation-triangle"></i>
+  </label>
+  <label class="lbl-error" *ngIf="!isDate && placementErr==='right'" placement="right"
+    ngbTooltip="This field must be a valid date!!" tooltipClass="tooltip-err right" container="body">
+    <i class="fas fa-exclamation-triangle"></i>
+  </label>
+  <label class="lbl-error" *ngIf="!isDate && placementErr==='bottom'" placement="bottom"
+    ngbTooltip="This field must be a valid date!!" tooltipClass="tooltip-err bottom" container="body">
+    <i class="fas fa-exclamation-triangle"></i>
+  </label>
+  <label class="lbl-error" *ngIf="!isDate && placementErr==='left'" placement="left"
+    ngbTooltip="This field must be a valid date!!" tooltipClass="tooltip-err left" container="body">
+    <i class="fas fa-exclamation-triangle"></i>
+  </label>
+</div>

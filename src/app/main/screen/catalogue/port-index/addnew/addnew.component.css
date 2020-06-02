@@ -1,0 +1,14 @@
+.modal {
+    position:fixed;
+    top: 100px;
+    right:0;
+    left:0;
+    overflow: hidden;
+}
+.modal-dialog {
+    max-width: 70vw!important;
+  }
+::ng-deep input:disabled  {
+    background-color: white!important;
+    color: black;
+  }

@@ -1,0 +1,19 @@
+<div class="input-group">
+  <input type="text" class="form-control form-control-sm" (blur)="onWebBlur($event)" [(ngModel)]="value">
+  <label *ngIf="!isWeb" class="lbl-error" placement="top" ngbTooltip="This field must be a valid web!!"
+    tooltipClass="tooltip-err top" container="body">
+    <i class="fas fa-exclamation-triangle"></i>
+  </label>
+  <label *ngIf="!isWeb" class="lbl-error"  placement="right" ngbTooltip="This field must be a valid web!!"
+    tooltipClass="tooltip-err right" container="body">
+    <i class="fas fa-exclamation-triangle"></i>
+  </label>
+  <label *ngIf="!isWeb" class="lbl-error"  placement="bottom" ngbTooltip="This field must be a valid web!!"
+    tooltipClass="tooltip-err bottom" container="body">
+    <i class="fas fa-exclamation-triangle"></i>
+  </label>
+  <label *ngIf="!isWeb" class="lbl-error"  placement="left" ngbTooltip="This field must be a valid web!!"
+    tooltipClass="tooltip-err left" container="body">
+    <i class="fas fa-exclamation-triangle"></i>
+  </label>
+</div>

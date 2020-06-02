@@ -1,0 +1,117 @@
+<div class="background no-padding" ><div class="modal-header">
+    <h6 class="modal-title"><label class="lbl-custom-left">Catalogue / Handling Tasks / {{action}} {{task.taskID}}
+            </label></h6>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()" >
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body" style="height: calc(100vh - 180px);
+overflow-y: auto;">
+   
+        <table class="panel">
+            
+            <tr >
+                
+                <table class="panel">
+                
+            <tr>
+                <td style="width: 12%;">
+                    <label class="lbl-custom-left">
+                        Handling Tasks :
+                    </label>
+                </td>
+                <td style="width: 50%;">
+                    <input  class="form-control form-control-sm" type="text" [(ngModel)]="task.taskName" (focusout)="focusout()" >
+                </td>
+                <td style="width: 12%;">
+                    <label class="lbl-custom-left">
+                        Sequential order :
+                    </label>
+                </td>
+                <td>
+                    <input  class="form-control form-control-sm" type="number" [(ngModel)]="task.priority" (focusout)="focusout()" >
+                </td>
+
+            </tr>
+           
+            <tr>
+                <td>
+                    <label class="lbl-custom-left">
+                        Created by :
+                    </label>
+                </td>
+                <td>
+                    <input readonly class="form-control form-control-sm" type="text" [(ngModel)]="task.creator" (focusout)="focusout()"  >
+                </td>
+                <td>
+                    <label class="lbl-custom-left">
+                        Created on :
+                    </label>
+                </td>
+                <td>
+                    <input readonly class="form-control form-control-sm" type="number"  [(ngModel)]="task.dateCreate" (focusout)="focusout()" >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="lbl-custom-left">
+                        Notes :
+                    </label>
+
+                </td>
+                <td colspan="3">
+                    <textarea class="form-control form-control-sm"  [(ngModel)]="task.notes" (focusout)="focusout()" rows="2"></textarea>
+                </td>
+            </tr>
+
+
+
+
+
+                
+            </table>
+            </tr>
+            
+            <tr style="height: 31px; border-bottom: 0.5rem solid transparent;">
+                <nav aria-label="breadcrumb" role="navigation">
+                  <ol class="breadcrumb breadcrumb-custom">
+                    <li class="breadcrumb-item"><a>Handling Task / Service:</a>{{service}} <a>-- Branch :</a> {{office}}</li>
+                   
+                  </ol>
+                </nav>
+              </tr>   
+            <tr style="height: 55vh;">
+                <table class="panel">
+                  <tr style="height: 100%;">
+                    <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-balham" [rowData]="rowData"
+                    [columnDefs]="columnDefs"  rowSelection="single" [suppressMenuHide]="true"  (gridReady)="onGridReady($event)"
+                    [defaultColDef]="defaultColDef" [frameworkComponents]="frameworkComponents" (rowSelected)="edit($event)"
+                      >
+                    </ag-grid-angular>
+                  </tr>
+                </table>
+              </tr>
+        </table>
+    </div>
+    
+
+<div class="modal-footer" >
+    <table class="panel-noheight" >
+        <tr  >
+            <td></td>
+            <td style="width: 71px">
+                <button class="btn btn-custom btn-sm" type="button" (click)="save()">Save</button>
+            </td>
+            <div *ngIf="action=='Edit'; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock><td style="width: 71px">
+    <button class="btn btn-custom btn-sm" type="button"  >Delete</button>
+  </td></ng-template>
+<ng-template #elseBlock></ng-template>
+            <td style="width: 71px">
+                <button class="btn btn-custom btn-sm" type="button" (click)="close()"  >Cancel</button>
+              </td>
+                     
+        </tr>
+    </table>
+</div>
+</div>

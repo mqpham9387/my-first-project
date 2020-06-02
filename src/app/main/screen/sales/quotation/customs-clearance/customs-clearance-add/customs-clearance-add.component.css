@@ -1,0 +1,32 @@
+.modal {
+    position:fixed;
+    top: 10px;
+    right:0;
+    left:0;
+    overflow: auto;
+}
+.modal-dialog {
+    max-width: 90vw!important;
+}
+.modal-header{
+    padding: 0px;
+}
+
+.ng-select.of-custom-select-type {
+    border:0px;
+    min-height: 0px;
+}
+
+.ng-select.of-custom-select-type .ng-select-container {            
+    height: 28px !important;
+    min-height: 28px !important;
+}
+div.ng-value {
+    position: relative;
+    top: 3px !important;
+}
+
+span.ng-clear-wrapper {
+    top: 3px !important;
+
+}

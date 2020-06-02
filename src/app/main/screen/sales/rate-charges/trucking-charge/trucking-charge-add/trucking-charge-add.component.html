@@ -1,0 +1,187 @@
+<ng-container>
+  <div class="background">
+    <div class="modal-header">
+      <table class="panel">
+        <tr>
+          <td>
+            <h6 class="modal-title">
+              <label class="lbl-custom-left"> Add New - Trucking charge
+                <span></span></label>
+            </h6>
+          </td>
+        </tr>
+      </table>
+      <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding-top: 2px;">
+      <form [formGroup]="truckForm">
+        <div class="container">
+          <table class="panel">
+            <tr>
+              <td style="width: 70px;">
+                <label class="lbl-custom-left">Valid from<span style="color: red;"> *</span></label>
+              </td>
+              <td style="width: 170px;">
+                <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="bottom" placementErr="right" formControlName="validDateFrom">
+                </of1-input-date>
+              </td>
+
+              <td style="width: 51px;">
+                <label class="lbl-custom-right">Valid to<span style="color: red;"> *</span></label>
+              </td>
+              <td style="width: 170px;">
+                <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="bottom" placementErr="right" formControlName="validDateTo">
+                </of1-input-date>
+              </td>
+              <td style="width: 20px;"></td>
+            </tr>
+            <tr>
+              <td><label class="lbl-custom-left">Currency<span style="color: red;"> *</span></label></td>
+              <td>
+                <of1-input-lookup [data]="currencys" class="currency" formControlName="currency"></of1-input-lookup>
+              </td>
+              <td>
+              </td>
+              <td>
+              </td>
+            </tr>
+          </table>
+          <table class="panel">
+            <tr>
+              <td style="width: 28px;"><label class="lbl-custom-left">Free detention time (hours)</label></td>
+              <td style="width: 25px;">
+                <input type="text" class="form-control form-control-sm" formControlName="freeDetentionTime" />
+              </td>
+              <td style="width: 38px;">
+                <label class="lbl-custom-right">Detention charge (per truck per day)<span style="color: red;"> *</span></label>
+              </td>
+              <td style="width: 35px;">
+                <input type="text" class="form-control form-control-sm" formControlName="detentionCharge" />
+              </td>
+            </tr>
+          </table>
+          <table class="panel">
+            <tr>
+              <td style="width: 5%;">
+                <label class="lbl-custom-left">Notes</label>
+              </td>
+              <td style="width: 95%;">
+                <input type="text" class="form-control form-control-sm" formControlName="notes" />
+              </td>
+              <td>
+                
+              </td>
+              <td>
+                
+              </td>
+            </tr>
+          </table>
+          <table class="panel">
+            <tr>
+              <td>
+                <div class="card-header" class="of-custom-card-active">
+                  <div class="custom-control" style="padding-top: 5px;">
+                    <label class="ofone-label" for="">Pickup</label>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <table class="panel">
+            <tr>
+              <td style="width: 110px;"><label class="lbl-custom-left">City/Province</label><span style="color: red;"> *</span></td>
+              <td>
+                <of1-input-lookup2 class="city" formControlName="pickupCity"></of1-input-lookup2>
+              </td>
+              <td style="width: 91px;">
+                <label class="lbl-custom-right">Area</label>
+              </td>
+              <td>
+                <of1-input-lookup [data]="cities" class="city" formControlName="pickupArea"></of1-input-lookup>
+              </td>
+            </tr>
+          </table>
+          <table class="panel">
+            <tr>
+              <td>
+                <div class="card-header" class="of-custom-card-active">
+                  <div class="custom-control" style="padding-top: 5px;">
+                    <label class="ofone-label" for="">Delivery</label>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <table class="panel">
+            <tr>
+              <td style="width: 110px;"><label class="lbl-custom-left">City/Province</label><span style="color: red;"> *</span></td>
+              <td>
+                <of1-input-lookup2 class="city" formControlName="deliveryCity"></of1-input-lookup2>
+              </td>
+              <td style="width: 91px;">
+                <label class="lbl-custom-right">Area</label>
+              </td>
+              <td>
+                <of1-input-lookup [data]="areas" class="area" formControlName="deliveryArea"></of1-input-lookup>
+              </td>
+            </tr>
+          </table>
+          <table class="panel">
+            <tr>
+              <td>
+                <div class="card-header" class="of-custom-card-active">
+                  <div class="custom-control" style="padding-top: 5px;">
+                    <label class="ofone-label" for="">Truncking charges</label>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <table class="panel">
+            <tr>
+              <ag-grid-angular
+                #editTrucksGrid
+                style="height: 82px;"
+                class="ag-theme-balham"
+                [columnDefs]="columnDefs"
+                [defaultColDef]="defaultColDef"
+                [components]="components"
+                [rowData]="rowData"
+                (gridReady)="onGridReady($event)"
+              ></ag-grid-angular>
+            </tr>
+          </table>
+          
+            <tr>
+              <td style="width: 70px;"></td>
+            </tr>
+          
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <table class="panel">
+        <tr>
+          <td></td>
+          <td  style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="save()">
+              Save
+            </button>
+          </td>
+          <td  style="width: 71px;" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="cancel()">
+              Cancel
+            </button>
+          </td>
+          <td *ngIf="action == 'VIEW'" style="width: 71px;" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="close()">
+              Close
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ng-container>

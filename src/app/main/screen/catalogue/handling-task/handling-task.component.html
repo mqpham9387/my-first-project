@@ -1,0 +1,73 @@
+<div class="background">
+  <table class="panel">
+    <tr style="height: 31px; border-bottom: 0.5rem solid transparent;">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb breadcrumb-custom">
+          <li class="breadcrumb-item"><a>Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Catalogue</li>
+          <li class="breadcrumb-item active" aria-current="page">Handling Tasks</li>
+        </ol>
+      </nav>
+    </tr>
+    <tr style="height: 38px;">
+    <table class="panel">
+      <td style="width: 12%;">
+        <label class="lbl-custom-left">
+           Choose service type :
+        </label>
+    </td>
+    <td>
+      <select class="form-control form-control-sm" [(ngModel)]="transacationType" (change)="filterTable()" >
+        <option value="all">All</option>
+        <option *ngFor="let i of tras " [ngValue]="i">
+          {{i.transactionTypeName}}
+        </option>
+      </select>   
+    
+    </td>
+    <td style="width: 10%;">
+      <label class="lbl-custom-left">
+         Choose brand:
+      </label>
+  </td>
+  <td>
+    <select class="form-control form-control-sm" (change)="filterTable1()" [(ngModel)]="companyValue">
+      <option value="all">All</option>
+      <option *ngFor="let i of company" [ngValue]="i">{{i.companyID}}----{{i.companyName}}</option>
+    </select>   
+  
+  </td>
+    </table>
+    </tr>
+ 
+    <tr style="border-bottom: 0.5rem solid transparent;">
+      <table class="panel">
+        <tr style="height: 100%;">
+          <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-balham" [rowData]="rowData1"
+          [columnDefs]="columnDefs"  rowSelection="single" [suppressMenuHide]="true"
+          [defaultColDef]="defaultColDef" [frameworkComponents]="frameworkComponents" (cellEditingStopped)="test($event)"
+           (gridReady)="onGridReady($event)" editType="fullRow" >
+          </ag-grid-angular>
+        </tr>
+      </table>
+    </tr>
+    <tr style="height: 32px;">
+      <table class="panel" >
+        <tr>
+         
+          <td></td>
+          <td style="width: 91px">
+            <button class="btn btn-custom btn-sm" type="button" (click)="add()" >Add New</button>
+          </td>
+          <td style="width: 71px">
+            <button class="btn btn-custom btn-sm" type="button" (click)="edit()" >Edit</button>
+          </td>
+          <td style="width: 71px">
+            <button class="btn btn-custom btn-sm" type="button" >Delete</button>
+          </td>
+         
+        </tr>
+      </table>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,675 @@
+<ng-container>
+  <div class="background">
+    <div class="modal-header">
+      <table class="panel">
+        <tr>
+          <td>
+            <h6 class="modal-title">
+              <label class="lbl-custom-left"> FCL Tariff - Add new
+
+                <span></span></label>
+            </h6>
+          </td>
+        </tr>
+      </table>
+      <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding-top: 2px;">
+      <form [formGroup]="fclForm">
+        <table class="panel">
+          <tr>
+            <ngb-tabset>
+              <ngb-tab title="General Purpose Container">
+                <ng-template ngbTabContent>
+                  <div class="scroll gp-container" formGroupName="gpContainer">
+                    <table class="panel">
+                      <tr>
+                        <td style="width: 70px;">
+                          <label class="lbl-custom-left">ID</label>
+                        </td>
+                        <td style="width: 170px;">
+                          <input type="text" class="form-control form-control-sm" readonly formControlName="pricingID" />
+                        </td>
+
+                        <td style="width: 70px;"></td>
+                        <td style="width: 170px;"></td>
+                        <td style="width: 20px;"></td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">POL</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="portofLoading">
+                          </of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 1</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge1" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">POD</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="portofDischarge"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 2</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge2" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Transit port</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="transitPort"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 3</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge3" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Carrier</label></td>
+                        <td>
+                          <of1-input-lookup [data]="clients" class="partner" formControlName="carrierID"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">T/T</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="transitTime" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Curr.</label></td>
+                        <td>
+                          <of1-input-lookup [data]="currencys" class="currency" formControlName="currency"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Freq.</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="frequency" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">20'</label></td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="container20" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Cut off</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="cutOff" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">40'</label></td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="container40" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Valid From</label>
+                        </td>
+                        <td>
+                          <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateFrom">
+                          </of1-input-date>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td><label class="lbl-custom-left">HC</label></td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="container40" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Valid To</label>
+                        </td>
+                        <td>
+                          <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateTo">
+                          </of1-input-date>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td><label class="lbl-custom-left">45'</label></td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="container45" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Notes</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="notes" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="width: 70px;">
+                          
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Reefer Container">
+                <ng-template ngbTabContent>
+                  <div class="scroll gp-container" formGroupName="rcContainer">
+                    <table class="panel">
+                      <tr>
+                        <td style="width: 70px;">
+                          <label class="lbl-custom-left">ID</label>
+                        </td>
+                        <td style="width: 170px;">
+                          <input type="text" class="form-control form-control-sm" readonly formControlName="pricingID" />
+                        </td>
+
+                        <td style="width: 70px;"></td>
+                        <td style="width: 170px;"></td>
+                        <td style="width: 20px;"></td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">POL</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="portofLoading">
+                          </of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 1</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge1" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">POD</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="portofDischarge"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 2</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge2" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Transit port</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="transitPort"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 3</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge3" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Carrier</label></td>
+                        <td>
+                          <of1-input-lookup [data]="clients" class="partner" formControlName="carrierID"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Freq.</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="frequency" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Curr.</label></td>
+                        <td>
+                          <of1-input-lookup [data]="currencys" class="currency" formControlName="currency"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Cut off</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="cutOff" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">20'</label></td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="container20" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Valid From</label>
+                        </td>
+                        <td>
+                          <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateFrom">
+                          </of1-input-date>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">40'</label></td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="container40" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Valid To</label>
+                        </td>
+                        <td>
+                          <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateTo">
+                          </of1-input-date>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">T/T</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="transitTime" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Notes</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="notes" />
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Open Top Container">
+                <ng-template ngbTabContent>
+                  <div class="scroll gp-container" formGroupName="otContainer">
+                    <table class="panel">
+                      <tr>
+                        <td style="width: 70px;">
+                          <label class="lbl-custom-left">ID</label>
+                        </td>
+                        <td style="width: 170px;">
+                          <input type="text" class="form-control form-control-sm" readonly formControlName="pricingID" />
+                        </td>
+
+                        <td style="width: 70px;"></td>
+                        <td style="width: 170px;"></td>
+                        <td style="width: 20px;"></td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">POL</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="portofLoading">
+                          </of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 1</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge1" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">POD</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="portofDischarge"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 2</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge2" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Transit port</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="transitPort"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 3</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge3" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Carrier</label></td>
+                        <td>
+                          <of1-input-lookup [data]="clients" class="partner" formControlName="carrierID"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Freq.</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="frequency" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Curr.</label></td>
+                        <td>
+                          <of1-input-lookup [data]="currencys" class="currency" formControlName="currency"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Cut off</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="cutOff" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">20'</label></td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="container20" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Valid From</label>
+                        </td>
+                        <td>
+                          <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateFrom">
+                          </of1-input-date>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">40'</label></td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="container40" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Valid To</label>
+                        </td>
+                        <td>
+                          <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateTo">
+                          </of1-input-date>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">T/T</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="transitTime" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Notes</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="notes" />
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Flat Rack Container">
+                <ng-template ngbTabContent>
+                  <div class="scroll gp-container" formGroupName="frContainer">
+                    <table class="panel">
+                      <tr>
+                        <td style="width: 70px;">
+                          <label class="lbl-custom-left">ID</label>
+                        </td>
+                        <td style="width: 170px;">
+                          <input type="text" class="form-control form-control-sm" readonly formControlName="pricingID" />
+                        </td>
+
+                        <td style="width: 70px;"></td>
+                        <td style="width: 170px;"></td>
+                        <td style="width: 20px;"></td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">POL</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="portofLoading">
+                          </of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 1</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge1" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">POD</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="portofDischarge"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 2</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge2" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Transit port</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="transitPort"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 3</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge3" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Carrier</label></td>
+                        <td>
+                          <of1-input-lookup [data]="clients" class="partner" formControlName="carrierID"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Freq.</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="frequency" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Curr.</label></td>
+                        <td>
+                          <of1-input-lookup [data]="currencys" class="currency" formControlName="currency"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Cut off</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="cutOff" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">20'</label></td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="container20" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Valid From</label>
+                        </td>
+                        <td>
+                          <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateFrom">
+                          </of1-input-date>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">40'</label></td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="container40" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Valid To</label>
+                        </td>
+                        <td>
+                          <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateTo">
+                          </of1-input-date>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">T/T</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="transitTime" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Notes</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="notes" />
+                        </td>
+                      </tr>
+                      
+                    </table>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="ISO Tank">
+                <ng-template ngbTabContent>
+                  <div class="scroll gp-container" formGroupName="isoContainer">
+                    <table class="panel">
+                      <tr>
+                        <td style="width: 70px;">
+                          <label class="lbl-custom-left">ID</label>
+                        </td>
+                        <td style="width: 170px;">
+                          <input type="text" class="form-control form-control-sm" readonly formControlName="pricingID" />
+                        </td>
+                        <td style="width: 70px;"></td>
+                        <td style="width: 170px;"></td>
+                        <td style="width: 20px;"></td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">POL</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="portofLoading">
+                          </of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 1</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge1" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">POD</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="portofDischarge"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 2</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge2" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Transit port</label></td>
+                        <td>
+                          <of1-input-lookup [data]="ports" class="port" formControlName="transitPort"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">SubCharge 3</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="subCharge3" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Carrier</label></td>
+                        <td>
+                          <of1-input-lookup [data]="clients" class="partner" formControlName="carrierID"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Freq.</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="frequency" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">Curr.</label></td>
+                        <td>
+                          <of1-input-lookup [data]="currencys" class="currency" formControlName="currency"></of1-input-lookup>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Cut off</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="cutOff" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><label class="lbl-custom-left">20'</label></td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="container20" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Valid From</label>
+                        </td>
+                        <td>
+                          <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateFrom">
+                          </of1-input-date>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">T/T</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="transitTime" />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-right">Valid To</label>
+                        </td>
+                        <td>
+                          <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateTo">
+                          </of1-input-date>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td></td><td></td>
+                        <td>
+                          <label class="lbl-custom-right">Notes</label>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control form-control-sm" formControlName="notes" />
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <table class="panel">
+        <tr>
+          <td></td>
+          <td  style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="save()">
+              Save
+            </button>
+          </td>
+          <td  style="width: 71px;" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="close()">
+              Cancel
+            </button>
+          </td>
+          <td *ngIf="action == 'VIEW'" style="width: 71px;" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="close()">
+              Close
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,428 @@
+<div class="background">
+  <div class="modal-header">
+    <table class="panel">
+      <tr>
+        <td>
+          <h6 class="modal-title">
+            <label class="lbl-custom-left">{{action}}-Customs clearance & trucking booking request</label>
+          </h6>
+        </td>
+      </tr>
+    </table>
+    <button type="button" class="btn-close" aria-label="Close" (click)="cancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="padding-top: 5px;">
+    <form [formGroup]="bookingFrm" >
+    <table class="panel">
+      <tr>
+        <ul ngbNav #nav="ngbNav" class="nav-tabs">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>General </a>
+            <ng-template ngbNavContent>
+              <div class="scroll" style="max-height: calc(100vh - 220px);">
+                <table class="panel">
+                  <tr>
+                    <td style="width: 12%;">
+                      <label class="lbl-custom-left">Booking No.</label>
+                    </td>
+                    <td style="width: 13%;">
+                      <input type="text" formControlName="bookingNo" class="form-control form-control-sm" readonly/>
+                    </td>
+                    <td style="width: 10%;">
+                      <label class="lbl-custom-right">Create By </label>
+                    </td>
+                    <td style="width: 15%;">
+                      <input type="text" formControlName="creator" value="" class="form-control form-control-sm" readonly/>
+                    </td>
+                    <td style="width: 11%;">
+                      <label class="lbl-custom-right">Create On </label>
+                    </td>
+                    <td style="width: 14%;">
+                      <of1-input-date
+                        fromDate="01/01/2010"
+                        toDate="dateTimeLimit"
+                        placement="left" placementErr="right"
+                        formControlName="dateCreate"
+                      >
+                      </of1-input-date>
+                    </td>
+                    <td style="width: 25%;"></td>
+                  </tr>
+                </table>
+                <table class="panel">
+                  <tr>
+                    <td style="width: 12%;">
+                      <label class="lbl-custom-left">Quotation</label>
+                    </td>
+                    <td style="width: 34%;">
+                      <of1-input-lookup class="Quotation" formControlName="Quotation"></of1-input-lookup>
+                    </td>
+                    <td>
+                      <button class="btn btn-custom btn-sm" type="button"style="width:7%">
+                      View
+                    </button>
+                  </td>
+
+                  </tr>
+                </table>
+
+                <table class="panel">
+                  <tr>
+                    <td style="width: 12%;">
+                      <label class="lbl-custom-left">Commodity<span style="color: red;">*</span></label>
+                    </td>
+                    <td style="width: 38%;">
+                      <input type="text" formControlName="commodity" class="form-control form-control-sm" />
+                    </td>
+                    <td style="width: 11%;">
+                      <label class="lbl-custom-right">Commodity type<span style="color: red;">*</span></label>
+                    </td>
+                    <td style="width: 34%;">
+                      <of1-input-lookup2 class="commodityType" formControlName="commodityType"></of1-input-lookup2>
+                    </td>
+                    <td style="width: 5%;"></td>
+                  </tr>
+                </table>
+
+                <table class="panel">
+                  <tr>
+                    <td style="width: 12%;">
+                      <label class="lbl-custom-left">Client<span style="color: red;">*</span></label>
+                    </td>
+                    <td style="width: 38%;">
+                      <of1-input-lookup2 class="hsCode" formControlName="client"></of1-input-lookup2>
+                    </td>
+                    <td style="width: 11%;">
+                      <label class="lbl-custom-right">Sent To<span style="color: red;">*</span></label>
+                    </td>
+                    <td style="width: 34%;">
+                      <of1-input-lookup2 class="contact" formControlName="sentTo"></of1-input-lookup2>
+                    </td>
+                    <td style="width: 5%;"></td>
+                  </tr>
+                </table>
+                <table class="panel">
+                  <tr>
+                    <td style="width: 12%;">
+                      <label class="lbl-custom-left">Hs Code</label>
+                    </td>
+                    <td style="width: 38%;">
+                      <of1-input-lookup2 class="hsCode" formControlName="hsCode"></of1-input-lookup2>
+                    </td>
+                    <td style="width: 11%;">
+                      <label class="lbl-custom-right">Service date?<span style="color: red;">*</span></label>
+                    </td>
+                    <td style="width: 34%;">
+                      <of1-input-lookup2 class="servicedate" formControlName="servicedate"></of1-input-lookup2>
+                    </td>
+                    <td style="width: 5%;"></td>
+                  </tr>
+                </table>
+
+                <table class="panel">
+                  <tr>
+                    <td style="width: 12%;">
+                      <label class="lbl-custom-left">Shipper's PTC ?</label>
+                    </td>
+                    <td style="width: 13%;">
+                      <input type="text" formControlName="shipperptc" class="form-control form-control-sm">
+                    </td>
+                    <td style="width: 10%;">
+                      <label class="lbl-custom-right">Phone</label>
+                    </td>
+                    <td style="width: 15%;">
+                      <input type="text" formControlName="phone" value="" class="form-control form-control-sm">
+                    </td>
+                    <td style="width: 11%;">
+                      <label class="lbl-custom-right">Consignee's PTC?</label>
+                    </td>
+                    <td style="width: 14%;">
+                      <input type="text" formControlName="consigneeptc" value="" class="form-control form-control-sm">
+                    </td>
+                    <td style="width: 11%;">
+                      <label class="lbl-custom-right">Phone</label>
+                    </td>
+                    <td>
+                      <input type="text"style="width:64%"formControlName="phone" value="" class="form-control form-control-sm">
+                    </td>
+
+                  </tr>
+                </table>
+
+                <table class="panel">
+                  <tr>
+                    <td style="width: 12%;">
+                      <label class="lbl-custom-left">Special requirements</label>
+                    </td>
+                    <td style="width: 83%;">
+                      <of1-input-lookup2 class="specialRequirements" formControlName="specialRequirements"></of1-input-lookup2>
+                    </td>
+                    <td style="width: 5%;"></td>
+                  </tr>
+                </table>
+
+                <table class="panel">
+                  <tr>
+                    <td style="width: 12%;">
+                      <label class="lbl-custom-left">Notes </label>
+                    </td>
+                    <td style="width: 83%;">
+                      <textarea formControlName="notes" value="All charges are exclusive of VAT 10%. Truck detention is free for 04 hours from arrival. Overtime detention charge is USD10/hours, max usd50/truck/day.
+                      " name="notes" class="form-control form-control-sm" rows="12"></textarea>
+                    </td>
+                    <td style="width: 5%;"></td>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>Trucking</a>
+            <ng-template ngbNavContent>
+              <div class="scroll" style="max-height: calc(100vh - 220px);">
+                <table class="panel">
+                  <tr>
+                    <td style="width: 10%;">
+                      <label class="lbl-custom-left">Pick up address</label>
+                    </td>
+                    <td style="width: 38%;">
+                      <input type="text" formControlName="pickupaddress" class="form-control form-control-sm"/>
+                    </td>
+                    <td style="width: 16%; padding-left: 2rem;">
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input"formControlName="packagecanbetired" type="checkbox" id="package_can_be_titled"/>
+                        <label class="custom-control-label" style="color: white; font-size: 14px;"
+                          for="package_can_be_titled">Package can be tilted
+                        </label>
+                      </div>
+                    </td>
+                    <td style="width: 20%;">
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" formControlName="cargoIsUnstackable" type="checkbox" id="cargo_is_un_stackable"/>
+                        <label class="custom-control-label" style="color: white; font-size: 14px;"
+                          for="cargo_is_un_stackable">Cargo is un-stackable
+                        </label>
+                      </div>
+                    </td>
+                    <td></td>
+                  </tr>
+                </table>
+                <table class="panel">
+                    <tr>
+                      <td style="width: 10%;">
+                        <label class="lbl-custom-left">Delivery address</label>
+                      </td>
+                      <td style="width: 38%;">
+                        <input type="text" formControlName="delivery" class="form-control form-control-sm"/>
+                      </td>
+                      <td  style="width: 8%;">
+
+                      </td>
+                      <td></td>
+                    </tr>
+                </table>
+                <table class="panel">
+                  <tr>
+                    <td style="width: 10%;">
+                      <label class="lbl-custom-left">Volume</label>
+                    </td>
+                    <td style="width: 8%;">
+                      <input type="text" formControlName="volume"style="height:35px" class="form-control form-control-sm"placeholder="volume (cbm)"/>
+                    </td>
+                    <td  style="width: 8%;">
+                      <ng-select
+                        appendTo="body"
+                        class="of-custom-select-type"
+                        [multiple]="false"
+                        formControlName="volumeUnit"
+                      >
+                        <ng-option
+                          *ngFor="let item of volumeTypes"
+                          [value]="item.typeName"
+                        >{{item.typeName}}</ng-option>
+                      </ng-select>
+                    </td>
+                    <td></td>
+                    <td style="width: 20%;">
+                      <label class="lbl-custom-left">Max length</label>
+                    </td>
+                    <td style="width: 8%;">
+                      <input type="text" formControlName="maxLength" class="form-control form-control-sm"placeholder="cm..."/>
+                    </td>
+                    <td style="width: 10%;">
+                        <label class="lbl-custom-right">Max width</label>
+                      </td>
+                      <td style="width: 8%;">
+                        <input type="text" formControlName="maxWidth" class="form-control form-control-sm"placeholder="cm..."/>
+                      </td>
+                      <td style="width: 10%;">
+                        <label class="lbl-custom-right">Max height</label>
+                      </td>
+                      <td style="width: 8%;">
+                        <input type="text" formControlName="maxHeight" class="form-control form-control-sm"placeholder="cm..."/>
+                      </td>
+                    <td ></td>
+                  </tr>
+                </table>
+                <table class="panel">
+                  <tr>
+                    <td  style="width: 10%;">
+                      <label class="lbl-custom-left">Gross weight</label>
+                    </td>
+                    <td  style="width: 8%;">
+                      <input type="text" formControlName="grossWeight"style="height:35px" class="form-control form-control-sm"placeholder="gross weight (kgs)"/>
+                    </td>
+                    <td  style="width: 8%;">
+                      <ng-select
+                        appendTo="body"
+                        class="of-custom-select-type"
+                        [multiple]="false"
+                        formControlName="grossWeightUnit"
+                      >
+                        <ng-option
+                          *ngFor="let item of grossWeightUnits"
+                          [value]="item.typeName"
+                        >{{item.typeName}}</ng-option>
+                      </ng-select>
+                    </td>
+                    <td></td>
+                    <td style="width: 20%;">
+                      <label class="lbl-custom-left">Max weight per package</label>
+                    </td>
+                    <td style="width: 12%;">
+                      <input type="text" formControlName="maxweightperpackage"style="width: 100%"class="form-control form-control-sm"placeholder="kg..."/>
+                    </td>
+                    <td style="width: 8%;"></td>
+                    <td style="width: 8%;"></td>
+                    <td style="width: 8%;"></td>
+                    <td style="width: 8%;"></td>
+                    <td ></td>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>Customs clearance</a>
+            <ng-template ngbNavContent>
+              <div class="scroll" style="max-height: calc(100vh - 220px);">
+                <table class="panel">
+                  <tr>
+                    <table class="panel">
+                      <td style="width: 4%;">
+                        <div class="of1-cus-coluor">
+                          <div class="custom-control custom-radio">
+                            <input
+                              type="radio"
+                              class="custom-control-input mr-5"
+                              id="defaultGroupExampleSub1"
+                              name="isExport"
+                              formControlName="isImport"
+                              value="CUSTOM_CLEARANCE_IMPORT"
+                            >
+                            <label class="custom-control-label" for="defaultGroupExampleSub1" style="color: white;">Import</label>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="width: 4%;">
+                        <div class="of1-cus-coluor">
+                          <div class="custom-control custom-radio">
+                            <input
+                              type="radio"
+                              class="custom-control-input mr-5"
+                              id="customclearanceExport1"
+                              name="isExport"
+                              formControlName="isExport"
+                              value="CUSTOM_CLEARANCE_EXPORT">
+                            <label class="custom-control-label" for="customclearanceExport1" style="color: white;">Export</label>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="width: 22%;"></td>
+                    </table>
+                  </tr>
+                </table>
+                <table class="panel">
+                  <tr>
+                    <td style="width: 15%;">
+                      <label class="lbl-custom-left">Clearance terminal</label>
+                    </td>
+                    <td style="width: 38%;">
+                      <of1-input-lookup class="clearanceterminal" formControlName="clearanceterminal"></of1-input-lookup>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td style="width: 15%;">
+                      <label class="lbl-custom-left">Purpose of import/export</label>
+                    </td>
+                    <td style="width: 38%;">
+                      <of1-input-lookup class="purpose of import/export" formControlName="purposeofimport/export"></of1-input-lookup>
+                    </td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav"></div>
+      </tr>
+    </table>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <table class="panel">
+      <tr>
+        <td></td>
+        <td style="width: 161px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Make a booking cancellation
+          </button>
+        </td>
+        <td style="width: 170px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Make a booking confirmation
+          </button>
+        </td>
+        <td style="width: 161px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Make a booking rejection
+          </button>
+        </td>
+        <td style="width: 100px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Export to email
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            forward
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Delete
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Edit
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button"(click)="save()">
+            Save
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

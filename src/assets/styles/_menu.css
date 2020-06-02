@@ -1,0 +1,23 @@
+#menu.navbar-custom {
+  background-color: var(--bg-tertiary-color);
+  color: var(--bg-super-primary-color);
+}
+
+#menu li.nav-item a.nav-link {
+  cursor: pointer;
+  color: var(--bg-super-primary-color);
+}
+
+#menu li.nav-item.dropdown div.dropdown-menu.show {
+  background-color: var(--bg-tertiary-color);
+}
+
+#menu  li.nav-item.dropdown div.dropdown-menu.show a.dropdown-item {
+  color: var(--bg-super-primary-color);
+}
+
+#menu li.nav-item.dropdown div.dropdown-menu.show a.dropdown-item:hover, li.nav-item.dropdown div.dropdown-menu.show a.dropdown-item:focus {
+  background-color: var(--bg-tertiary-color);
+  color: var(--bg-super-primary-color);
+  cursor: pointer;
+}

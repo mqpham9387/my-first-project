@@ -1,0 +1,147 @@
+<ng-container *ngIf="!isLoading">
+    <div class="modal-header">
+        <table class="panel">
+            <tr>
+                <td>
+                    <h6 class="modal-title"><label class="lbl-custom-left">Contact Person -
+                            <span>{{ action === 'ADD' ? 'Add New' : 'Edit'}}</span></label></h6>
+                </td>
+            </tr>
+        </table>
+        <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <table class="panel">
+            <tr>
+                <div class="scroll">
+                    <div style="height: 5px"></div>
+                    <table class="panel-noheight">
+                        <tr>
+                            <table class="panel">
+                                <tr>
+                                    <td style="width: 14%;">
+                                        <label class="lbl-custom-left">Group <span style="color: red;">*</span></label>
+                                    </td>
+                                    <td style="width: 28%;">
+                                        <of1-input-lookup [data]="groups" class="partnerDepartment" [(ngModel)]="group"
+                                            ngbAutofocus>
+                                        </of1-input-lookup>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </tr>
+                    </table>
+                    <table class="panel-noheight">
+                        <tr>
+                            <table class="panel">
+                                <tr>
+                                    <td style="width: 14%;">
+                                        <label class="lbl-custom-left">Full name <span
+                                                style="color: red;">*</span></label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control form-control-sm"
+                                            [(ngModel)]="dataClone.fullname">
+                                    </td>
+                                </tr>
+                            </table>
+                        </tr>
+                        <tr>
+                            <table class="panel">
+                                <tr>
+                                    <td style="width: 14%;">
+                                        <label class="lbl-custom-left">Position</label>
+                                    </td>
+                                    <td style="width: 28%;">
+                                        <input type="text" class="form-control form-control-sm"
+                                            [(ngModel)]="dataClone.position">
+                                    </td>
+                                    <td style="width: 16%;"></td>
+                                    <td style="width: 14%;">
+                                        <label class="lbl-custom-left">Email</label>
+                                    </td>
+                                    <td style="width: 28%;">
+                                        <of1-input-email [(ngModel)]="dataClone.email"></of1-input-email>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tr>
+                        <tr>
+                            <table class="panel">
+                                <tr>
+                                    <td style="width: 14%;">
+                                        <label class="lbl-custom-left">Cellphone</label>
+                                    </td>
+                                    <td style="width: 28%;">
+                                        <input type="text" class="form-control form-control-sm"
+                                            [(ngModel)]="dataClone.cellPhone">
+                                    </td>
+                                    <td style="width: 16%;"></td>
+                                    <td style="width: 14%;">
+                                        <label class="lbl-custom-left">Direct line</label>
+                                    </td>
+                                    <td style="width: 28%;">
+                                        <input type="text" class="form-control form-control-sm"
+                                            [(ngModel)]="dataClone.directLine">
+                                    </td>
+                                </tr>
+                            </table>
+                        </tr>
+                        <tr>
+                            <table class="panel">
+                                <tr>
+                                    <td style="width: 14%;">
+                                        <label class="lbl-custom-left">Home address</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control form-control-sm"
+                                            [(ngModel)]="dataClone.address">
+                                    </td>
+                                    <td style="width: 4%"></td>
+                                    <td style="width: 10%;">
+                                        <label class="lbl-custom-left">Birthday</label>
+                                    </td>
+                                    <td style="width: 18%;">
+                                        <of1-input-date yearAgo="70" placement="left" placementErr="left"
+                                            [(ngModel)]="dataClone.birthday">
+                                        </of1-input-date>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tr>
+                        <tr>
+                            <table class="panel">
+                                <tr>
+                                    <td style="width: 14%;">
+                                        <label class="lbl-custom-left">Note</label>
+                                    </td>
+                                    <td>
+                                        <textarea type="text" class="form-control form-control-sm" rows="5"
+                                            [(ngModel)]="dataClone.note"></textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tr>
+                    </table>
+                </div>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <table class="panel">
+            <tr>
+                <td></td>
+                <td style="width: 71px">
+                    <button class="btn btn-custom btn-sm" type="button" (click)="close()">Cancel</button>
+                </td>
+                <td style="width: 71px">
+                    <button class="btn btn-custom btn-sm" type="button"
+                        (click)="save()"><span>{{ action === 'ADD' ? 'Add' : 'Update'}}</span></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</ng-container>

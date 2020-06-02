@@ -1,0 +1,27 @@
+::ng-deep ngb-typeahead-window.dropdown-menu.show {
+    max-height: 192px;
+    width: inherit;
+    overflow-x: auto;
+    font-family: var(--type);
+    font-size: 12px;
+    padding: .25rem;
+    z-index: 1050;
+}
+
+button.btn-valid, button.btn-valid:active {
+    width: 1.75rem;
+    padding: 0 .175rem;
+    background-color: #ffffff;
+}
+
+button.btn-valid:focus {
+    box-shadow: none;
+}
+
+button.btn-valid:hover:not([disabled]) {
+    background-color: #6c757d
+}
+
+button.btn-valid:disabled {
+    opacity: 0.65;
+}

@@ -1,0 +1,26 @@
+.breadcrumb-custom {
+    background: var(--bg-tertiary-color);
+    margin: 0;
+    padding: .25rem .75rem;
+}
+
+.breadcrumb-custom .breadcrumb-item {
+    background: transparent;
+}
+
+.breadcrumb-custom .breadcrumb-item a {
+    color: var(--bg-super-primary-color);
+    border: none;
+}
+
+.breadcrumb-custom .breadcrumb-item a:before {
+    border-left-color: var(--bg-super-primary-color);
+}
+
+.breadcrumb-custom .breadcrumb-item span {
+    color: var(--bg-super-primary-color);
+}
+
+.breadcrumb-custom .breadcrumb-item span:last-child {
+    background: transparent;
+}

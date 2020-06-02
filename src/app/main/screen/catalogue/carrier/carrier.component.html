@@ -1,0 +1,90 @@
+<div class="background">
+  <table class="panel">
+    <tr style="height: 31px; border-bottom: 0.5rem solid transparent;">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb breadcrumb-custom">
+          <li class="breadcrumb-item">
+            <a [routerLink]="['/main/dash-board']">Home</a>
+          </li>
+          <li class="breadcrumb-item" aria-current="page">Carrier</li>
+        </ol>
+      </nav>
+    </tr>
+    <tr style="border-bottom: 0.5rem solid transparent;">
+      <table class="panel">
+        <tr style="height: 100%;">
+          <ag-grid-angular
+            style="width: 100%; height: 100%;"
+            class="ag-theme-balham"
+            [columnDefs]="columnDefs"
+            [rowClassRules]="rowClassRules"
+            rowSelection="single"
+            [suppressMenuHide]="true"
+            [defaultColDef]="defaultColDef"
+            suppressColumnVirtualisation=true
+            [frameworkComponents]="frameworkComponents"
+            rowModelType="infinite"
+            [paginationPageSize]="paginationPageSize"
+            [rowClassRules]="rowClassRules"
+            [components]="components"
+            [cacheBlockSize]="cacheBlockSize"
+            [pagination]="true"
+            (rowDoubleClicked)="edit($event)"
+            (gridReady)="onGridReady($event)"
+          >
+          </ag-grid-angular>
+        </tr>
+      </table>
+    </tr>
+    <tr style="height: 32px;">
+      <table class="panel">
+        <tr>
+          <!-- <td style="width: 38px">
+              <label class="lbl-custom">Field:</label>
+            </td>
+            <td style="width: 191px">
+              <select class="form-control form-control-sm" [(ngModel)]="combobox">
+                <option value="CargoManifest">Cargo Manifest</option>
+                <option value="ArrivalNotice">Arrival Notice</option>
+                <option value="DeliveryOrder">Delivery Order</option>
+                <option value="Carrier">Carrier</option>
+              </select>
+            </td>
+            <td style="width: 38px">
+              <label class="lbl-custom-left">Find:</label>
+            </td>
+            <td style="width: 191px">
+              <select class="form-control form-control-sm" [(ngModel)]="combobox1">
+                <option value="CargoManifest">Cargo Manifest</option>
+                <option value="ArrivalNotice">Arrival Notice</option>
+                <option value="DeliveryOrder">Delivery Order</option>
+                <option value="Carrier">Carrier</option>
+              </select>
+            </td> -->
+          <td></td>
+          <td style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button">Export</button>
+          </td>
+          <td style="width: 91px;">
+            <button
+              class="btn btn-custom btn-sm"
+              type="button"
+              (click)="addNew()"
+            >
+              Add New
+            </button>
+          </td>
+          <td style="width: 71px;">
+            <button
+              class="btn btn-custom btn-sm"
+              type="button"
+              (click)="delete()"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </table>
+    </tr>
+  </table>
+</div>

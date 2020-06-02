@@ -1,0 +1,162 @@
+<ng-container>
+  <div class="background">
+    <div class="modal-header">
+      <table class="panel">
+        <tr>
+          <td>
+            <h6 class="modal-title">
+              <label class="lbl-custom-left"> {{ !isEdit? 'Add New' : 'Edit'}} - Local charge
+                <span></span></label>
+            </h6>
+          </td>
+        </tr>
+      </table>
+      <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding-top: 2rem;">
+      <form [formGroup]="localChargeForm">
+        <div class="container">
+          <table class="panel">
+            <tr>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">Service<span style="color: red;"> *</span></label>
+              </td>
+              <td style="width: 40%;">
+                <of1-input-lookup2 class="service" formControlName="service"></of1-input-lookup2>
+              </td>
+              <td style="width: 15%;">
+                <label class="lbl-custom-right">Tariff name<span style="color: red;"> *</span></label>
+              </td>
+              <td style="width: 35%;">
+                <input type="text" class="form-control form-control-sm" formControlName="localChargeName" />
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 15%;">
+                <label class="lbl-custom-left">Valid from<span style="color: red;"> *</span></label>
+              </td>
+              <td style="width: 24%;">
+                <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="bottom" placementErr="right" formControlName="validDateFrom">
+                </of1-input-date>
+              </td>
+              <td style="width: 21%;">
+                <label class="lbl-custom-right">Valid to<span style="color: red;"> *</span></label>
+              </td>
+              <td style="width: 23%;">
+                <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="bottom" placementErr="right" formControlName="validDateTo">
+                </of1-input-date>
+              </td>
+            </tr>
+          </table>
+          <table class="panel">
+            <tr>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">POL</label>
+              </td>
+              <td style="width: 15%;">
+                <of1-input-lookup2 class="port" formControlName="portofLoading"></of1-input-lookup2>
+              </td>
+              <td style="width: 10%;">
+                <label class="lbl-custom-right">Country</label>
+              </td>
+              <td style="width: 15%;">
+                <of1-input-lookup2 class="country" formControlName="polCountry"></of1-input-lookup2>
+              </td>
+              <td style="width: 10%;">
+                <label class="lbl-custom-right">POD</label>
+              </td>
+              <td style="width: 15%;">
+                <of1-input-lookup2 class="port" formControlName="portofDischarge"></of1-input-lookup2>
+              </td>
+              <td style="width: 10%;">
+                <label class="lbl-custom-right">Country</label>
+              </td>
+              <td style="width: 15%;">
+                <of1-input-lookup2 class="country" formControlName="podCountry"></of1-input-lookup2>
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 10%;"><label class="lbl-custom-left">Transit port</label></td>
+              <td style="width: 15%;">
+                <of1-input-lookup2 class="port" formControlName="transitPort"></of1-input-lookup2>
+              </td>
+              <td style="width: 6%;">
+                <label class="lbl-custom-right">Country</label>
+              </td>
+              <td style="width: 10%;">
+                <of1-input-lookup2 class="country" formControlName="transitCountry"></of1-input-lookup2>
+              </td>
+            </tr>
+          </table>
+          <table class="panel">
+            <tr>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">Notes</label>
+              </td>
+              <td style="width: 90%;">
+                <textarea type="text" class="form-control form-control-sm" formControlName="notes" rows="4"></textarea>
+              </td>
+            </tr>
+          </table>
+          <table class="panel">
+            <tr style="height: 31px; border-bottom: 0.5rem solid transparent;">
+              <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb breadcrumb-custom">
+                  <li class="breadcrumb-item active" aria-current="page">Charges Detail</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ !isEdit? 'Add New' : 'Edit'}}</li>
+                </ol>
+              </nav>
+            </tr>
+
+            <tr style="border-bottom: 0.5rem solid transparent;">
+              <table class="panel">
+                <tr style="height: 30vh;">
+                  <ag-grid-angular
+                    #addLocalChargeDetailGrid
+                    style="width: 100%; height: 100%;"
+                    class="ag-theme-balham"
+                    [columnDefs]="localChargeDetailColumnDefs"
+                    [defaultColDef]="defaultColDef"
+                    [components]="components"
+                    [rowData]="rowData"
+                    (gridReady)="onGridReady($event)"
+                    [suppressClickEdit]="true"
+                    editType="fullRow"
+                    rowSelection="single"
+                    [suppressMenuHide]="true"
+                    [frameworkComponents]="frameworkComponents"
+                    (rowEditingStopped)="test2($event)"
+                  ></ag-grid-angular>
+                </tr>
+              </table>
+            </tr>
+          </table>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <table class="panel">
+        <tr>
+          <td></td>
+          <td  style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="save()">
+              Save
+            </button>
+          </td>
+          <td  style="width: 71px;" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="cancel()">
+              Cancel
+            </button>
+          </td>
+          <td *ngIf="action == 'VIEW'" style="width: 71px;" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="close()">
+              Close
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ng-container>

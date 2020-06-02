@@ -1,0 +1,338 @@
+<div class="background">
+  <div class="modal-header">
+    <table class="panel">
+      <tr>
+        <td>
+          <h6 class="modal-title">
+            <label class="lbl-custom-left"> </label>
+          </h6>
+        </td>
+      </tr>
+    </table>
+    <button
+      type="button"
+      class="btn-close"
+      (click)="close()"
+      aria-label="Close"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="padding-top: 5px;">
+    <form [formGroup]="myForm">
+      <table class="panel">
+        <tr>
+          <td style="width: 110px;">
+            <label class="lbl-custom-left">Origin Airport</label>
+          </td>
+          <td>
+            <of1-input-lookup2
+              class="port"
+              formControlName="portofLoading"
+            ></of1-input-lookup2>
+          </td>
+          <td style="width: 40px;"></td>
+          <td style="width: 150px;">
+            <label class="lbl-custom-left">Destination Airport</label>
+          </td>
+          <td>
+            <of1-input-lookup2
+              class="port"
+              formControlName="portofDischarge"
+            ></of1-input-lookup2>
+          </td>
+          <td style="width: 40px;"></td>
+          <td style="width: 70px;">
+            <label class="lbl-custom-left">Carrier</label>
+          </td>
+          <td>
+            <of1-input-lookup2
+              class="carrier"
+              formControlName="carrierID"
+            ></of1-input-lookup2>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="9">
+            <table class="panel">
+              <tr>
+                <td style="width: 40px;">
+                  <label class="lbl-custom-left">MIN</label>
+                </td>
+
+                <td style="width: 40px;">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="minQuantity"
+                  />
+                </td>
+                <td style="width: 7px;"></td>
+                <td style="width: 35px;">
+                  <label class="lbl-custom-left">-45</label>
+                </td>
+                <td style="width: 40px;">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="level1"
+                  />
+                </td>
+                <td style="width: 7px;"></td>
+                <td style="width: 35px;">
+                  <label class="lbl-custom-left">+45</label>
+                </td>
+                <td style="width: 40px;">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="level2"
+                  />
+                </td>
+                <td style="width: 7px;"></td>
+                <td style="width: 40px;">
+                  <label class="lbl-custom-left">+100</label>
+                </td>
+                <td style="width: 40px;">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="level3"
+                  />
+                </td>
+                <td style="width: 7px;"></td>
+                <td style="width: 40px;">
+                  <label class="lbl-custom-left">+300</label>
+                </td>
+                <td style="width: 40px;">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="level4"
+                  />
+                </td>
+                <td style="width: 7px;"></td>
+                <td style="width: 40px;">
+                  <label class="lbl-custom-left">+500</label>
+                </td>
+                <td style="width: 40px;">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="level5"
+                  />
+                </td>
+                <td style="width: 7px;"></td>
+                <td style="width: 50px;">
+                  <label class="lbl-custom-left">+1000</label>
+                </td>
+                <td style="width: 40px;">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="level6"
+                  />
+                </td>
+                <td style="width: 7px;"></td>
+                <td style="width: 40px;">
+                  <label class="lbl-custom-left">FSC</label>
+                </td>
+                <td style="width: 40px;">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="fsc"
+                  />
+                </td>
+                <td style="width: 7px;"></td>
+                <td style="width: 40px;">
+                  <label class="lbl-custom-left">SSC</label>
+                </td>
+                <td style="width: 40px;">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="ssc"
+                  />
+                </td>
+                <td style="width: 7px;"></td>
+                <td style="width: 40px;">
+                  <label class="lbl-custom-left">AWB</label>
+                </td>
+                <td style="width: 40px;">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="awbFee"
+                  />
+                </td>
+                <td style="width: 7px;"></td>
+                <td style="width: 40px;">
+                  <label class="lbl-custom-left">AMS</label>
+                </td>
+                <td style="width: 40px;">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="ams"
+                  />
+                </td>
+                <td></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="9">
+            <table class="panel">
+              <tr>
+                <td style="width: 100px;">
+                  <label class="lbl-custom-left">Other Charge</label>
+                </td>
+                <td style="width: 20%;">
+                  <input
+                    type="number"
+                    class="form-control form-control-sm"
+                    formControlName="otherCharges"
+                  />
+                </td>
+                <td style="width: 7px;"></td>
+
+                <td style="width: 40px;">
+                  <label class="lbl-custom-left">Unit</label>
+                </td>
+                <td>
+                  <input type="text" class="form-control form-control-sm" />
+                </td>
+                <td style="width: 7px;"></td>
+
+                <td style="width: 40px;">
+                  <label class="lbl-custom-left">Curr.</label>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="currency"
+                  />
+                </td>
+                <td style="width: 7px;"></td>
+
+                <td style="width: 30px;">
+                  <label class="lbl-custom-left">T.T</label>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="transitTime"
+                  />
+                </td>
+                <td style="width: 80px;">
+                  <label class="lbl-custom-left">Validity</label>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="validity"
+                  />
+                </td>
+                <td></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr style="height: 13px;"></tr>
+        <tr style="height: calc((100vh - 220px) / 2);">
+          <td colspan="9">
+            <table class="panel">
+              <tr style="border-bottom: 0.5rem solid transparent;">
+                <td>
+                  <table class="panel">
+                    <p
+                      style="
+                        line-height: 14px;
+                        font-size: 13px;
+                        color: white;
+                        margin-bottom: 2px;
+                      "
+                    >
+                      Origin local charges
+                    </p>
+
+                    <tr style="height: 100%;">
+                      <ag-grid-angular
+                        style="width: 100%; height: 100%;"
+                        class="ag-theme-balham"
+                        [suppressClickEdit]="true"
+                        editType="fullRow"
+                        [columnDefs]="columnOriginCharge"
+                        rowSelection="single"
+                        [defaultColDef]="defaultColDef"
+                        [frameworkComponents]="frameworkComponents"
+                        (gridReady)="onGridReady($event)"
+                        [rowData]="rowData"
+                        (rowEditingStopped)="test2($event)"
+                      >
+                      </ag-grid-angular>
+                    </tr>
+                  </table>
+                </td>
+                <td>
+                  <table class="panel">
+                    <p
+                      style="
+                        line-height: 14px;
+                        font-size: 13px;
+                        color: white;
+                        margin-bottom: 2px;
+                      "
+                    >
+                      Destination local charges
+                    </p>
+                    <tr style="height: 100%;">
+                      <ag-grid-angular
+                      style="width: 100%; height: 100%;"
+                      class="ag-theme-balham"
+                      [suppressClickEdit]="true"
+                      editType="fullRow"
+                      [columnDefs]="columnDesCharge"
+                      rowSelection="single"
+                      [suppressMenuHide]="true"
+                      [defaultColDef]="defaultColDef"
+                      [frameworkComponents]="frameworkComponents"
+                      (gridReady)="onGridReady1($event)"
+                      [rowData]="rowData1"
+                      (rowEditingStopped)="checkValid($event)"
+                      >
+                      </ag-grid-angular>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <table class="panel">
+      <tr>
+        <td></td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button" (click)="addToList()">
+            Ok
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button" (click)="close()">
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,173 @@
+<div class="scroll" style="overflow-x: hidden;">
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col col-lg-2">
+          <label class="lbl-custom-left">From</label>
+        </div>
+        <div class="col col-lg-8">
+          <of1-input-date
+            fromDate="01/01/2010"
+            toDate="dateTimeLimit"
+            placement="bottom"
+            placementErr="right"
+            [(ngModel)]="fromDate"
+          >
+          </of1-input-date>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="row">
+        <div class="col col-md-1">
+          <label class="lbl-custom-left">To</label>
+        </div>
+        <div class="col col-md-8">
+          <of1-input-date
+            fromDate="01/01/2010"
+            toDate="dateTimeLimit"
+            placement="bottom"
+            placementErr="right"
+            [(ngModel)]="toDate"
+          >
+          </of1-input-date>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg">
+      <div class="row">
+        <div class="col col-md-3">
+          <label class="lbl-custom-left">Criterion</label>
+        </div>
+        <div class="col col-md-8">
+          <ng-select class="of-custom-select-type" [multiple]="false" [(ngModel)]="selectedCri">
+            <ng-option *ngFor="let criterion of criterions" [value]="criterion.columnName">{{criterion.headerName}}</ng-option>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col col-md-2">
+          <label class="lbl-custom-left">Value</label>
+        </div>
+        <div class="col col-md-9">
+          <input class="form-control form-control-sm" type="text" [(ngModel)]="criterionValue">
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <button
+          class="btn btn-light btn-sm"
+          style="margin: 0px 20px 5px 10px;"
+          (click)="searchAdvance()"
+        >
+          Advance
+        </button>
+        <button
+          class="btn btn-light btn-sm"
+          style="margin: 0px 20px 5px 10px;"
+          (click)="getListFCL()"
+        >
+          Apply
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row pl-5" style="padding-bottom: 10px;">
+    <!-- <span style="color: white;">Filter By:</span>    -->
+    <div class="" *ngFor="let item of searchData | keyvalue">
+      <button
+        *ngIf="
+          item.value.isCheck && item.value.value && item.value.value !== null
+        "
+        type="button"
+        class="btn btn-light mr-1"
+        aria-label="Close"
+        (click)="onRemoveSeachItem(item)"
+      >
+        <span>{{ item.value.headerName }} - {{ item.value.value }}</span
+        ><span class="ml-1" aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <div class="scroll" *ngIf="!isLoading" style="height:100%">
+    <tr>
+      <ngb-accordion #general="ngbAccordion" activeIds="general-1">
+        <ngb-panel id="general-1">
+          <ng-template ngbPanelHeader let-opened="opened">
+            <button ngbPanelToggle class="btn btn-accordion">
+              <span>{{ opened ? '&#045;' : '&#043;'}} General Purpose Container</span>
+            </button>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <table class="panel">
+              <app-fcl-grid-data [fclType]="'GP'" [columnDefs]="columnGPDefs" [onGridReady]="onGridGPReady"></app-fcl-grid-data>
+            </table>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="general-2">
+          <ng-template ngbPanelHeader let-opened="opened">
+            <button ngbPanelToggle class="btn btn-accordion"><span>{{ opened ? '&#045;' : '&#043;'}}
+              Reefer Container </span></button>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <table class="panel">
+              <app-fcl-grid-data [fclType]="'RC'" [columnDefs]="columnRCDefs" [onGridReady]="onGridRCReady"></app-fcl-grid-data>
+            </table>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="general-3">
+          <ng-template ngbPanelHeader let-opened="opened">
+            <button ngbPanelToggle class="btn btn-accordion"><span>{{ opened ? '&#045;' : '&#043;'}}
+              Open Top Container </span></button>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <table class="panel">
+              <app-fcl-grid-data [fclType]="'OT'" [columnDefs]="columnOTDefs" [onGridReady]="onGridOTReady"></app-fcl-grid-data>
+            </table>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="general-4">
+          <ng-template ngbPanelHeader let-opened="opened">
+            <button ngbPanelToggle class="btn btn-accordion"><span>{{ opened ? '&#045;' : '&#043;'}}
+              Flat Rack Container </span></button>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <table class="panel">
+              <app-fcl-grid-data [fclType]="'FR'" [columnDefs]="columnFRDefs" [onGridReady]="onGridFRReady"></app-fcl-grid-data>
+            </table>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="general-5">
+          <ng-template ngbPanelHeader let-opened="opened">
+            <button ngbPanelToggle class="btn btn-accordion"><span>{{ opened ? '&#045;' : '&#043;'}}
+              ISO tank </span></button>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <table class="panel">
+              <app-fcl-grid-data [fclType]="'ISOT'" [columnDefs]="columnISODefs" [onGridReady]="onGridISOReady"></app-fcl-grid-data>
+            </table>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </tr>
+    <tr style="height: 28px;">
+      <table class="panel">
+        <tr>
+          <td></td>
+          <td style="width: 151px">
+            <button class="btn btn-custom btn-sm" type="button">Import</button>
+          </td>
+          <td style="width: 71px">
+            <button class="btn btn-custom btn-sm" type="button" (click)="addNewFcl()">Add new</button>
+          </td>
+          <td style="width: 71px">
+            <button class="btn btn-custom btn-sm" type="button">Close</button>
+          </td>
+        </tr>
+      </table>
+    </tr>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+<ng-container>
+  <div class="modal-header">
+    <table class="panel">
+      <tr>
+        <td>
+          <h6 class="modal-title"><label class="lbl-custom-left">Make an inquiry
+              <span></span></label></h6>
+        </td>
+      </tr>
+    </table>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-air-freight">
+    <table class="panel" style="height: 100%;">
+      <tr>
+        <div style="height: 5px"></div>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Type of inquiry<span style="color: red;"> *</span></label>
+                </td>
+                <td style="width: 29%;"> 
+                  <ng-select appendTo="body" class="of-custom-select-type" [multiple]="false" [(ngModel)]="selectedInquiry">
+                    <ng-option *ngFor="let item of inquiriesType" [value]="item">{{item.inquiryTypeName}}</ng-option>
+                  </ng-select>
+                </td>
+                <td style="width: 1%;"></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Client<span style="color: red;"> *</span></label>
+                </td>
+                <td style="width: 29%;">
+                  <of1-input-lookup [data]="partners" class="partner" [(ngModel)]="client"></of1-input-lookup>
+                </td>
+                <td style="width: 1%;"></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Cargo ready date</label>
+                </td>
+                <td style="width: 12%;">
+                  <of1-input-date
+                      [disabled]="skipCargoDate"
+                      fromDate="01/01/2010"
+                      toDate="dateTimeLimit"
+                      placement="left" placementErr="right"
+                      [(ngModel)]="cargoDate">
+                  </of1-input-date>
+                </td>
+                <td style="width: 2%;">
+                  <label class="checkbox">
+                    <input type="checkbox" [(ngModel)]="skipCargoDate"/>
+                    <span class="default"></span>
+                  </label>
+                </td>
+                <td style="width: 6%;">
+                  <label class="lbl-custom-left">Skip this info</label>
+                </td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Special requirement</label>
+                </td>
+                <td style="width: 12%;">
+                  <input type="text" [disabled]="skipSpecialRequirement" [(ngModel)]="specialRequirement" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;">
+                  <label class="checkbox">
+                    <input type="checkbox" [(ngModel)]="skipSpecialRequirement"/>
+                    <span class="default"></span>
+                  </label>
+                </td>
+                <td style="width: 6%;">
+                  <label class="lbl-custom-left">Skip this info</label>
+                </td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Requested rates & charges</label>
+                </td>
+                <td style="width: 12%;">
+                  <input type="text" [disabled]="skipRequestedRatesCharges" [(ngModel)]="requestedRatesCharges" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;">
+                  <label class="checkbox">
+                    <input type="checkbox" [(ngModel)]="skipRequestedRatesCharges"/>
+                    <span class="default"></span>
+                  </label>
+                </td>
+                <td style="width: 6%;">
+                  <label class="lbl-custom-left">Skip this info</label>
+                </td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <table class="panel">
+      <tr>
+        <td></td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="onInitNewInquiry()"><span>Next</span>
+          </button>
+        </td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="close()">Cancel</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ng-container>

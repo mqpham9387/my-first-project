@@ -1,0 +1,39 @@
+<div class="background">
+  <table class="panel">
+    <tr style="height: 31px; border-bottom: 0.5rem solid transparent;">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb breadcrumb-custom">
+          <li class="breadcrumb-item">
+            <a [routerLink]="['/main/dash-board']">Home</a>
+          </li>
+          <li class="breadcrumb-item">Sales Executive</li>
+          <li class="breadcrumb-item active" aria-current="page">Inquiry</li>
+        </ol>
+      </nav>
+    </tr>
+    <tr style="border-bottom: 0.5rem solid transparent;">
+      <table class="panel">
+        <tr>
+          <ul ngbNav #nav="ngbNav" [(activeId)]="activeNav" class="nav-tabs">
+            <li [ngbNavItem]="1">
+              <a ngbNavLink routerLink="sent-inquiries">Sent Inquiries</a>
+              <ng-template ngbNavContent>
+                <app-sent-inquiry></app-sent-inquiry>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+              <a ngbNavLink routerLink="received-inquiries"
+                >Received Inquiries</a
+              >
+              <ng-template ngbNavContent>
+                <app-received-inquiry></app-received-inquiry>
+              </ng-template>
+            </li>
+          </ul>
+
+          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </tr>
+      </table>
+    </tr>
+  </table>
+</div>

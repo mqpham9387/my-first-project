@@ -1,0 +1,340 @@
+<ng-container>
+  <div class="background">
+    <div class="modal-header">
+      <table class="panel">
+        <tr>
+          <td>
+            <h6 class="modal-title">
+              <label class="lbl-custom-left"> Customs Clearance - Add new
+                <span></span></label>
+            </h6>
+          </td>
+        </tr>
+      </table>
+      <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding-top: 2px;">
+      <form [formGroup]="clearanceForm">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>Export Customs Clearance</a>
+            <ng-template ngbNavContent>
+              <div class="scroll" formGroupName="exportClearance">
+                <table class="panel">
+                  <tr>
+                    <td style="width: 70px;">
+                      <label class="lbl-custom-left">ID</label>
+                    </td>
+                    <td style="width: 170px;">
+                      <input type="text" class="form-control form-control-sm" readonly formControlName="pricingID" />
+                    </td>
+                    <td style="width: 70px;"></td>
+                    <td style="width: 170px;"></td>
+                    <td style="width: 20px;"></td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">Terminal<span style="color: red;"> *</span></label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="terminal"/>
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">Channel</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="channel" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">Purpose of export<span style="color: red;"> *</span></label></td>
+                    <td>
+                      <ng-select class="of-custom-select-type" [multiple]="false" formControlName="purposeOfImEx">
+                        <ng-option *ngFor="let purpose of purposeExList" [value]="purpose.headerName">{{purpose.headerName}}</ng-option>
+                      </ng-select>
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">Air</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="air" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">Carrier<span style="color: red;"> *</span></label></td>
+                    <td>
+                      <of1-input-lookup [data]="clients" class="partner" formControlName="carrier"></of1-input-lookup>
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">LCL</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="lcl"/>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td><label class="lbl-custom-left">Curr.<span style="color: red;"> *</span></label></td>
+                    <td>
+                      <of1-input-lookup [data]="currencys" class="currency" formControlName="currency"></of1-input-lookup>
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">Valid From<span style="color: red;"> *</span></label>
+                    </td>
+                    <td>
+                      <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateFrom">
+                      </of1-input-date>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">20'</label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="container20" />
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">Valid To<span style="color: red;"> *</span></label>
+                    </td>
+                    <td>
+                      <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateTo">
+                      </of1-input-date>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">40'</label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="container40" />
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">Notes</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="notes" />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><label class="lbl-custom-left">Excluded commodity</label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="excludedCommodity"/>
+                    </td>
+                  </tr>
+                  <tr style="padding-bottom: 60px;">
+                    <td style="width: 70px;">
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>Import Customs Clearance</a>
+            <ng-template ngbNavContent>
+              <div class="scroll" formGroupName="importClearance">
+                <table class="panel">
+                  <tr>
+                    <td style="width: 70px;">
+                      <label class="lbl-custom-left">ID</label>
+                    </td>
+                    <td style="width: 170px;">
+                      <input type="text" class="form-control form-control-sm" readonly formControlName="pricingID" />
+                    </td>
+                    <td style="width: 70px;"></td>
+                    <td style="width: 170px;"></td>
+                    <td style="width: 20px;"></td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">Terminal<span style="color: red;"> *</span></label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="terminal"/>
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">Channel</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="channel" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">Purpose of export<span style="color: red;"> *</span></label></td>
+                    <td>
+                      <ng-select class="of-custom-select-type" [multiple]="false" formControlName="purposeOfImEx">
+                        <ng-option *ngFor="let purpose of purposeExList" [value]="purpose.headerName">{{purpose.headerName}}</ng-option>
+                      </ng-select>
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">Air</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="air" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">Carrier<span style="color: red;"> *</span></label></td>
+                    <td>
+                      <of1-input-lookup [data]="clients" class="partner" formControlName="carrier"></of1-input-lookup>
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">LCL</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="lcl"/>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td><label class="lbl-custom-left">Curr.<span style="color: red;"> *</span></label></td>
+                    <td>
+                      <of1-input-lookup [data]="currencys" class="currency" formControlName="currency"></of1-input-lookup>
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">Valid From<span style="color: red;"> *</span></label>
+                    </td>
+                    <td>
+                      <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateFrom">
+                      </of1-input-date>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">20'</label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="container20" />
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">Valid To<span style="color: red;"> *</span></label>
+                    </td>
+                    <td>
+                      <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateTo">
+                      </of1-input-date>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">40'</label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="container40" />
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">Notes</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="notes" />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><label class="lbl-custom-left">Excluded commodity</label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="excludedCommodity"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width: 70px;">
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>Auxiliary Services</a>
+            <ng-template ngbNavContent>
+              <div class="scroll aux-container" formGroupName="auxiliarie">
+                <table class="panel aux-child-container">
+                  <tr>
+                    <td style="width: 70px;">
+                      <label class="lbl-custom-left">ID</label>
+                    </td>
+                    <td style="width: 170px;">
+                      <input type="text" class="form-control form-control-sm" readonly formControlName="pricingID" />
+                    </td>
+
+                    <td style="width: 70px;">
+                      <label class="lbl-custom-right">Unit<span style="color: red;"> *</span></label>
+                    </td>
+                    <td style="width: 170px;">
+                      <input type="text" class="form-control form-control-sm" formControlName="unit"/>
+                    </td>
+                    <td style="width: 20px;"></td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">Office<span style="color: red;"> *</span></label></td>
+                    <td>
+                      <of1-input-lookup2 class="company" formControlName="companyID">
+                      </of1-input-lookup2>
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">Fee</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="fee"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">Service<span style="color: red;"> *</span></label></td>
+                    <td>
+                      <of1-input-lookup [data]="services" class="service" formControlName="service"></of1-input-lookup>
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">Valid From</label>
+                    </td>
+                    <td>
+                      <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateFrom">
+                      </of1-input-date>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">Curr.<span style="color: red;"> *</span></label></td>
+                    <td>
+                      <of1-input-lookup [data]="currencys" class="currency" formControlName="currency"></of1-input-lookup>
+                    </td>
+                    <td>
+                      <label class="lbl-custom-right">Valid To<span style="color: red;"> *</span></label>
+                    </td>
+                    <td>
+                      <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" formControlName="validDateTo">
+                      </of1-input-date>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="lbl-custom-left">Notes</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="notes" />
+                    </td>
+                    <td>
+                      
+                    </td>
+                    <td>
+                      
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+        
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+      </form>
+    </div>
+    <div class="modal-footer">
+      <table class="panel">
+        <tr>
+          <td></td>
+          <td  style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="save()">
+              Save
+            </button>
+          </td>
+          <td  style="width: 71px;" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="close()">
+              Cancel
+            </button>
+          </td>
+          
+        </tr>
+      </table>
+    </div>
+  </div>
+</ng-container>

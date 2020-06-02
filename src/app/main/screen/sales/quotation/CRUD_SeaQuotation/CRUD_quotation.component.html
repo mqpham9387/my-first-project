@@ -1,0 +1,1719 @@
+<div class="background">
+  <div class="modal-header">
+    <table class="panel">
+      <tr>
+        <td>
+          <h6 class="modal-title">
+            <label class="lbl-custom-left">{{action}}?-Quotation Seafreight (with or without customs clearance & trucking)</label>
+          </h6>
+        </td>
+      </tr>
+    </table>
+    <button type="button" class="btn-close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="padding-top: 5px;">
+    <form [formGroup]="myForm" >
+    <table class="panel">
+      <tr>
+        <ul ngbNav #nav="ngbNav" class="nav-tabs">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>General </a>
+            <ng-template ngbNavContent>
+              <div class="scroll" style="max-height: calc(100vh - 200px);">
+                <table class="panel">
+                  <tr>
+                    <td style="width: 173px;"></td>
+                    <td></td>
+                    <td style="width: 100px;"></td>
+                    <td></td>
+                    <td style="width: 170px;"></td>
+                    <td></td>
+                    <td style="width: 50px;"></td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">ID :</label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="quotationNo" readonly>
+                    </td>
+                    <td><label class="lbl-custom-left">Create By : </label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="creator" readonly />
+                    </td>
+                    <td><label class="lbl-custom-left">Create On : </label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" formControlName="dateCreate" />
+                    </td>
+                    <td></td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Commodity :<span style="color: red;">*</span></label
+                      >
+                    </td>
+                    <td colspan="3">
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Commodity type :<span style="color: red;">*</span>
+                      </label>
+                    </td>
+                    <td colspan="3">
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Client :<span style="color: red;">*</span></label
+                      >
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Volume :<span style="color: red;">*</span>
+                      </label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Sent to :<span style="color: red;">*</span></label
+                      >
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                    <td></td>
+                    <td>
+                      <div class="custom-control custom-checkbox">
+                        <input
+                          class="custom-control-input"
+                          type="checkbox"
+                          id="destination"
+                        />
+                        <label
+                          class="custom-control-label"
+                          style="color: white; font-size: 14px;"
+                          for="destination"
+                          >Cargo is un-stackable
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Targeted rate & charges
+                      </label>
+                    </td>
+                    <td colspan="3">
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Special requirements
+                      </label>
+                    </td>
+                    <td colspan="3">
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <label class="lbl-custom-left">Notes </label>
+                    </td>
+                    <td colspan="7">
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="8">
+                      <table class="panel">
+                        <ngb-accordion
+                          #general="ngbAccordion"
+                          activeIds="general-1"
+                        >
+                          <ngb-panel id="general-1">
+                            <ng-template ngbPanelHeader let-opened="opened">
+                              <button ngbPanelToggle class="btn btn-accordion">
+                                <span
+                                  >{{ opened ? "&#045;" : "&#043;" }} Term of
+                                  service <span style="color: red;">*</span>
+                                </span>
+                              </button>
+
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                              <div class="scroll" style="max-height: calc(100vh - 400px);" >
+                                <ngb-accordion
+                                  #general1="ngbAccordion"
+                                  activeIds="general-1,general-2,general-3,general-4"
+                                >
+                                  <ngb-panel id="general-1">
+                                    <ng-template
+                                      ngbPanelHeader
+                                      let-opened="opened"
+                                    >
+                                      <button
+                                        ngbPanelToggle
+                                        class="btn btn-accordion"
+                                      >
+                                        <div
+                                          class="custom-control custom-radio"
+                                        >
+                                          <input
+                                            type="radio"
+                                            class="custom-control-input"
+                                            id="defaultGroupExample1"
+                                          />
+                                          <label
+                                            class="custom-control-label"
+                                            for="defaultGroupExample1"
+                                            >Port to port</label
+                                          >
+                                        </div>
+                                      </button>
+                                      <div style="padding: .375rem 0rem;">
+                                        <button class="btn-collapse btn-sm" (click)="general1.expandAll()">Expand
+                                            all</button>
+                                    </div>
+                                    <div style="padding: .375rem 0rem;">
+                                        <button class="btn-collapse btn-sm"
+                                            (click)="general1.collapseAll()">Collapse
+                                            all</button>
+                                    </div>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                      <table class="panel">
+                                        <tr>
+                                          <td style="width: 60px;"></td>
+                                          <td style="width: 30%;">
+                                            <div
+                                              class="custom-control custom-checkbox"
+                                            >
+                                              <input
+                                                type="checkbox"
+                                                class="custom-control-input"
+                                                id="defaultGroupExample2"
+                                              />
+                                              <label
+                                                style="
+                                                  color: white;
+                                                  font-size: 14px;
+                                                "
+                                                class="custom-control-label"
+                                                for="defaultGroupExample2"
+                                                >Need customs clearance at
+                                                origin?</label
+                                              >
+                                            </div>
+                                          </td>
+                                          <td>
+                                            <div
+                                              class="custom-control custom-checkbox"
+                                            >
+                                              <input
+                                                type="checkbox"
+                                                class="custom-control-input"
+                                                id="defaultGroupExample3"
+                                              />
+                                              <label
+                                                style="
+                                                  color: white;
+                                                  font-size: 14px;
+                                                "
+                                                class="custom-control-label"
+                                                for="defaultGroupExample3"
+                                                >Need customs clearance at
+                                                destination?</label
+                                              >
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </ng-template>
+                                  </ngb-panel>
+                                  <ngb-panel id="general-2">
+                                    <ng-template
+                                      ngbPanelHeader
+                                      let-opened="opened"
+                                    >
+                                      <button
+                                        ngbPanelToggle
+                                        class="btn btn-accordion"
+                                      >
+                                        <div
+                                          class="custom-control custom-radio"
+                                        >
+                                          <input
+                                            type="radio"
+                                            class="custom-control-input"
+                                            id="defaultGroupExample1"
+                                          />
+                                          <label
+                                            class="custom-control-label"
+                                            for="defaultGroupExample1"
+                                            >Door to port</label
+                                          >
+                                        </div>
+                                      </button>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                      <table class="panel">
+                                        <tr>
+                                          <td style="width: 150px;">
+                                            <label class="lbl-custom-left"
+                                              >Pick up address :</label
+                                            >
+                                          </td>
+                                          <td>
+                                            <input
+                                              type="text"
+                                              class="form-control form-control-sm"
+                                            />
+                                          </td>
+                                          <td style="width: 5%;"></td>
+                                          <td style="width: 150px;">
+                                            <label class="lbl-custom-left"
+                                              >Purpose of export
+                                            </label>
+                                          </td>
+                                          <td>
+                                            <input
+                                              type="text"
+                                              class="form-control form-control-sm"
+                                            />
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </ng-template>
+                                  </ngb-panel>
+                                  <ngb-panel id="general-3">
+                                    <ng-template
+                                      ngbPanelHeader
+                                      let-opened="opened"
+                                    >
+                                      <button
+                                        ngbPanelToggle
+                                        class="btn btn-accordion"
+                                      >
+                                        <div
+                                          class="custom-control custom-radio"
+                                        >
+                                          <input
+                                            type="radio"
+                                            class="custom-control-input"
+                                            id="defaultGroupExample1"
+                                          />
+                                          <label
+                                            class="custom-control-label"
+                                            for="defaultGroupExample1"
+                                            >Port to door</label
+                                          >
+                                        </div>
+                                      </button>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                      <table class="panel">
+                                        <tr>
+                                          <td style="width: 150px;">
+                                            <label class="lbl-custom-left"
+                                              >Delivery address :</label
+                                            >
+                                          </td>
+                                          <td>
+                                            <input
+                                              type="text"
+                                              class="form-control form-control-sm"
+                                            />
+                                          </td>
+                                          <td style="width: 5%;"></td>
+                                          <td style="width: 150px;">
+                                            <label class="lbl-custom-left"
+                                              >Purpose of import
+                                            </label>
+                                          </td>
+                                          <td>
+                                            <input
+                                              type="text"
+                                              class="form-control form-control-sm"
+                                            />
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </ng-template>
+                                  </ngb-panel>
+                                  <ngb-panel id="general-4">
+                                    <ng-template
+                                      ngbPanelHeader
+                                      let-opened="opened"
+                                    >
+                                      <button
+                                        ngbPanelToggle
+                                        class="btn btn-accordion"
+                                      >
+                                        <div
+                                          class="custom-control custom-radio"
+                                        >
+                                          <input
+                                            type="radio"
+                                            class="custom-control-input"
+                                            id="defaultGroupExample1"
+                                          />
+                                          <label
+                                            class="custom-control-label"
+                                            for="defaultGroupExample1"
+                                            >Door to door</label
+                                          >
+                                        </div>
+                                      </button>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                      <table class="panel">
+                                        <tr>
+                                          <td style="width: 150px;">
+                                            <label class="lbl-custom-left"
+                                              >Delivery address :</label
+                                            >
+                                          </td>
+                                          <td>
+                                            <input
+                                              type="text"
+                                              class="form-control form-control-sm"
+                                            />
+                                          </td>
+                                          <td style="width: 5%;"></td>
+                                          <td style="width: 150px;">
+                                            <label class="lbl-custom-left"
+                                              >Purpose of import
+                                            </label>
+                                          </td>
+                                          <td>
+                                            <input
+                                              type="text"
+                                              class="form-control form-control-sm"
+                                            />
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="width: 150px;">
+                                            <label class="lbl-custom-left"
+                                              >Pick up address :</label
+                                            >
+                                          </td>
+                                          <td>
+                                            <input
+                                              type="text"
+                                              class="form-control form-control-sm"
+                                            />
+                                          </td>
+                                          <td style="width: 5%;"></td>
+                                          <td style="width: 150px;">
+                                            <label class="lbl-custom-left"
+                                              >Purpose of export
+                                            </label>
+                                          </td>
+                                          <td>
+                                            <input
+                                              type="text"
+                                              class="form-control form-control-sm"
+                                            />
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </ng-template>
+                                  </ngb-panel>
+                                </ngb-accordion>
+                              </div>
+                            </ng-template>
+                          </ngb-panel>
+                        </ngb-accordion>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>Sea freight </a>
+            <ng-template ngbNavContent>
+              <div class="scroll" style=" max-height: calc(100vh - 220px);">
+                <ngb-accordion #general2="ngbAccordion" activeIds="general-1">
+                  <ngb-panel id="general-1">
+                    <ng-template ngbPanelHeader let-opened="opened"
+                      ><button ngbPanelToggle class="btn btn-accordion">
+                        <span>{{ opened ? "&#045;" : "&#043;" }} FCL </span>
+                      </button>
+                      <div style="padding: .375rem 0rem;">
+                        <button class="btn-collapse btn-sm" (click)="general2.expandAll()">Expand
+                            all</button>
+                    </div>
+                    <div style="padding: .375rem 0rem;">
+                        <button class="btn-collapse btn-sm"
+                            (click)="general2.collapseAll()">Collapse
+                            all</button>
+                    </div>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                      <table class="panel">
+                        <tr style="height: calc((100vh - 340px)/2)">
+                          <td style="width: 83%;">
+                            <table class="panel">
+                              <tr style="height: 100%; width: 100%;">
+                                <ag-grid-angular
+                                  style="width: 100%; height: 100%;"
+                                  class="ag-theme-balham"
+                                >
+                                </ag-grid-angular>
+                              </tr>
+                            </table>
+                          </td>
+                          <td>
+                            <table class="panel">
+                              <tr style="height: 30px;">
+                                <td style="width: 70px;">
+                                  <label class="lbl-custom-left">GP/DC:</label>
+                                </td>
+                                <td style="width: 30px;">
+                                  <label class="lbl-custom-left">20'</label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                  />
+                                </td>
+
+                                <td style="width: 8px;"></td>
+                                <td style="width: 30px;">
+                                  <label class="lbl-custom-left">40'</label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                  />
+                                </td>
+                              </tr>
+                              <tr style="height: 30px;">
+                                <td style="width: 60px;">
+                                  <label class="lbl-custom-left">GP/DC:</label>
+                                </td>
+                                <td style="width: 35px;">
+                                  <label class="lbl-custom-left">HQ</label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                  />
+                                </td>
+
+                                <td style="width: 8px;"></td>
+                                <td style="width: 35px;">
+                                  <label class="lbl-custom-left">45'</label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                  />
+                                </td>
+                              </tr>
+                              <tr style="height: 30px;">
+                                <td style="width: 60px;">
+                                  <label class="lbl-custom-left">RF:</label>
+                                </td>
+                                <td style="width: 35px;">
+                                  <label class="lbl-custom-left">20'</label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                  />
+                                </td>
+
+                                <td style="width: 8px;"></td>
+                                <td style="width: 35px;">
+                                  <label class="lbl-custom-left">40'</label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                  />
+                                </td>
+                              </tr>
+                              <tr style="height: 30px;">
+                                <td style="width: 60px;">
+                                  <label class="lbl-custom-left">OT:</label>
+                                </td>
+                                <td style="width: 35px;">
+                                  <label class="lbl-custom-left">20'</label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                  />
+                                </td>
+
+                                <td style="width: 8px;"></td>
+                                <td style="width: 35px;">
+                                  <label class="lbl-custom-left">40'</label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                  />
+                                </td>
+                              </tr>
+                              <tr style="height: 30px;">
+                                <td style="width: 60px;">
+                                  <label class="lbl-custom-left">FR:</label>
+                                </td>
+                                <td style="width: 35px;">
+                                  <label class="lbl-custom-left">20'</label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                  />
+                                </td>
+
+                                <td style="width: 8px;"></td>
+                                <td style="width: 35px;">
+                                  <label class="lbl-custom-left">40'</label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                  />
+                                </td>
+                              </tr>
+                              <tr style="height: 30px;">
+                                <td style="width: 60px;">
+                                  <label class="lbl-custom-left"
+                                    >ISO tank:
+                                  </label>
+                                </td>
+                                <td style="width: 35px;">
+                                  <label class="lbl-custom-left">20'</label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                  />
+                                </td>
+
+                                <td style="width: 8px;"></td>
+                                <td style="width: 35px;">
+                                  <label class="lbl-custom-left">40'</label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                  />
+                                </td>
+                              </tr>
+                              <tr></tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr style="height: 29vh;">
+                          <td colspan="2">
+                            <table class="panel">
+                              <tr
+                                style="border-bottom: 0.5rem solid transparent;"
+                              >
+                                <td>
+                                  <table class="panel">
+                                    <p
+                                      style="
+                                        line-height: 14px;
+                                        font-size: 13px;
+                                        color: white;
+                                        margin-bottom: 2px;
+                                        margin-left: 8px;
+                                      "
+                                    >
+                                      Origin local charges
+                                    </p>
+
+                                    <tr style="height: 100%;">
+                                      <ag-grid-angular
+                                        style="width: 100%; height: 100%;"
+                                        class="ag-theme-balham"
+                                      >
+                                      </ag-grid-angular>
+                                    </tr>
+                                  </table>
+                                </td>
+                                <td>
+                                  <table class="panel">
+                                    <p
+                                      style="
+                                        line-height: 14px;
+                                        font-size: 13px;
+                                        color: white;
+                                        margin-bottom: 2px;
+                                        margin-left: 8px;
+                                      "
+                                    >
+                                      Destination local charges
+                                    </p>
+                                    <tr style="height: 100%;">
+                                      <ag-grid-angular
+                                        style="width: 100%; height: 100%;"
+                                        class="ag-theme-balham"
+                                      >
+                                      </ag-grid-angular>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel id="general-2">
+                    <ng-template ngbPanelHeader let-opened="opened"
+                      ><button ngbPanelToggle class="btn btn-accordion">
+                        <span>{{ opened ? "&#045;" : "&#043;" }} LCL </span>
+                      </button>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                      <table class="panel">
+                        <tr style="height: calc((100vh - 340px)/2)">
+                          <td style="width: 100%;">
+                            <table class="panel">
+                              <tr style="height: 100%; width: 100%;">
+                                <ag-grid-angular
+                                  style="width: 100%; height: 100%;"
+                                  class="ag-theme-balham"
+                                >
+                                </ag-grid-angular>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr style="height: 27vh;">
+                          <td colspan="2">
+                            <table class="panel">
+                              <tr
+
+                              >
+                                <td>
+                                  <table class="panel">
+                                    <p
+                                      style="
+                                        line-height: 14px;
+                                        font-size: 13px;
+                                        color: white;
+                                        margin-bottom: 2px;
+                                      "
+                                    >
+                                      Origin local charges
+                                    </p>
+
+                                    <tr style="height: 100%;">
+                                      <ag-grid-angular
+                                        style="width: 100%; height: 100%;"
+                                        class="ag-theme-balham"
+                                      >
+                                      </ag-grid-angular>
+                                    </tr>
+                                  </table>
+                                </td>
+                                <td>
+                                  <table class="panel">
+                                    <p
+                                      style="
+                                        line-height: 14px;
+                                        font-size: 13px;
+                                        color: white;
+                                        margin-bottom: 2px;
+                                      "
+                                    >
+                                      Destination local charges
+                                    </p>
+                                    <tr style="height: 100%;">
+                                      <ag-grid-angular
+                                        style="width: 100%; height: 100%;"
+                                        class="ag-theme-balham"
+                                      >
+                                      </ag-grid-angular>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </ng-template>
+                  </ngb-panel>
+                </ngb-accordion>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>Domestic service charges </a>
+            <ng-template ngbNavContent>
+              <div class="scroll" style="max-height: calc(100vh - 230px);">
+                <ngb-accordion #general3="ngbAccordion" activeIds="general-1">
+                  <ngb-panel id="general-1">
+                    <ng-template ngbPanelHeader let-opened="opened"
+                      ><button ngbPanelToggle class="btn btn-accordion">
+                        <span
+                          >{{ opened ? "&#045;" : "&#043;" }} Origin charges
+                        </span>
+                      </button>
+                      <div style="padding: .375rem 0rem;">
+                        <button class="btn-collapse btn-sm" (click)="general3.expandAll()">Expand
+                            all</button>
+                    </div>
+                    <div style="padding: .375rem 0rem;">
+                        <button class="btn-collapse btn-sm"
+                            (click)="general3.collapseAll()">Collapse
+                            all</button>
+                    </div>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                      <div>
+                        <table>
+                          <ul ngbNav #nav="ngbNav" class="nav-tabs">
+                            <li [ngbNavItem]="1">
+                              <a ngbNavLink>Trucking charge </a>
+                              <ng-template ngbNavContent>
+                                <div class="scroll">
+                                  <table class="panel">
+                                    <ngb-accordion
+                                      #general4="ngbAccordion"
+                                      activeIds="general-1,general-2"
+                                    >
+                                      <ngb-panel id="general-1">
+                                        <ng-template
+                                          ngbPanelHeader
+                                          let-opened="opened"
+                                          ><button
+                                            ngbPanelToggle
+                                            class="btn btn-accordion"
+                                          >
+                                            <span
+                                              >{{
+                                                opened ? "&#045;" : "&#043;"
+                                              }}
+                                              Container
+                                            </span>
+                                          </button>
+                                          <div style="padding: .375rem 0rem;">
+                                            <button class="btn-collapse btn-sm" (click)="general4.expandAll()">Expand
+                                                all</button>
+                                        </div>
+                                        <div style="padding: .375rem 0rem;">
+                                            <button class="btn-collapse btn-sm"
+                                                (click)="general4.collapseAll()">Collapse
+                                                all</button>
+                                        </div>
+                                        </ng-template>
+                                        <ng-template ngbPanelContent>
+                                          <table class="panel">
+                                            <tr>
+                                              <td style="width: 20px;"></td>
+                                              <td style="width: 70px;">
+                                                <label class="lbl-custom-left"
+                                                  >Pick up</label
+                                                >
+                                              </td>
+                                              <td style="width: 500px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 35px;">
+                                                <label class="lbl-custom-left"
+                                                  >20'</label
+                                                >
+                                              </td>
+                                              <td style="width: 50px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td></td>
+                                            </tr>
+                                            <tr>
+                                              <td></td>
+                                              <td style="width: 70px;">
+                                                <label class="lbl-custom-left"
+                                                  >Delivery</label
+                                                >
+                                              </td>
+                                              <td style="width: 500px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 35px;">
+                                                <label class="lbl-custom-left"
+                                                  >40'</label
+                                                >
+                                              </td>
+                                              <td style="width: 50px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td></td>
+                                            </tr>
+                                            <tr>
+                                              <td></td>
+                                              <td>
+                                                <label class="lbl-custom-left"
+                                                  >Notes</label
+                                                >
+                                              </td>
+                                              <td colspan="5">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </ng-template>
+                                      </ngb-panel>
+                                      <ngb-panel id="general-2">
+                                        <ng-template
+                                          ngbPanelHeader
+                                          let-opened="opened"
+                                          ><button
+                                            ngbPanelToggle
+                                            class="btn btn-accordion"
+                                          >
+                                            <span
+                                              >{{
+                                                opened ? "&#045;" : "&#043;"
+                                              }}
+                                              Non-container
+                                            </span>
+                                          </button>
+                                        </ng-template>
+                                        <ng-template ngbPanelContent>
+                                          <table class="panel">
+                                            <tr>
+                                              <td style="width: 20px;"></td>
+                                              <td style="width: 70px;">
+                                                <label class="lbl-custom-left"
+                                                  >Pick up</label
+                                                >
+                                              </td>
+                                              <td style="width: 350px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 100px;">
+                                                <label class="lbl-custom-left"
+                                                  >Type of truck</label
+                                                >
+                                              </td>
+                                              <td style="width: 250px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 100px;">
+                                                <label class="lbl-custom-left"
+                                                  >Type of truck</label
+                                                >
+                                              </td>
+                                              <td style="width: 250px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td></td>
+                                            </tr>
+                                            <tr>
+                                              <td style="width: 20px;"></td>
+                                              <td style="width: 70px;">
+                                                <label class="lbl-custom-left"
+                                                  >Delivery</label
+                                                >
+                                              </td>
+                                              <td style="width: 500px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 100px;">
+                                                <label class="lbl-custom-left"
+                                                  >Type of truck</label
+                                                >
+                                              </td>
+                                              <td style="width: 250px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 100px;">
+                                                <label class="lbl-custom-left"
+                                                  >Type of truck</label
+                                                >
+                                              </td>
+                                              <td style="width: 250px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td></td>
+                                            </tr>
+                                            <tr>
+                                              <td style="width: 20px;"></td>
+                                              <td style="width: 70px;">
+                                                <label class="lbl-custom-left"
+                                                  >Notes</label
+                                                >
+                                              </td>
+                                              <td style="width: 500px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 100px;">
+                                                <label class="lbl-custom-left"
+                                                  >Type of truck</label
+                                                >
+                                              </td>
+                                              <td style="width: 250px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 100px;">
+                                                <label class="lbl-custom-left"
+                                                  >Type of truck</label
+                                                >
+                                              </td>
+                                              <td style="width: 250px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td></td>
+                                            </tr>
+                                          </table>
+                                        </ng-template>
+                                      </ngb-panel>
+                                    </ngb-accordion>
+                                  </table>
+                                </div>
+                              </ng-template>
+                            </li>
+                            <li [ngbNavItem]="2">
+                              <a ngbNavLink>Customs clearance </a>
+                              <ng-template ngbNavContent>
+                                <table class="panel">
+                                  <tr>
+                                    <td style="width: 20px;"></td>
+                                    <td style="width: 140px;">
+                                      <label class="lbl-custom-left"
+                                        >Terminal</label
+                                      >
+                                    </td>
+                                    <td style="width: 400px;">
+                                      <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                      />
+                                    </td>
+                                    <td style="width: 30px;"></td>
+                                    <td style="width: 160px;">
+                                      <label class="lbl-custom-left"
+                                        >Charge per 20</label
+                                      >
+                                    </td>
+                                    <td style="width: 250px;">
+                                      <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                      />
+                                    </td>
+                                    <td></td>
+                                  </tr>
+                                  <tr>
+                                    <td style="width: 20px;"></td>
+                                    <td style="width: 100px;">
+                                      <label class="lbl-custom-left"
+                                        >Currency</label
+                                      >
+                                    </td>
+                                    <td style="width: 400px;">
+                                      <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                      />
+                                    </td>
+                                    <td style="width: 30px;"></td>
+                                    <td style="width: 140px;">
+                                      <label class="lbl-custom-left"
+                                        >Charge per 40</label
+                                      >
+                                    </td>
+                                    <td style="width: 250px;">
+                                      <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                      />
+                                    </td>
+                                    <td></td>
+                                  </tr>
+                                  <tr>
+                                    <td style="width: 20px;"></td>
+                                    <td style="width: 100px;">
+                                      <label class="lbl-custom-left"
+                                        >Purpose of ex/im</label
+                                      >
+                                    </td>
+                                    <td style="width: 400px;">
+                                      <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                      />
+                                    </td>
+                                    <td style="width: 30px;"></td>
+                                    <td style="width: 140px;">
+                                      <label class="lbl-custom-left"
+                                        >Charge per LCL shpt</label
+                                      >
+                                    </td>
+                                    <td style="width: 250px;">
+                                      <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                      />
+                                    </td>
+                                    <td></td>
+                                  </tr>
+                                  <tr style="height: 10px;"></tr>
+                                  <tr>
+                                    <td style="width: 30px;"></td>
+                                    <td colspan="8">
+                                      <label class="lbl-custom-left"
+                                        >Remarks: Truck detention is free for 04
+                                        hours from arrival. Overtime detention
+                                        charge is USD10/hours, max
+                                        usd50/truck/day.
+                                      </label>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td style="width: 30px;"></td>
+                                    <td colspan="8">
+                                      <label class="lbl-custom-left"
+                                        >Domestic service charges and local
+                                        charges are exclusive of VAT 10%
+                                      </label>
+                                    </td>
+                                  </tr>
+                                  <tr></tr>
+                                </table>
+                              </ng-template>
+                            </li>
+                          </ul>
+                          <div [ngbNavOutlet]="nav"></div>
+                        </table>
+                      </div>
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel id="general-2">
+                    <ng-template ngbPanelHeader let-opened="opened"
+                      ><button ngbPanelToggle class="btn btn-accordion">
+                        <span
+                          >{{ opened ? "&#045;" : "&#043;" }} Destination
+                          charges
+                        </span>
+                      </button>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                      <div>
+                        <table>
+                          <ul ngbNav #nav="ngbNav" class="nav-tabs">
+                            <li [ngbNavItem]="1">
+                              <a ngbNavLink>Trucking charge </a>
+                              <ng-template ngbNavContent>
+                                <div class="scroll">
+                                  <table class="panel">
+                                    <ngb-accordion
+                                      #general5="ngbAccordion"
+                                      activeIds="general-1,general-2"
+                                    >
+                                      <ngb-panel id="general-1">
+                                        <ng-template
+                                          ngbPanelHeader
+                                          let-opened="opened"
+                                          ><button
+                                            ngbPanelToggle
+                                            class="btn btn-accordion"
+                                          >
+                                            <span
+                                              >{{
+                                                opened ? "&#045;" : "&#043;"
+                                              }}
+                                              Container
+                                            </span>
+                                          </button>
+                                          <div style="padding: .375rem 0rem;">
+                                            <button class="btn-collapse btn-sm" (click)="general5.expandAll()">Expand
+                                                all</button>
+                                        </div>
+                                        <div style="padding: .375rem 0rem;">
+                                            <button class="btn-collapse btn-sm"
+                                                (click)="general5.collapseAll()">Collapse
+                                                all</button>
+                                        </div>
+                                        </ng-template>
+                                        <ng-template ngbPanelContent>
+                                          <table class="panel">
+                                            <tr>
+                                              <td style="width: 20px;"></td>
+                                              <td style="width: 70px;">
+                                                <label class="lbl-custom-left"
+                                                  >Pick up</label
+                                                >
+                                              </td>
+                                              <td style="width: 500px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 35px;">
+                                                <label class="lbl-custom-left"
+                                                  >20'</label
+                                                >
+                                              </td>
+                                              <td style="width: 50px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td></td>
+                                            </tr>
+                                            <tr>
+                                              <td></td>
+                                              <td style="width: 70px;">
+                                                <label class="lbl-custom-left"
+                                                  >Delivery</label
+                                                >
+                                              </td>
+                                              <td style="width: 500px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 35px;">
+                                                <label class="lbl-custom-left"
+                                                  >40'</label
+                                                >
+                                              </td>
+                                              <td style="width: 50px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td></td>
+                                            </tr>
+                                            <tr>
+                                              <td></td>
+                                              <td>
+                                                <label class="lbl-custom-left"
+                                                  >Notes</label
+                                                >
+                                              </td>
+                                              <td colspan="5">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </ng-template>
+                                      </ngb-panel>
+                                      <ngb-panel id="general-2">
+                                        <ng-template
+                                          ngbPanelHeader
+                                          let-opened="opened"
+                                          ><button
+                                            ngbPanelToggle
+                                            class="btn btn-accordion"
+                                          >
+                                            <span
+                                              >{{
+                                                opened ? "&#045;" : "&#043;"
+                                              }}
+                                              Non-container
+                                            </span>
+                                          </button>
+                                        </ng-template>
+                                        <ng-template ngbPanelContent>
+                                          <table class="panel">
+                                            <tr>
+                                              <td style="width: 20px;"></td>
+                                              <td style="width: 70px;">
+                                                <label class="lbl-custom-left"
+                                                  >Pick up</label
+                                                >
+                                              </td>
+                                              <td style="width: 20%;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 100px;">
+                                                <label class="lbl-custom-left"
+                                                  >Type of truck</label
+                                                >
+                                              </td>
+                                              <td style="width: 250px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 100px;">
+                                                <label class="lbl-custom-left"
+                                                  >Type of truck</label
+                                                >
+                                              </td>
+                                              <td style="width: 250px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td></td>
+                                            </tr>
+                                            <tr>
+                                              <td style="width: 20px;"></td>
+                                              <td style="width: 70px;">
+                                                <label class="lbl-custom-left"
+                                                  >Delivery</label
+                                                >
+                                              </td>
+                                              <td style="width: 500px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 100px;">
+                                                <label class="lbl-custom-left"
+                                                  >Type of truck</label
+                                                >
+                                              </td>
+                                              <td style="width: 250px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 100px;">
+                                                <label class="lbl-custom-left"
+                                                  >Type of truck</label
+                                                >
+                                              </td>
+                                              <td style="width: 250px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td></td>
+                                            </tr>
+                                            <tr>
+                                              <td style="width: 20px;"></td>
+                                              <td style="width: 70px;">
+                                                <label class="lbl-custom-left"
+                                                  >Notes</label
+                                                >
+                                              </td>
+                                              <td style="width: 500px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 100px;">
+                                                <label class="lbl-custom-left"
+                                                  >Type of truck</label
+                                                >
+                                              </td>
+                                              <td style="width: 250px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td style="width: 30px;"></td>
+                                              <td style="width: 100px;">
+                                                <label class="lbl-custom-left"
+                                                  >Type of truck</label
+                                                >
+                                              </td>
+                                              <td style="width: 250px;">
+                                                <input
+                                                  type="text"
+                                                  class="form-control form-control-sm"
+                                                />
+                                              </td>
+                                              <td></td>
+                                            </tr>
+                                          </table>
+                                        </ng-template>
+                                      </ngb-panel>
+                                    </ngb-accordion>
+                                  </table>
+                                </div>
+                              </ng-template>
+                            </li>
+                            <li [ngbNavItem]="2">
+                              <a ngbNavLink>Customs clearance </a>
+                              <ng-template ngbNavContent>
+                                <table class="panel">
+                                  <tr>
+                                    <td style="width: 20px;"></td>
+                                    <td style="width: 140px;">
+                                      <label class="lbl-custom-left"
+                                        >Terminal</label
+                                      >
+                                    </td>
+                                    <td style="width: 400px;">
+                                      <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                      />
+                                    </td>
+                                    <td style="width: 30px;"></td>
+                                    <td style="width: 160px;">
+                                      <label class="lbl-custom-left"
+                                        >Charge per 20</label
+                                      >
+                                    </td>
+                                    <td style="width: 250px;">
+                                      <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                      />
+                                    </td>
+                                    <td></td>
+                                  </tr>
+                                  <tr>
+                                    <td style="width: 20px;"></td>
+                                    <td style="width: 100px;">
+                                      <label class="lbl-custom-left"
+                                        >Currency</label
+                                      >
+                                    </td>
+                                    <td style="width: 400px;">
+                                      <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                      />
+                                    </td>
+                                    <td style="width: 30px;"></td>
+                                    <td style="width: 140px;">
+                                      <label class="lbl-custom-left"
+                                        >Charge per 40</label
+                                      >
+                                    </td>
+                                    <td style="width: 250px;">
+                                      <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                      />
+                                    </td>
+                                    <td></td>
+                                  </tr>
+                                  <tr>
+                                    <td style="width: 20px;"></td>
+                                    <td style="width: 100px;">
+                                      <label class="lbl-custom-left"
+                                        >Purpose of ex/im</label
+                                      >
+                                    </td>
+                                    <td style="width: 400px;">
+                                      <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                      />
+                                    </td>
+                                    <td style="width: 30px;"></td>
+                                    <td style="width: 140px;">
+                                      <label class="lbl-custom-left"
+                                        >Charge per LCL shpt</label
+                                      >
+                                    </td>
+                                    <td style="width: 250px;">
+                                      <input
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                      />
+                                    </td>
+                                    <td></td>
+                                  </tr>
+                                  <tr style="height: 10px;"></tr>
+                                  <tr>
+                                    <td style="width: 30px;"></td>
+                                    <td colspan="8">
+                                      <label class="lbl-custom-left"
+                                        >Remarks: Truck detention is free for 04
+                                        hours from arrival. Overtime detention
+                                        charge is USD10/hours, max
+                                        usd50/truck/day.
+                                      </label>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td style="width: 30px;"></td>
+                                    <td colspan="8">
+                                      <label class="lbl-custom-left"
+                                        >Domestic service charges and local
+                                        charges are exclusive of VAT 10%
+                                      </label>
+                                    </td>
+                                  </tr>
+                                  <tr></tr>
+                                </table>
+                              </ng-template>
+                            </li>
+                          </ul>
+                          <div [ngbNavOutlet]="nav"></div>
+                        </table>
+                      </div>
+                    </ng-template>
+                  </ngb-panel>
+                </ngb-accordion>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="4">
+            <a ngbNavLink>Terms & conditions </a>
+            <ng-template ngbNavContent>
+              <table class="panel">
+                <ngb-accordion
+                  #general1="ngbAccordion"
+                  activeIds="general-1,general-2"
+                >
+                  <ngb-panel id="general-1">
+                    <ng-template ngbPanelHeader let-opened="opened"
+                      ><button ngbPanelToggle class="btn btn-accordion">
+                        <span
+                          >{{ opened ? "&#045;" : "&#043;" }}
+                          Terms & conditions
+                        </span>
+                      </button>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                      <tr>
+                        <td style="width: 30px;"></td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Rates are applied for general, non-hazardous,
+                            non-special cargo.
+                          </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30px;"></td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Rates are subject to Peak Season Surcharge (PSS),
+                            General Rate Increase (GRI) whenever applicable,
+                            unless otherwise indicated herein.
+                          </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30px;"></td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Rates exclude import duty, loading & unloading
+                            cargo from truck…, unless otherwise indicated
+                            herein.
+                          </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30px;"></td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Rates exclude container detention, demurrage,
+                            container repair, storage charge, customs penalty,
+                            truck detention charge, if any.
+                          </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30px;"></td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Transit time indicated is based on carrier's
+                            publication, which may be subject to change
+                            with/without prior notice.
+                          </label>
+                        </td>
+                      </tr>
+                      <tr></tr>
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel id="general-2">
+                    <ng-template ngbPanelHeader let-opened="opened"
+                      ><button ngbPanelToggle class="btn btn-accordion">
+                        <span
+                          >{{ opened ? "&#045;" : "&#043;" }}
+                          Signature
+                        </span>
+                      </button>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                      <tr>
+                        <td style="width: 30px;"></td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Thank you for allowing us an opportunity to quote
+                            you! We look forward to the pleasure and honour of
+                            being of service to your esteemed company!
+                          </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="width: 30px;"></td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Please do not hesitate to contact us if you have
+                            any questions.
+                          </label>
+                        </td>
+                      </tr>
+                      <tr></tr>
+                    </ng-template>
+                  </ngb-panel>
+                </ngb-accordion>
+              </table>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav"></div>
+      </tr>
+    </table>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <table class="panel">
+      <tr>
+        <td></td>
+        <td style="width: 161px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Make an Internal Booking
+          </button>
+        </td>
+        <td style="width: 151px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Make a booking request
+
+          </button>
+        </td>
+        <td style="width: 101px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Print quotation
+
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Copy
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Edit
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Delete
+          </button>
+        </td>
+        <td style="width: 101px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Save as draft
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Save
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,174 @@
+<div class="modal-header">
+    <h6 class="modal-title"><label class="lbl-custom-left">Catalogue / Sales Profit Exchange Rate / Update rate to Docs
+            </label></h6>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="scroll">
+<p style="color: white; font-size: small;">This function is used when certain documents fail to apply the correct exchange rate applicable on the date of file. After choosing 1 of the 3 updating manners below and hitting on the "update" button, the exchange rate of chosen file(s) will be corrected.
+    is used when certain documents fail to apply the correct exchange rate applicable on the date of file.</p>
+<ngb-accordion [closeOthers]="true">
+    <ngb-panel id="static-1" >
+        <ng-template ngbPanelHeader let-opened="opened">
+             <button ngbPanelToggle 
+                class="btn btn-accordion"><span>{{ opened ? '&#9745;' : '&#9744;'}}
+                    Massive update (all offices, all services, all charges)</span></button>
+        </ng-template>
+      <ng-template ngbPanelContent >
+       <div> 
+           <table>
+            <tr>
+<td style="width: 15%;">
+    <label class="lbl-custom-left">Update from :</label>
+</td>
+<td style="width: 20%;">
+    <of1-input-date>
+    </of1-input-date>
+</td>
+<td style="width: 15%;">
+    <label class="lbl-custom-left">Update to :</label>
+</td>
+<td style="width: 20%;">
+    <of1-input-date>
+    </of1-input-date>
+</td>
+<td>
+    <div class="custom-control custom-checkbox" style="position: relative;top: 0px;left: 13px;"><input class="custom-control-input" id="include" type="checkbox">
+        <label class="custom-control-label" for="include">Include issued invoice</label></div> 
+</td>
+            </tr> 
+           </table>
+         
+       </div>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="static-2">
+        <ng-template ngbPanelHeader let-opened="opened">
+            
+               <button ngbPanelToggle 
+                class="btn btn-accordion"><span>{{ opened ? '&#9745;' : '&#9744;'}}
+                    Selective update</span></button>
+        </ng-template>
+      <ng-template ngbPanelContent>
+        <div> 
+            <table>
+             <tr>
+ <td style="width: 15%;">
+     <label class="lbl-custom-left">Update from :</label>
+ </td>
+ <td style="width: 20%;">
+     <of1-input-date>
+     </of1-input-date>
+ </td>
+ <td style="width: 15%;">
+     <label class="lbl-custom-left">Update to :</label>
+ </td>
+ <td style="width: 20%;">
+     <of1-input-date>
+     </of1-input-date>
+ </td>
+<td></td>
+ </tr> 
+</table>
+ <div class="row" style="border: 0.5px solid azure;margin-top: 5px;height: 32px; padding: 2px;">
+    <div class="col">
+        <div class="custom-control custom-checkbox" style="position: relative;top: 0px;left: 13px;"><input class="custom-control-input" id="include" type="checkbox">
+            <label class="custom-control-label" for="include">All charges</label></div> 
+        </div>
+    <div class="col">
+        <div class="custom-control custom-checkbox" style="position: relative;top: 0px;left: 13px;"><input class="custom-control-input" id="include" type="checkbox">
+            <label class="custom-control-label" for="include">All Selling</label></div> 
+        </div>
+    <div class="col">
+        <div class="custom-control custom-checkbox" style="position: relative;top: 0px;left: 13px;"><input class="custom-control-input" id="include" type="checkbox">
+            <label class="custom-control-label" for="include">All Buying</label></div> 
+        </div>
+    <div class="col-4">
+        <div class="custom-control custom-checkbox" style="position: relative;top: 0px;left: 13px;"><input class="custom-control-input" id="include" type="checkbox">
+            <label class="custom-control-label" for="include">All Other Debit/Credit</label></div> 
+    </div>
+</div>
+<div class="row">
+<div class="col-1">
+    <label class="lbl-custom-left">Apply:</label>
+</div>
+<div class="col-4" style="margin-top: 4px;height: 60px;">
+    <div class="form-control form-control-sm" style="overflow: auto;height: 100%;">
+        <div>
+          <label>
+            <input type="checkbox" name="type.id" />
+          </label>
+        </div>
+      </div>
+      
+</div>
+<div class="col-2 no-padding">
+    <label class="lbl-custom-left">Service type:</label>
+</div>
+<div class="col-5" style="margin-top: 4px;height: 60px;">
+    <div class="form-control form-control-sm" style="overflow: auto;height: 100%;">
+        <div>
+          <label>
+            <input type="checkbox" name="type.id" />
+          </label>
+        </div>
+      </div>
+      
+</div>
+</div>
+<div class="row" style="margin-top: 5px; padding: 2px;">
+    <div class="col">
+        <div class="custom-control custom-checkbox" style="position: relative;top: 0px;left: 13px;"><input class="custom-control-input" id="include" type="checkbox">
+            <label class="custom-control-label" for="include">Include issued invoice</label></div> 
+        </div> 
+</div>
+          
+          
+        </div>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="static-3">
+        <ng-template ngbPanelHeader let-opened="opened">
+            
+               <button ngbPanelToggle 
+                class="btn btn-accordion"><span>{{ opened ? '&#9745;' : '&#9744;'}}
+                    Update to a single HBL or HAWB</span></button>
+        </ng-template>
+      <ng-template ngbPanelContent>
+        <table>
+            <tr>
+               <td style="width: 14%;">
+                <label class="lbl-custom-left">H/BL No.:</label>
+               </td> 
+               <td>
+                <input  class="form-control form-control-sm" type="text">
+               </td>
+               </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    <div class="custom-control custom-checkbox" style="position: relative;left:3px;"><input class="custom-control-input" id="include" type="checkbox">
+                        <label class="custom-control-label" for="include">Include issued invoice</label></div> 
+                   
+                </td>
+            </tr>
+        </table>
+      </ng-template>
+    </ngb-panel>
+    </ngb-accordion>
+</div>
+</div>
+<div class="modal-footer">
+    <table class="panel">
+        <tr>
+            <td></td>
+            <td style="width: 71px">
+                <button class="btn btn-custom btn-sm" type="button" >Save</button>
+            </td>
+                     
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,14 @@
+::ng-deep div.card-header {
+  padding: 0;
+  background: var(--bg-tertiary-color);
+  display: flex;
+}
+
+::ng-deep div.card-body {
+  padding: 5px;
+  background: var(--bg-primary-color);
+  overflow: visible;
+}
+.modal-footer{
+  padding: 3px;
+}

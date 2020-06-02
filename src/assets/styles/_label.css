@@ -1,0 +1,70 @@
+label.lbl-custom {
+    font-family: var(--type);
+    font-size: var(--default-font-size);
+    text-align: left;
+    color: var(--f-color);
+    margin-bottom: 0;
+}
+
+label.lbl-custom-left {
+    font-family: var(--type);
+    font-size: var(--default-font-size);
+    text-align: left;
+    color: var(--f-color);
+    margin-bottom: 0;
+    padding-left: 5px;
+}
+label.lbl-custom-right {
+    font-family: var(--type);
+    font-size: var(--default-font-size);
+    text-align: left;
+    color: var(--f-color);
+    margin-bottom: 0;
+    padding-left: 40px;
+}
+
+label.lbl-custom-center {
+    width: 100%;
+    font-family: var(--type);
+    font-size: var(--default-font-size);
+    text-align: center;
+    color: var(--f-color);
+    margin-bottom: 0;
+}
+
+label.lbl-copyright {
+    width: 100%;
+    font-family: var(--type);
+    font-size: var(--default-font-size);
+    text-align: center;
+    color: var(--bg-super-primary-color);
+    margin-bottom: 0;
+}
+
+label.lbl-radio {
+    font-family: var(--type);
+    font-size: var(--default-font-size);
+    text-align: left;
+    color: var(--f-color);
+    margin-bottom: 0;
+    padding: 0 1.5rem 0 .25rem;
+}
+
+label.lbl-error {
+    font-family: var(--type);
+    font-size: var(--default-font-size);
+    color: #c30101;
+    margin-bottom: 0;
+    position: absolute;
+    right: 0;
+    top: 0.125rem;
+}
+
+pre.pre-custom-left {
+    font-family: var(--type);
+    font-size: var(--default-font-size);
+    text-align: left;
+    color: var(--f-color);
+    margin-bottom: 0;
+    padding-left: 5px;
+}

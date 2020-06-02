@@ -1,0 +1,27 @@
+button.btn-calendar, button.btn-calendar:active {
+    width: 1.75rem;
+    padding: 0 .175rem;
+    background-color: #ffffff;
+}
+
+button.btn-calendar:focus {
+    box-shadow: none;
+}
+
+button.btn-calendar:hover:not([disabled]) {
+    background-color: #6c757d
+}
+
+button.btn-calendar:disabled {
+    opacity: 0.65;
+}
+
+label.lbl-error {
+    font-family: var(--type);
+    font-size: var(--default-font-size);
+    color: #c30101;
+    margin-bottom: 0;
+    position: absolute;
+    right: 2rem;
+    top: 0.125rem;
+}

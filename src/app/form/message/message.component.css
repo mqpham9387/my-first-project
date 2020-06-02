@@ -1,0 +1,262 @@
+/* gr-modal-message */
+
+::ng-deep .gr-modal-message .modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+::ng-deep .gr-modal-message .modal-dialog {
+    position: fixed;
+    margin: 0;
+    min-width: 385px;
+    height: 172px;
+    padding: 0;
+    font-family: var(--main-font-family);
+    font-size: var(--default-font-size);
+}
+
+::ng-deep .gr-modal-message .modal-content {
+    position: absolute;
+    top: 30vh;
+    right: 0;
+    bottom: 0;
+    left: calc((100vw - 385px) / 2);
+    height: 172px;
+    border-radius: 0;
+}
+
+::ng-deep .gr-modal-message .modal-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 38px;
+    padding: 0.25rem 0.5rem;
+    background: var(--bg-primary-color);
+}
+
+::ng-deep .gr-modal-message .modal-body {
+    position: absolute;
+    top: 39px;
+    width: 100%;
+    background: var(--bg-primary-color);
+    padding: 0.05rem 0.5rem !important
+}
+
+::ng-deep .gr-modal-message .modal-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 38px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0;
+    background: var(--bg-primary-color);
+}
+
+::ng-deep .gr-modal-message .modal-body div.scroll {
+    height: calc(95px - 0.1rem);
+}
+
+td.icon {
+    width: 93px;
+    text-align: center;
+}
+
+label.lbl-i-mandatory-back {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    color: #ffffff;
+}
+
+label.lbl-i-mandatory {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    color: #0078d7;
+    position: absolute;
+}
+
+label.lbl-i-warning-back {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    color: #000000
+}
+
+label.lbl-i-warning {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    color: #fce100;
+    position: absolute;
+}
+
+label.lbl-i-prohibition-back {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    color: #ffffff;
+}
+
+label.lbl-i-prohibition {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    color: #f03a17;
+    position: absolute;
+}
+
+i.circle {
+    font-size: 45px;
+}
+
+i.circle-back {
+    padding-top: 5px;
+    font-size: 35px;
+}
+
+i.triangle {
+    font-size: 45px;
+}
+
+i.triangle-back {
+    padding-top: 15px;
+    font-size: 25px;
+}/* gr-modal-message */
+
+::ng-deep .gr-modal-message .modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+::ng-deep .gr-modal-message .modal-dialog {
+    position: fixed;
+    margin: 0;
+    min-width: 385px;
+    height: 172px;
+    padding: 0;
+    font-family: var(--main-font-family);
+    font-size: var(--default-font-size);
+}
+
+::ng-deep .gr-modal-message .modal-content {
+    position: absolute;
+    top: 30vh;
+    right: 0;
+    bottom: 0;
+    left: calc((100vw - 385px) / 2);
+    height: 172px;
+    border-radius: 0;
+}
+
+::ng-deep .gr-modal-message .modal-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 38px;
+    padding: 0.25rem 0.5rem;
+    background: var(--bg-primary-color);
+}
+
+::ng-deep .gr-modal-message .modal-body {
+    position: absolute;
+    top: 39px;
+    bottom: 38px;
+    width: 100%;
+    background: var(--bg-primary-color);
+    padding: 0.05rem 0.5rem !important
+}
+
+::ng-deep .gr-modal-message .modal-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 38px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0;
+    background: var(--bg-primary-color);
+}
+
+::ng-deep .gr-modal-message .modal-body div.scroll {
+    height: calc(95px - 0.1rem);
+}
+
+td.icon {
+    width: 93px;
+    text-align: center;
+}
+
+label.lbl-i-mandatory-back {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    color: #ffffff;
+}
+
+label.lbl-i-mandatory {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    color: #0078d7;
+    position: absolute;
+}
+
+label.lbl-i-warning-back {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    color: #000000
+}
+
+label.lbl-i-warning {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    color: #fce100;
+    position: absolute;
+}
+
+label.lbl-i-prohibition-back {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    color: #ffffff;
+}
+
+label.lbl-i-prohibition {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    color: #f03a17;
+    position: absolute;
+}
+
+i.circle {
+    font-size: 45px;
+}
+
+i.circle-back {
+    padding-top: 5px;
+    font-size: 35px;
+}
+
+i.triangle {
+    font-size: 45px;
+}
+
+i.triangle-back {
+    padding-top: 15px;
+    font-size: 25px;
+}

@@ -1,0 +1,96 @@
+<div class="background no-padding"><div class="modal-header">
+    <h6 class="modal-title"><label class="lbl-custom-left">Catalogue / Currency Exchange Rates History / {{action}}
+            </label></h6>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+        <table class="panel-noheight">
+            <tr>
+                <td style="width:18%;">
+                  <label class="lbl-custom-left">Ref No:</label>
+              </td>
+              <td>
+                <input type="text" class="form-control form-control-sm" readonly [(ngModel)]="currencyExchangeRate.exchangeRateID">
+              </td>
+              
+              <td style="width:18%;">
+                <label class="lbl-custom-left">Creater by:</label>
+            </td>
+            <td>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="currencyExchangeRate.creator" readonly >
+            </td>         
+              </tr>
+              <tr><td>
+                <label class="lbl-custom-left">Applied from<span style="color: red;">*</span>:</label>
+            </td>
+            <td>
+              <of1-input-date  [(ngModel)]="currencyExchangeRate.fromDate">
+              </of1-input-date>
+            </td>
+            <td>
+              <label class="lbl-custom-left">Applied to<span style="color: red;">*</span>:</label>
+          </td>
+          <td>
+            <of1-input-date  [(ngModel)]="currencyExchangeRate.toDate">
+            </of1-input-date>
+          </td>
+         
+          
+          </tr>
+          <tr>
+            <td>
+              <label class="lbl-custom-left">Notes:</label>
+          </td>
+            <td colspan="3"> <textarea class="form-control form-control-sm" [(ngModel)]="currencyExchangeRate.notes"></textarea></td>
+          </tr>
+          <tr>
+            <td>
+                <label class="lbl-custom-left">Applied for:</label>
+            </td>
+            
+      <td colspan="3">
+        <ng-select 
+        [items]="dropdownList"
+        [multiple]="true" 
+        bindLabel="companyID"
+        bindValue="companyID"
+        [(ngModel)]="currencyExchangeRate.appliedFor">
+        <ng-template ng-header-tmp>
+
+          <div style="height: 20px;">
+            <button style="margin-top:-11px" class="btn btn-link"
+                    (click)="onSelectAll()">Select All</button>
+            <button style="margin-top:-11px" class="btn btn-link"
+                    (click)="onClearAll()">Clear All</button>
+          </div>
+      
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+          <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.companyName}}
+      </ng-template>
+      </ng-select>
+      </td>
+          </tr>
+          
+        </table>
+    </div>
+
+<div class="modal-footer" >
+    <table class="panel-noheight" >
+        <tr  >
+            <td></td>
+            <td style="width: 71px">
+                <button class="btn btn-custom btn-sm" type="button" (click)="save()" >Save</button>
+            </td>
+            
+            <td style="width: 71px">
+                <button class="btn btn-custom btn-sm" type="button" (click)="close()" >Cancel</button>
+              </td>
+                     
+        </tr>
+    </table>
+</div>
+</div>

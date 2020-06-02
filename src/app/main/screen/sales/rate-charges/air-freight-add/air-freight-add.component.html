@@ -1,0 +1,302 @@
+<ng-container>
+  <div class="modal-header">
+    <table class="panel">
+      <tr>
+        <td>
+          <h6 class="modal-title">
+            <label class="lbl-custom-left">AirFreight Tariff -
+              <ng-container *ngIf="action === 'EDIT'; else elseTemplate">
+                <span>Edit</span>
+              </ng-container>
+              <ng-template #elseTemplate>
+                <span>Add New</span>
+              </ng-template>
+            </label>
+          </h6>
+        </td>
+      </tr>
+    </table>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-air-freight">
+    <table class="panel" style="height: 100%;">
+      <tr>
+        <div style="height: 5px"></div>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Code</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="data.pricingID" class="form-control form-control-sm" placeholder="Code generate by system" readonly>
+                </td>
+                <td style="width: 2%;">
+                </td>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">FSC</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="fsc" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Origin</label>
+                </td>
+                <td style="width: 26%;">
+                  <of1-input-lookup2 class="port" [(ngModel)]="airOrigin"></of1-input-lookup2>
+                </td>
+                <td style="width: 2%;">
+                </td>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">SSC</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="ssc" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Destination</label>
+                </td>
+                <td style="width: 26%;">
+                  <of1-input-lookup2 class="port" [(ngModel)]="airDestination"></of1-input-lookup2>
+                </td>
+                <td style="width: 2%;">
+                </td>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Curr.</label>
+                </td>
+                <td style="width: 26%;">
+                  <of1-input-lookup [data]="currencys" class="currency" [(ngModel)]="airCurr"></of1-input-lookup>
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Carrier</label>
+                </td>
+                <td style="width: 26%;">
+                  <of1-input-lookup2 class="carrier" [(ngModel)]="airCarrier"></of1-input-lookup2>
+                </td>
+                <td style="width: 2%;">
+                </td>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Valid Date From</label>
+                </td>
+                <td style="width: 26%;">
+                  <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right" [(ngModel)]="validDateFrom">
+                  </of1-input-date>
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Min (Qty)</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="airMin" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;">
+                </td>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Valid Date To</label>
+                </td>
+                <td style="width: 26%;">
+                  <of1-input-date fromDate="01/01/2018" toDate="dateTimeLimit" placement="left" placementErr="right" [(ngModel)]="validDateTo">
+                  </of1-input-date>
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">-45(KG)</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="level1" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;">
+                </td>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">T/T</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="airTt" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">+45(KG)</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="level2" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;">
+                </td>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Freq.</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="airFrequency" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">+100(KG)</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="level3" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;">
+                </td>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Cut off</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="airCutOff" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">+300(KG)</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="level4" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;">
+                </td>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">User Input</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="airCreator" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">+500(KG)</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="level5" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;">
+                </td>
+                <td style="width: 10%;">
+                  <label class="lbl-custom-left">Notes</label>
+                </td>
+                <td style="width: 26%;">
+                  <input type="text" [(ngModel)]="airNotes" class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+        <table class="panel-noheight">
+          <tr>
+            <td style="width: 10%;">
+              <label class="lbl-custom-left">+1000(KG)</label>
+            </td>
+            <td style="width: 26%;">
+              <input type="text" [(ngModel)]="level6" class="form-control form-control-sm">
+            </td>
+            <td style="width: 2%;">
+            </td>
+            <td style="width: 10%;">
+            </td>
+            <td style="width: 26%;">
+            </td>
+            <td style="width: 2%;"></td>
+          </tr>
+        </table>
+
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <table class="panel">
+      <tr>
+        <td></td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="close()">Cancel</button>
+        </td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="save()"><span>{{ action === 'ADD' ? 'Add' : 'Update'}}</span></button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ng-container>

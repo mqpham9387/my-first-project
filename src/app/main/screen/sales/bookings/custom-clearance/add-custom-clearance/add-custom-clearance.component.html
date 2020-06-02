@@ -1,0 +1,255 @@
+<div class="background">
+  <div class="modal-header">
+    <table class="panel">
+      <tr>
+        <td>
+          <h6 class="modal-title">
+            <label class="lbl-custom-left">Customs clearance & trucking</label>
+          </h6>
+        </td>
+      </tr>
+    </table>
+    <button type="button" class="btn-close" aria-label="Close" (click)="cancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="padding-top: 5px;">
+    <form [formGroup]="bookingFrm" >
+      <table class="panel">
+          <tr>
+            <td style="width: 12%;">
+              <label class="lbl-custom-left">Commodity<span style="color: red;">*</span></label>
+            </td>
+            <td style="width: 38%;">
+              <input type="text" formControlName="commodity" class="form-control form-control-sm" />
+            </td>
+            <td style="width: 15%;">
+              <label class="lbl-custom-right">Commodity type<span style="color: red;">*</span></label>
+            </td>
+            <td style="width: 34%;">
+              <of1-input-lookup2 class="shipmentType" formControlName="commodityType"></of1-input-lookup2>
+            </td>
+            <td style="width: 5%;"></td>
+          </tr>
+          <tr>
+            <td style="width: 12%;">
+              <label class="lbl-custom-left">Hs Code</label>
+            </td>
+            <td colspan="3">
+              <of1-input-lookup2 class="hsCode" formControlName="hsCode"></of1-input-lookup2>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" formControlName="cargoIsUnstackable" type="checkbox" id="cargo_is_un_stackable"/>
+                <label class="custom-control-label" style="color: white; font-size: 14px;"
+                  for="cargo_is_un_stackable">Cargo is un-stackable
+                </label>
+              </div>
+            </td>
+          </tr>
+      </table>
+      <div class="scroll" style=" max-height: calc(100vh - 240px);">
+        <ngb-accordion #general2="ngbAccordion" activeIds="general-1, general-2">
+          <ngb-panel id="general-1">
+            <ng-template ngbPanelHeader let-opened="opened"><button ngbPanelToggle class="btn btn-accordion">
+                <span>{{ opened ? "&#045;" : "&#043;" }} Need trucking service</span>
+              </button>
+              <div style="padding: .375rem 0rem;">
+                <button class="btn-collapse btn-sm" (click)="general2.expandAll()">Expand all</button>
+              </div>
+              <div style="padding: .375rem 0rem;">
+                <button class="btn-collapse btn-sm" (click)="general2.collapseAll()">Collapse all</button>
+              </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <table class="panel">
+                <tr>
+                  <td>
+                    <div class="custom-control custom-checkbox">
+                      <input class="custom-control-input" formControlName="cargoIsUnstackable" type="checkbox" id="cargo_is_un_stackable"/>
+                      <label class="custom-control-label" style="color: white; font-size: 14px;"
+                        for="cargo_can_be_tiled">Cargo can be tilted
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+              <table class="panel">
+                <tr>
+                  <td style="width: 10%;">
+                    <label class="lbl-custom-left">Pick up address</label>
+                  </td>
+                  <td colspan="4">
+                    <of1-input-lookup2 class="hsCode" formControlName="hsCode"></of1-input-lookup2>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 10%;">
+                    <label class="lbl-custom-left">Delivery address</label>
+                  </td>
+                  <td colspan="4">
+                    <of1-input-lookup2 class="hsCode" formControlName="hsCode"></of1-input-lookup2>
+                  </td>
+                </tr>
+                <tr>
+                  <td  style="width: 10%;">
+                    <label class="lbl-custom-left">Gross weight</label>
+                  </td>
+                  <td  style="width: 8%;">
+                    <input type="text" formControlName="grossWeight"style="height:35px" class="form-control form-control-sm"placeholder="gross weight (kgs)"/>
+                  </td>
+                  <td  style="width: 8%;">
+                    <ng-select
+                      appendTo="body"
+                      class="of-custom-select-type"
+                      [multiple]="false"
+                      formControlName="grossWeightUnit"
+                    >
+                      <ng-option
+                        *ngFor="let item of grossWeightUnits"
+                        [value]="item.typeName"
+                      >{{item.typeName}}</ng-option>
+                    </ng-select>
+                  </td>
+                  <td>
+                    <label class="lbl-custom-left">Max weight per package</label>
+                  </td>
+                  <td>
+                    <input type="text" formControlName="maxLength"style="width: 100%"class="form-control form-control-sm"placeholder="kg..."/>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 10%;">
+                    <label class="lbl-custom-left">Volume</label>
+                  </td>
+                  <td style="width: 8%;">
+                    <input type="text" formControlName="volume"style="height:35px" class="form-control form-control-sm"placeholder="volume (cbm)"/>
+                  </td>
+                  <td  style="width: 8%;">
+                    <ng-select
+                      appendTo="body"
+                      class="of-custom-select-type"
+                      [multiple]="false"
+                      formControlName="volumeUnit"
+                    >
+                      <ng-option
+                        *ngFor="let item of volumeTypes"
+                        [value]="item.typeName"
+                      >{{item.typeName}}</ng-option>
+                    </ng-select>
+                  </td>
+                  <td>
+                    <label class="lbl-custom-left">Max height</label>
+                  </td>
+                  <td>
+                    <input type="text" formControlName="maxHeight" class="form-control form-control-sm"placeholder="cm..."/>
+                  </td>
+                </tr>
+                <tr>
+
+                  <td style="width: 20%;">
+                    <label class="lbl-custom-left">Max length</label>
+                  </td>
+                  <td colspan="2">
+                    <input type="text" formControlName="maxLength" class="form-control form-control-sm"placeholder="cm..."/>
+                  </td>
+
+                  <td style="width: 10%;">
+                      <label class="lbl-custom-left">Max width</label>
+                    </td>
+                    <td>
+                      <input type="text" formControlName="maxWidth" class="form-control form-control-sm"placeholder="cm..."/>
+                    </td>
+                </tr>
+              </table>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel id="general-2">
+            <ng-template ngbPanelHeader let-opened="opened"><button ngbPanelToggle class="btn btn-accordion">
+                <span>{{ opened ? "&#045;" : "&#043;" }} Need customs clearance</span>
+              </button>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="scroll" style="max-height: calc(100vh - 220px);">
+                <table class="panel">
+                  <tr>
+                    <table class="panel">
+                      <td style="width: 4%;">
+                        <div class="of1-cus-coluor">
+                          <div class="custom-control custom-radio">
+                            <input
+                              type="radio"
+                              class="custom-control-input mr-5"
+                              id="defaultGroupExampleSub1"
+                              name="isExport"
+                              formControlName="isExport"
+                              value="CUSTOM_CLEARANCE_IMPORT"
+                            >
+                            <label class="custom-control-label" for="defaultGroupExampleSub1" style="color: white;">Import</label>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="width: 4%;">
+                        <div class="of1-cus-coluor">
+                          <div class="custom-control custom-radio">
+                            <input
+                              type="radio"
+                              class="custom-control-input mr-5"
+                              id="customclearanceExport1"
+                              name="isExport"
+                              formControlName="isExport"
+                              value="CUSTOM_CLEARANCE_EXPORT">
+                            <label class="custom-control-label" for="customclearanceExport1" style="color: white;">Export</label>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="width: 22%;"></td>
+                    </table>
+                  </tr>
+                </table>
+                <table class="panel">
+                  <tr>
+                    <td style="width: 15%;">
+                      <label class="lbl-custom-left">Clearance terminal</label>
+                    </td>
+                    <td>
+                      <input type="text" formControlName="maxWidth" class="form-control form-control-sm" style="width: 100%;"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width: 15%;">
+                      <label class="lbl-custom-left">Purpose of import/export</label>
+                    </td>
+                    <td>
+                      <of1-input-lookup class="partner" formControlName="Purpose of import/export"></of1-input-lookup>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <table class="panel">
+      <tr>
+        <td></td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Save
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

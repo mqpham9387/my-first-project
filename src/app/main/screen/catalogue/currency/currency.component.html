@@ -1,0 +1,154 @@
+<div class="background">
+    <table class="panel">
+      <tr style="height: 31px; border-bottom: 0.5rem solid transparent;">
+        <nav aria-label="breadcrumb" role="navigation">
+          <ol class="breadcrumb breadcrumb-custom">
+            <li class="breadcrumb-item"><a>Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Catalogue</li>
+            <li class="breadcrumb-item active" aria-current="page">Currency Rate ExChange</li>
+          </ol>
+        </nav>
+      </tr>
+      <tr style="height: 32px;">
+        <td style="width: 80%;">
+        <table class="panel">
+          <tr>
+            <td style="width:8%;">
+              <label class="lbl-custom-left">Ref No:</label>
+          </td>
+          <td style="width: 20%;" >
+            <input type="text" class="form-control form-control-sm" readonly [(ngModel)]="currencyExchangeRate.exchangeRateID">
+          </td>
+          
+          <td style="width:8%;">
+            <label class="lbl-custom-left">Creater by:</label>
+        </td>
+        <td style="width: 20%;">
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="currencyExchangeRate.creator" readonly >
+        </td>
+        <td style="width:8%;">
+          <label class="lbl-custom-left">Applied for:</label>
+      </td>
+<td rowspan="3"  >
+  <ng-select [items]="dropdownList"
+  (change)="focusout()"
+  [multiple]="true" 
+  bindLabel="companyID"
+  bindValue="companyID"
+  [(ngModel)]="currencyExchangeRate.appliedFor">
+  <ng-template ng-header-tmp>
+
+    <div style="height: 20px;">
+      <button style="margin-top:-11px" class="btn btn-link"
+              (click)="onSelectAll()">Select All</button>
+      <button style="margin-top:-11px" class="btn btn-link"
+              (click)="onClearAll()">Clear All</button>
+    </div>
+
+  </ng-template>
+  <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index" >
+       <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"  /> {{item.companyName}}
+</ng-template>
+</ng-select>
+</td>
+      
+          </tr>
+          <tr><td>
+            <label class="lbl-custom-left">Applied from:</label>
+        </td>
+        <td>
+          <of1-input-date  [toDate]="maxDate" (onComplete)="focusout()" placement="bottom" placementErr="right"   [(ngModel)]="fromDate">
+          </of1-input-date>
+        </td>
+        <td>
+          <label class="lbl-custom-left">Applied to:</label>
+      </td>
+      <td>
+        <of1-input-date (onComplete)="focusout()" [(ngModel)]="toDate">
+        </of1-input-date>
+      </td>
+      <td style="width:8%;">
+        
+    </td>
+      
+      </tr>
+      
+        </table>
+       
+      </td>
+      
+      </tr>
+      <tr style="border-bottom: 0.5rem solid transparent;">
+        <table class="panel">
+          <tr style="height: 100%;">
+            <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-balham" [rowData]="rowData1"
+            [columnDefs]="columnDefs" [frameworkComponents]="frameworkComponents" editType='fullRow' rowSelection="single"  [defaultColDef]="defaultColDef"
+            (gridReady)="onGridReady1($event)" [suppressClickEdit]="true" [stopEditingWhenGridLosesFocus]="false" >
+            </ag-grid-angular>
+          </tr>
+         
+        </table>
+      </tr>
+      <tr style="height: 10px;">
+        <table class="panel">
+          <tr>
+           
+            <td style="font-size: smaller;color: aliceblue;">These exchange rates are used to calculate profit and loss of shipments incurred within the validity period of the exchange rates. The exchange rates for issuing invoices to customers may differ and can be inputted upon issuing invoices.</td>
+            <!-- <td style="width: 91px" *ngIf="!edit">
+              <button class="btn btn-custom btn-sm" type="button" (click)="addNewDetail()" >Add New</button>
+            </td>
+            <td style="width: 71px" *ngIf="edit">
+              <button class="btn btn-custom btn-sm" type="button" (click)="saveEdit()" >Save</button>
+            </td>
+            <td style="width: 71px" *ngIf="edit">
+              <button class="btn btn-custom btn-sm" type="button" (click)="closeEdit()" >Cancel</button>
+            </td> -->
+            
+          </tr>
+        </table>
+      
+      </tr>
+      <tr style="height: 31px; border-bottom: 0.5rem solid transparent;">
+        <nav aria-label="breadcrumb" role="navigation">
+          <ol class="breadcrumb breadcrumb-custom">
+            <li class="breadcrumb-item active" aria-current="page">Currency Rate ExChange</li>
+            <li class="breadcrumb-item active" aria-current="page">History</li>
+          </ol>
+        </nav>
+      </tr>
+      <tr style="border-bottom: 0.5rem solid transparent;">
+        <table class="panel">
+          <tr style="height: 100%;">
+            <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-balham" [rowData]="rowData"
+            [columnDefs]="columnDefs1" rowSelection="single" [frameworkComponents]="frameworkComponents"
+            (gridReady)="onGridReady($event)"
+            [paginationPageSize]="30"
+            [components]="components"
+            rowModelType="infinite"
+            [cacheBlockSize]="100"
+            [defaultColDef]="defaultColDef1"
+             (rowSelected)="pickRow($event)">
+            </ag-grid-angular>
+          </tr>
+        </table>
+      </tr>
+      <tr style="height: 32px;">
+        <table class="panel">
+          <tr>
+           
+            <td></td>
+            <td style="width: 151px">
+              <button class="btn btn-custom btn-sm" type="button" (click)="updateRates()" >Update rates to Docs</button>
+            </td>
+            <td style="width: 91px">
+              <button class="btn btn-custom btn-sm" type="button" (click)="addNew()" >Add New</button>
+            </td>
+            <td style="width: 71px">
+              <button class="btn btn-custom btn-sm" type="button" (click)="deleteparent()" >Delete</button>
+            </td>
+            
+          </tr>
+        </table>
+      </tr>
+    </table>
+  </div>

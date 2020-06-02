@@ -1,0 +1,6 @@
+::ng-deep .ng-value-container{
+    font-size: small;
+    height: 60px;
+    overflow-x: auto;
+    overflow-y: auto;
+}

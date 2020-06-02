@@ -1,0 +1,680 @@
+<ng-container>
+  <div class="background">
+    <div class="modal-header">
+      <table class="panel">
+        <tr>
+          <td>
+            <h6 class="modal-title">
+              <label class="lbl-custom-left"
+                >{{action}} - Airfreight (with or without customs clearance & trucking)  
+                <span></span
+              ></label>
+            </h6>
+          </td>
+        </tr>
+      </table>
+      <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding-top: 2px;">
+      <form [formGroup]="myForm">
+        <table class="panel">
+          <tr>
+            <ngb-tabset>
+              <ngb-tab title="General">
+                <ng-template ngbTabContent>
+                  <div class="scroll">
+                    <table class="panel">
+                      <tr>
+                        <td style="width: 180px;">
+                          <label class="lbl-custom-left">ID</label>
+                        </td>
+                        <td style="width: 170px;">
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            readonly
+                            formControlName="inquiryID"
+                          />
+                        </td>
+
+                        <td style="width: 40px;"></td>
+                        <td style="width: 170px;"></td>
+                        <td style="width: 185px;"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Cargo Ready Date From
+                          </label>
+                        </td>
+                        <td>
+                          <of1-input-date
+                           placement="bottom"
+                            placementErr="right"
+                            formControlName="cargoReadyDate"
+                            [disabled] = "disable"
+                          >
+                          </of1-input-date>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left">To </label>
+                        </td>
+                        <td>
+                          <of1-input-date
+                            fromDate="01/01/2010"
+                            toDate="dateTimeLimit"
+                            placement="bottom"
+                            placementErr="right"
+                            disabled="true"
+                          >
+                          </of1-input-date>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">Commodity* </label>
+                        </td>
+                        <td colspan="3">
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="commodityDescriptions"
+                          />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Commodity Type*
+                          </label>
+                        </td>
+                        <td *ngIf="action=='EDIT'">
+                          <ng-select
+                          [items]="commodityList"
+                          bindLabel="commodityName"
+                          [loading]="loadingCommodity"
+                          labelForId="commodity"
+                          formControlName="commodity"
+                          [appendTo]="'body'"
+                           >
+                        
+                          
+                        </ng-select>
+                        </td>
+                        <td *ngIf="action=='VIEW'">
+                          <input type="text"
+                          class="form-control form-control-sm"
+                          [value]="myForm.get('commodity').value.commodityName"
+                         >
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">Client* </label>
+                        </td>
+                        <td colspan="3">
+                          <of1-input-lookup2
+                            
+                            class="customer"
+                            formControlName="client"
+                            [disable] = "disable"
+                          >
+                          </of1-input-lookup2>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Deadline for delivery
+                          </label>
+                        </td>
+                        <td>
+                          <of1-input-date
+                            fromDate="01/01/2010"
+                            toDate="dateTimeLimit"
+                            placement="bottom"
+                            placementErr="right"
+                            formControlName="deadlineDelivery"
+                            [disabled] = "disable"
+                          >
+                          </of1-input-date>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Special requirements
+                          </label>
+                        </td>
+                        <td colspan="3">
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="specialRequirement"
+                          />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Targeted rate & charges
+                          </label>
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="targetRateAndCharges"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">Create By* </label>
+                        </td>
+                        <td colspan="3">
+                          <of1-input-lookup2
+                            [disable] = "disable"
+                            
+                            class="contact"
+                            formControlName="creator"
+                          >
+                          </of1-input-lookup2>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left">Create On* </label>
+                        </td>
+                        <td>
+                          <of1-input-date
+                            fromDate="01/01/2010"
+                            toDate="dateTimeLimit"
+                            placement="bottom"
+                            placementErr="right"
+                            formControlName="dateCreate"
+                            disabled = true
+                          >
+                          </of1-input-date>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">Sent to* </label>
+                        </td>
+                        <td colspan="3">
+                          <of1-input-lookup2
+                            
+                            class="contact"
+                            formControlName="sentTo"
+                            [disable] = "disable"
+                          >
+                          </of1-input-lookup2>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left">Forwarded to </label>
+                        </td>
+                        <td>
+                          <of1-input-lookup2
+                          
+                            class="contact"
+                            formControlName="forwardedTo"
+                            [disable] = "disable"
+                          >
+                          </of1-input-lookup2>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left">Last Quoted On </label>
+                        </td>
+                        <td colspan="3">
+                          <of1-input-date
+                            fromDate="01/01/2010"
+                            toDate="dateTimeLimit"
+                            placement="bottom"
+                            placementErr="right"
+                            formControlName="lastQuotedOn"
+                            [disabled] = "disable"
+                          >
+                          </of1-input-date>
+                        </td>
+                        <td colspan="2">
+                          <table class="panel">
+                            <tr class="no-padding">
+                              <td style="width: 50px;"></td>
+                              <td style="width: 200px;">
+                                <div class="custom-control custom-checkbox">
+                                  <input
+                                    type="checkbox"
+                                    class="custom-control-input"
+                                    id="cargoIsUnstackable"
+                                    formControlName="cargoIsUnstackable"
+                                  />
+                                  <label
+                                    class="custom-control-label"
+                                    for="cargoIsUnstackable"
+                                    style="color: white; font-size: 14px;"
+                                    >Cargo is un-stackable
+                                  </label>
+                                </div>
+                              </td>
+                              <td>
+                                <div class="custom-control custom-checkbox">
+                                  <input
+                                    type="checkbox"
+                                    class="custom-control-input"
+                                    id="needExpressService"
+                                    formControlName="needExpressService"
+                                  />
+                                  <label
+                                    class="custom-control-label"
+                                    for="needExpressService"
+                                    style="color: white; font-size: 14px;"
+                                    >Need express service
+                                  </label>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Route">
+                <ng-template ngbTabContent>
+                  <div class="scroll">
+                    <table class="panel">
+                      <tr style="height: 3px;">
+                        <td style="width: 14%;"></td>
+                        <td style="width: 36%;"></td>
+                        <td style="width: 14%;"></td>
+                        <td style="width: 36%;"></td>
+                      </tr>
+                      <tr>
+                        <td colspan="4" class="no-padding">
+                          <table class="panel-noheight">
+                            <tr class="no-padding">
+                              <td style="width: 14%;">
+                                <label class="lbl-custom-left"
+                                  >Term of service*
+                                </label>
+                              </td>
+                              <td *ngIf="action=='EDIT'" style="width: 32%;">
+                                <ng-select
+                                  labelForId="term"
+                                  [appendTo]="'body'"
+                                  formControlName="term"
+                                >
+                                  <ng-option value="PTP"
+                                    >Port to Port</ng-option
+                                  >
+                                  <ng-option value="PTD"
+                                    >Port to Door</ng-option
+                                  >
+                                  <ng-option value="DTP"
+                                    >Door to Port</ng-option
+                                  >
+                                  <ng-option value="DTD"
+                                    >Door to Door</ng-option
+                                  >
+                                </ng-select>
+                              </td>
+                              <td *ngIf="action == 'VIEW'" style="width: 32%;">
+                                <input
+                                  type="text"
+                                  class="form-control form-control-sm"
+                                  formControlName="term"
+                                />
+                              </td>
+                              <td style="width: 2%;"></td>
+                              <td>
+                                <div class="custom-control custom-checkbox">
+                                  <input
+                                    class="custom-control-input"
+                                    type="checkbox"
+                                    formControlName="customsClearanceAtOrigin"
+                                    id="origin"
+                                  />
+                                  <label
+                                    class="custom-control-label"
+                                    style="color: white; font-size: 14px;"
+                                    for="origin">Need customs clearance at origin
+                                  </label>
+                                </div>
+                              </td>
+                              <td>
+                                <div class="custom-control custom-checkbox">
+                                  <input
+                                    class="custom-control-input"
+                                    type="checkbox"
+                                    formControlName="customsClearanceAtDestination"
+                                    id="destination"
+                                  />
+                                  <label
+                                    class="custom-control-label"
+                                    style="color: white; font-size: 14px;"
+                                    for="destination"
+                                    >Need customs clearance at destination
+                                  </label>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Pick up address
+                          </label>
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="pickupAt"
+                          />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Delivery address
+                          </label>
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="deliveryTo"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Purpose of export
+                          </label>
+                        </td>
+                        <td *ngIf="action=='EDIT'">
+                          <ng-select
+                            [appendTo]="'body'"
+                            formControlName="purposeOfExport"
+                          >
+                            <ng-option value="Trading">Trading</ng-option>
+                            <ng-option value="Investment">Investment</ng-option>
+                            <ng-option value="Export processing"
+                              >Export processing</ng-option
+                            >
+                            <ng-option value="Temporary import for re-export"
+                              >Temporary import for re-export</ng-option
+                            >
+                            <ng-option value="Temporary export for re-import"
+                              >Temporary export for re-import</ng-option
+                            >
+                            <ng-option value="On-spot export and import"
+                              >On-spot export and import</ng-option
+                            >
+                            <ng-option value="Non-commercial"
+                              >Non-commercial</ng-option
+                            >
+                          </ng-select>
+                        </td>
+                        <td *ngIf="action=='VIEW'">
+                          <input
+                            type="text"
+                            class="form-control form-control-sm"
+                            formControlName="purposeOfExport"
+                          />
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Purpose of import
+                          </label>
+                        </td>
+                        <td *ngIf="action=='EDIT'">
+                          <ng-select
+                            [appendTo]="'body'"
+                            formControlName="purposeOfImport"
+                          >
+                            <ng-option value="Trading">Trading</ng-option>
+                            <ng-option value="Investment">Investment</ng-option>
+                            <ng-option value="Export processing"
+                              >Export processing</ng-option
+                            >
+                            <ng-option value="Temporary import for re-export"
+                              >Temporary import for re-export</ng-option
+                            >
+                            <ng-option value="Temporary export for re-import"
+                              >Temporary export for re-import</ng-option
+                            >
+                            <ng-option value="On-spot export and import"
+                              >On-spot export and import</ng-option
+                            >
+                            <ng-option value="Non-commercial"
+                              >Non-commercial</ng-option
+                            >
+                          </ng-select>
+                        </td>
+                        <td *ngIf="action=='VIEW'">
+                          <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          formControlName="purposeOfImport"
+                        />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Port of loading
+                          </label>
+                        </td>
+                        <td>
+                          <of1-input-lookup2
+                           
+                            class="port"
+                            formControlName="portofLoading"
+                            [disable] = "disable"
+                          >
+                          </of1-input-lookup2>
+                        </td>
+                        <td>
+                          <label class="lbl-custom-left"
+                            >Port of discharge
+                          </label>
+                        </td>
+                        <td>
+                          <of1-input-lookup2
+                     
+                            class="port"
+                            formControlName="portofDischarge"
+                            [disable] = "disable"
+                          >
+                          </of1-input-lookup2>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Volume">
+                <ng-template ngbTabContent>
+                  <div class="scroll">
+                    <table class="panel-noheight">
+                      <tr style="border-bottom: 0.5rem solid transparent;">
+                        <table class="panel">
+                          <tr>
+                            <td style="width: 221px;">
+                              <label class="lbl-custom-left"
+                                >Gross Weight:
+                              </label>
+                            </td>
+                            <td style="width: 400px;">
+                              <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                formControlName="grossWeight"
+                              />
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <label class="lbl-custom-left">Volume : </label>
+                            </td>
+                            <td>
+                              <input
+                                type="number"
+                                class="form-control form-control-sm"
+                                formControlName="volume"
+                              />
+                            </td>
+                          </tr>
+                        </table>
+                      </tr>
+                      <ngb-accordion
+                        #general="ngbAccordion"
+                        activeIds="general-1,general-2" 
+                      
+                      >
+                        <ngb-panel id="general-1">
+                          <ng-template ngbPanelHeader let-opened="opened">
+                            <button ngbPanelToggle class="btn btn-accordion">
+                              <span
+                                >{{
+                                  opened ? "&#045;" : "&#043;"
+                                }}
+                                Palletized</span
+                              >
+                            </button>
+                            <div style="padding: .375rem 0rem;">
+                              <button class="btn-collapse btn-sm" (click)="general.expandAll()">Expand
+                                  all</button>
+                          </div>
+                          <div style="padding: .375rem 0rem;">
+                              <button class="btn-collapse btn-sm"
+                                  (click)="general.collapseAll()">Collapse
+                                  all</button>
+                          </div>
+                          </ng-template>
+                          <ng-template ngbPanelContent>
+                            <table class="panel">
+                              <tr>
+                                <td style="width: 20%;">
+                                  <label class="lbl-custom-left"
+                                    >Quantity :
+                                  </label>
+                                </td>
+                                <td style="width: 400px;">
+                                  <input
+                                    type="number"
+                                    class="form-control form-control-sm"
+                                    formControlName="quantity"
+                                  />
+                                </td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <label class="lbl-custom-left"
+                                    >Dimensions of each pallet
+                                  </label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                    formControlName="eachPalletDimension"
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <label class="lbl-custom-left"
+                                    >Gross weight of each pallet
+                                  </label>
+                                </td>
+                                <td>
+                                  <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                    formControlName="eachPalletGrossWeight"
+                                  />
+                                </td>
+                              </tr>
+                            </table>
+                          </ng-template>
+                        </ngb-panel>
+                        <ngb-panel id="general-2">
+                          <ng-template ngbPanelHeader let-opened="opened">
+                            <button ngbPanelToggle class="btn btn-accordion">
+                              <span
+                                >{{
+                                  opened ? "&#045;" : "&#043;"
+                                }}
+                                Non-palletized</span
+                              >
+                            </button>
+                          </ng-template>
+                          <ng-template ngbPanelContent>
+                            <table class="panel">
+                              <tr>
+                                <td style="width: 20%;">
+                                  <label class="lbl-custom-left"
+                                    >Quantity :
+                                  </label>
+                                </td>
+                                <td style="width: 400px;">
+                                  <input
+                                    type="number"
+                                    class="form-control form-control-sm"
+                                    formControlName="nonPalletPackageQuantity"
+                                  />
+                                </td>
+                                <td></td>
+                              </tr>
+                            </table>
+                          </ng-template>
+                        </ngb-panel>
+                      </ngb-accordion>
+                    </table>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <table class="panel">
+        <tr>
+          <td></td>
+          <td style="width: 120px;">
+            <button class="btn btn-custom btn-sm" type="button">
+              Make a Quotation
+            </button>
+          </td>
+          <td style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button">Forward</button>
+          </td>
+          <td *ngIf="action=='VIEW'" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="delete()">Delete</button>
+          </td>
+          <td *ngIf="saveButton" style="width: 71px;">
+            <button 
+              class="btn btn-custom btn-sm"
+              type="button"
+              (click)="save()"
+            >
+              Save
+            </button>
+          </td>
+          <td *ngIf="saveButton" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="cancel()">Cancel</button>
+          </td>
+          <td *ngIf="action=='VIEW'" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="close()">Close</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ng-container>

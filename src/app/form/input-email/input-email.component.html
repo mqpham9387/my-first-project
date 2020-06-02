@@ -1,0 +1,19 @@
+<div class="input-group">
+  <input type="text" class="form-control form-control-sm" (blur)="onEmailBlur($event)" [(ngModel)]="value">
+  <label *ngIf="!isEmail" class="lbl-error" placement="top" ngbTooltip="This field must be a valid email!!"
+    tooltipClass="tooltip-err top" container="body">
+    <i class="fas fa-exclamation-triangle"></i>
+  </label>
+  <label *ngIf="!isEmail" class="lbl-error"  placement="right" ngbTooltip="This field must be a valid email!!"
+    tooltipClass="tooltip-err right" container="body">
+    <i class="fas fa-exclamation-triangle"></i>
+  </label>
+  <label *ngIf="!isEmail" class="lbl-error" placement="bottom" ngbTooltip="This field must be a valid email!!"
+    tooltipClass="tooltip-err bottom" container="body">
+    <i class="fas fa-exclamation-triangle"></i>
+  </label>
+  <label *ngIf="!isEmail" class="lbl-error"  placement="left" ngbTooltip="This field must be a valid email!!"
+    tooltipClass="tooltip-err left" container="body">
+    <i class="fas fa-exclamation-triangle"></i>
+  </label>
+</div>

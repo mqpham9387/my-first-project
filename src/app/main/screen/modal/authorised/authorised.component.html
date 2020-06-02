@@ -1,0 +1,65 @@
+<ng-container *ngIf="!isLoading">
+  <div class="modal-header">
+    <table class="panel">
+      <tr>
+        <td>
+          <h6 class="modal-title">
+            <label class="lbl-custom-left"
+              >Authorised -
+              <span>{{ action === "ADD" ? "Add New" : "Edit" }}</span></label
+            >
+          </h6>
+        </td>
+      </tr>
+    </table>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="activeModal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="scroll">
+      <ag-grid-angular
+        style="width: 100%; height: 100%;"
+        class="ag-theme-balham"
+        [columnDefs]="columnDefs"
+        rowSelection="single"
+        [suppressMenuHide]="true"
+        [defaultColDef]="defaultColDef"
+        [frameworkComponents]="frameworkComponents"
+        (rowDoubleClicked)="valided($event)"
+        [paginationPageSize]="30"
+        [components]="components"
+        rowModelType="infinite"
+        [cacheBlockSize]="100"
+        (gridReady)="onGridReady($event)"
+      >
+      </ag-grid-angular>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <table class="panel">
+      <tr>
+        <td></td>
+        <td style="width: 91px;">
+          <button
+            class="btn btn-custom btn-sm"
+            type="button"
+            (click)="addNew()"
+          >
+            Add New
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button" (click)="edit()">
+            Edit
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ng-container>

@@ -1,0 +1,60 @@
+table#Search {
+    width: 100%;
+    border-spacing: 0;
+  }
+
+  table#Search .row {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  table#Search table {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  table#Search tr {
+    width: 100%;
+    border-top: 5px solid transparent; 
+  }
+
+  #SearchBar {
+    width: 340px;
+    min-height: 220px;
+    max-height: 480px;
+    background-color: var(--bg-primary-color);
+    color: var(--f-color);
+    font-family: var(--font-family);
+    font-size: 14px; 
+    display: none;
+    position: absolute;
+    z-index: 2;
+    right: 5px;
+  }
+
+  #SearchBar.show {
+    display: block;
+  }
+
+  #SearchBar .custom-btn {
+    background-color: var(--bg-primary-color) !important;
+    font-family: var(--font-family);
+    font-size: 14px !important;
+    color: var(--f-color) !important;
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  #SearchBar .custom-btn:hover {
+    background-color: var(--bg-primary-color);
+  }
+
+  .custom-expand{
+    display: none;
+  }
+
+  .custom-expand.show {
+    display: block;
+  }

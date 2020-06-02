@@ -1,0 +1,172 @@
+<ng-container>
+  <div class="modal-header">
+    <table class="panel">
+      <tr>
+        <td>
+          <h6 class="modal-title">
+            <label class="lbl-custom-left">Add new - LCL tariff
+              <span></span></label>
+          </h6>
+        </td>
+      </tr>
+    </table>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-sea-freight">
+    <form [formGroup]="seaForm">
+      <table class="panel" style="height: 100%;">
+        <tr>
+          <div style="height: 5px"></div>
+          <table class="panel-noheight">
+            <tr>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">POL <span style="color: red;"> *</span></label>
+              </td>
+              <td style="width: 26%;">
+                <of1-input-lookup [data]="ports" class="port" formControlName="portofLoading">
+                </of1-input-lookup>
+              </td>
+              <td style="width: 2%;">
+              </td>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">Curr. <span style="color: red;"> *</span></label>
+              </td>
+              <td style="width: 26%;">
+                <of1-input-lookup [data]="currencys" class="currency" formControlName="currency"></of1-input-lookup>
+              </td>
+              <td style="width: 2%;"></td>
+            </tr>
+          </table>
+          <table class="panel-noheight">
+            <tr>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">POD <span style="color: red;"> *</span></label>
+              </td>
+              <td style="width: 26%;">
+                <of1-input-lookup [data]="ports" class="port" formControlName="portofDischarge"></of1-input-lookup>
+              </td>
+              <td style="width: 2%;">
+              </td>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">Transit time</label>
+              </td>
+              <td style="width: 26%;">
+                <input class="form-control form-control-sm" type="text" formControlName="transitTime">
+              </td>
+              <td style="width: 2%;"></td>
+            </tr>
+          </table>
+          <table class="panel-noheight">
+            <tr>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">Transit port</label>
+              </td>
+              <td style="width: 26%;">
+                <of1-input-lookup [data]="ports" class="port" formControlName="transitPort"></of1-input-lookup>
+              </td>
+              <td style="width: 2%;">
+              </td>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">Valid from<span style="color: red;"> *</span></label>
+              </td>
+              <td style="width: 26%;">
+                <of1-input-date fromDate="01/01/2010" toDate="dateTimeLimit" placement="left" placementErr="right"
+                  formControlName="validDateFrom">
+                </of1-input-date>
+              </td>
+              <td style="width: 2%;"></td>
+            </tr>
+          </table>
+          <table class="panel-noheight">
+            <tr>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">Freight charge</label>
+              </td>
+              <td style="width: 26%;">
+                <input class="form-control form-control-sm" type="text" formControlName="freightChargeLCL">
+              </td>
+              <td style="width: 2%;">
+              </td>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">Valid to<span style="color: red;"> *</span></label>
+              </td>
+              <td style="width: 26%;">
+                <of1-input-date
+                  fromDate="01/01/2010"
+                  toDate="dateTimeLimit"
+                  placement="left"
+                  placementErr="right"
+                  formControlName="validDateTo">
+                </of1-input-date>
+              </td>
+              <td style="width: 2%;"></td>
+            </tr>
+          </table>
+          <table class="panel-noheight">
+            <tr>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">Frequency</label>
+              </td>
+              <td style="width: 26%;">
+                <input class="form-control form-control-sm" type="text" formControlName="frequency">
+              </td>
+              <td style="width: 2%;">
+              </td>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">Minimun charge <span style="color: red;"> *</span></label>
+              </td>
+              <td style="width: 26%;">
+                <input class="form-control form-control-sm" type="text" formControlName="minimumChargeLCL">
+              </td>
+              <td style="width: 2%;"></td>
+            </tr>
+          </table>
+          <table class="panel-noheight">
+            <tr>
+              <td style="width: 10%;">
+                <label class="lbl-custom-left">Notes</label>
+              </td>
+              <td style="width: 26%;">
+                <textarea type="text" formControlName="notes" class="form-control form-control-sm"></textarea>
+              </td>
+              <td style="width: 2%;">
+              </td>
+              <td style="width: 10%;">
+              </td>
+              <td style="width: 26%;">
+              </td>
+              <td style="width: 2%;"></td>
+            </tr>
+          </table>
+
+          <table class="panel-noheight">
+            <tr>
+              <table class="panel">
+                <tr>
+                  <td></td>
+                </tr>
+              </table>
+            </tr>
+          </table>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <table class="panel">
+      <tr>
+        <td></td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="close()">Cancel</button>
+        </td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button"
+            (click)="save()"><span>{{ action === 'ADD' ? 'Add' : 'Update'}}</span></button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p>Form value: {{ seaForm.value.customsClearanceAtOrigin }}</p>
+</ng-container>

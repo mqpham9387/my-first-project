@@ -1,0 +1,579 @@
+<ng-container *ngIf="!isLoading">
+  <div class="modal-header">
+    <table class="panel">
+      <tr>
+        <td>
+          <h6 class="modal-title"><label class="lbl-custom-left">
+              <span>Seafreight (with/without customs clearance & trucking)</span></label>
+          </h6>
+        </td>
+      </tr>
+    </table>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="panel">
+      <div class="scroll">
+        <tr>
+          <div style="height: 5px"></div>
+          <table class="panel-noheight">
+            <tr>
+              <table class="panel">
+                <tr>
+                  <td style="width: 4%;">
+                    <label class="lbl-custom-left">Commodity<span style="color: red;"> *</span></label>
+                  </td>
+                  <td style="width: 10%;">
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="seaInquiry.commodityDescriptions">
+                  </td>
+                  <td style="width: 4%;">
+                    <label class="lbl-custom-left">Commodity type<span style="color: red;"> *</span></label>
+                  </td>
+                  <td style="width: 8%;">
+                    <ng-select class="of-custom-select-type" [multiple]="false" [(ngModel)]="seaInquiry.commodity">
+                      <ng-option
+                        *ngFor="let commo of (commodities | async)"
+                        [value]="commo.commodityID"
+                      >
+                        {{ commo.commodityName }}
+                      </ng-option>
+                    </ng-select>
+                  </td>
+                </tr>
+              </table>
+            </tr>
+          </table>
+          <table class="panel-noheight">
+            <tr>
+              <table class="panel">
+                <tr>
+                  <td style="width: 5%;">
+                    <label class="lbl-custom-left">Port of loading</label>
+                  </td>
+                  <td style="width: 12%;">
+                    <of1-input-lookup [data]="ports | async" class="port" [(ngModel)]="seaInquiry.portofLoading"></of1-input-lookup>
+                  </td>
+                  <td style="width: 15%;"></td>
+                </tr>
+              </table>
+            </tr>
+          </table>
+          <table class="panel-noheight">
+            <tr>
+              <table class="panel">
+                <tr>
+                  <td style="width: 5%;">
+                    <label class="lbl-custom-left">Port of discharge</label>
+                  </td>
+                  <td style="width: 12%;">
+                    <of1-input-lookup [data]="ports | async" class="port" [(ngModel)]="seaInquiry.portofDischarge"></of1-input-lookup>
+                  </td>
+                  <td style="width: 15%;"></td>
+                </tr>
+              </table>
+            </tr>
+          </table>
+          <div style="height: 5px"></div>
+          <ngb-accordion #general="ngbAccordion" activeIds="general-1">
+            <ngb-panel id="general-1">
+              <ng-template ngbPanelHeader let-opened="opened">
+                <button ngbPanelToggle class="btn btn-accordion">
+                  <span>{{ opened ? '&#045;' : '&#043;'}}
+                    Term of service<span style="color: red;"> *</span></span>
+                </button>
+                <div style="padding: .375rem 0rem;">
+                  <button class="btn-collapse btn-sm" (click)="general.expandAll()">Expand
+                    all</button>
+                </div>
+                <div style="padding: .375rem 0rem;">
+                  <button class="btn-collapse btn-sm" (click)="general.collapseAll()">Collapse
+                    all</button>
+                </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <table class="panel">
+                  <div class="card-header of-custom-card-active">
+                    <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input"
+                        id="defaultGroupExample1"
+                        name="termofService"
+                        [value]="serviceTerm.portToPort.termID" [(ngModel)]="termofService"
+                        [checked]="termofService === serviceTerm.portToPort.termID ">
+                      <label class="custom-control-label" for="defaultGroupExample1">PORT TO PORT</label>
+                    </div>
+                  </div>
+                  <table class="panel-noheight" *ngIf="termofService === serviceTerm.portToPort.termID">
+                    <tr>
+                      <table class="panel">
+                        <tr>
+                          <td style="width: 15%;">
+                            <div class="card-header of-custom-card-sub-active">
+                              <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input mr-5" id="defaultGroupExampleSub1" [disabled]="termofService !== serviceTerm.portToPort.termID"
+                                    [checked]="termofService === serviceTerm.portToPort.termID && customsClearanceMethod === 'CUSTOM_CLEARANCE_AT_ORIGIN'"
+                                  
+                                  [(ngModel)]="seaInquiry.customsClearanceAtOrigin"
+                                >
+                                <label [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.portToPort.termID}"
+                                  class="custom-control-label" for="defaultGroupExampleSub1"
+                                >Need customs clearance at origin?</label>
+                              </div>
+                            </div>
+                          </td>
+                          <td style="width: 15%;">
+                            <div class="card-header of-custom-card-sub-active">
+                              <div class="custom-control custom-checkbox">
+                                <input [disabled]="termofService !== serviceTerm.portToPort.termID" type="checkbox" 
+                                  class="custom-control-input mr-5" id="defaultGroupExampleSub2"
+                                  [checked]="termofService === serviceTerm.portToPort.termID && customsClearanceMethod === 'CUSTOM_CLEARANCE_AT_DESTINATION'"
+                                  
+                                  [(ngModel)]="seaInquiry.customsClearanceAtDestination"
+                                >
+                                <label [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.portToPort.termID}" class="custom-control-label" for="defaultGroupExampleSub2">Need customs clearance at destination?</label>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                  <div class="card-header of-custom-card-active">
+                    <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="defaultGroupExample2"
+                        name="termofService"
+                        [value]="serviceTerm.doorToPort.termID" [(ngModel)]="termofService"
+                      >
+                      <label class="custom-control-label" for="defaultGroupExample2">DOOR TO PORT</label>
+                    </div>
+                  </div>
+                  <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.doorToPort.termID">
+                    <tr>
+                      <table class="panel">
+                        <tr>
+                          <td style="width: 5%;">
+                            <label class="lbl-custom-left" [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.doorToPort.termID}">Pick up address</label>
+                          </td>
+                          <td style="width: 25%;">
+                            <input
+                              type="text" 
+                              class="form-control form-control-sm"
+                              [disabled]="termofService !== serviceTerm.doorToPort.termID"
+                              [(ngModel)]="dTpPickupAt"
+                            >
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                  <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.doorToPort.termID">
+                    <tr>
+                      <td style="width: 5%;">
+                        <label
+                          class="lbl-custom-left"
+                          [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.doorToPort.termID}"
+                        >Purpose of export</label>
+                      </td>
+                      <td style="width: 25%;">
+                        <ng-select class="of-custom-select-type" [multiple]="false" [(ngModel)]="dTpPurposeOfEx" [disabled]="termofService !== serviceTerm.doorToPort.termID">
+                          <ng-option
+                            *ngFor="let pupose of puposesList"
+                            [value]="pupose"
+                          >
+                            {{pupose}}
+                          </ng-option>
+                        </ng-select>
+                      </td>
+                    </tr>
+                  </table>
+                  <div class="card-header of-custom-card-active">
+                    <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="defaultGroupExample3"
+                        name="termofService"
+                        [value]="serviceTerm.portToDoor.termID" [(ngModel)]="termofService"
+                      >
+                      <label class="custom-control-label" for="defaultGroupExample3">PORT TO DOOR</label>
+                    </div>
+                  </div>
+                  <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.portToDoor.termID">
+                    <tr>
+                      <table class="panel">
+                        <tr>
+                          <td style="width: 5%;">
+                            <label class="lbl-custom-left" [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.portToDoor.termID}">Delivery address</label>
+                          </td>
+                          <td style="width: 25%;">
+                            <input type="text" 
+                              class="form-control form-control-sm"
+                              [disabled]="termofService !== serviceTerm.portToDoor.termID"
+                              [(ngModel)]="pTdDliveryTo"
+                            >
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                  <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.portToDoor.termID">
+                    <tr>
+                      <td style="width: 5%;">
+                        <label
+                          class="lbl-custom-left"
+                          [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.portToDoor.termID}"
+                        >Purpose of import</label>
+                      </td>
+                      <td style="width: 25%;">
+                        <ng-select appendTo="body" class="of-custom-select-type" [multiple]="false" [(ngModel)]="pTdPurposeOfIm" [disabled]="termofService !== serviceTerm.portToDoor.termID">
+                          <ng-option
+                            *ngFor="let pupose of puposesList"
+                            [value]="pupose"
+                          >
+                            {{pupose}}
+                          </ng-option>
+                        </ng-select>
+                      </td>
+                    </tr>
+                  </table>
+                  <div class="card-header of-custom-card-active">
+                    <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="defaultGroupExample4"
+                        name="termofService"
+                        [value]="serviceTerm.doorToDoor.termID" [(ngModel)]="termofService"
+                      >
+                      <label class="custom-control-label" for="defaultGroupExample4">DOOR TO DOOR</label>
+                    </div>
+                  </div>
+                  <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.doorToDoor.termID">
+                    <tr>
+                      <table class="panel">
+                        <tr>
+                          <td style="width: 5%;">
+                            <label class="lbl-custom-left" [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.doorToDoor.termID}">Pick up address</label>
+                          </td>
+                          <td style="width: 25%;">
+                            <input type="text"  class="form-control form-control-sm" [disabled]="termofService !== serviceTerm.doorToDoor.termID" [(ngModel)]="dTdPickupAt">
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                  <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.doorToDoor.termID">
+                    <tr>
+                      <table class="panel">
+                        <tr>
+                          <td style="width: 5%;">
+                            <label class="lbl-custom-left" [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.doorToDoor.termID}">Delivery address</label>
+                          </td>
+                          <td style="width: 25%;">
+                            <input type="text"  class="form-control form-control-sm" [disabled]="termofService !== serviceTerm.doorToDoor.termID" [(ngModel)]="dTdDeliveryTo">
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                  <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.doorToDoor.termID">
+                    <tr>
+                      <td style="width: 5%;">
+                        <label
+                          class="lbl-custom-left"
+                          [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.doorToDoor.termID}"
+                        >Purpose of export</label>
+                      </td>
+                      <td style="width: 25%;">
+                        <ng-select appendTo="body" class="of-custom-select-type" [multiple]="false" [(ngModel)]="dTdPurposeOfEx" [disabled]="termofService !== serviceTerm.doorToDoor.termID">
+                          <ng-option
+                            *ngFor="let pupose of puposesList"
+                            [value]="pupose"
+                          >
+                            {{pupose}}
+                          </ng-option>
+                        </ng-select>
+                      </td>
+                    </tr>
+                  </table>
+                  <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.doorToDoor.termID">
+                    <tr>
+                      <td style="width: 5%;">
+                        <label
+                          class="lbl-custom-left"
+                          [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.doorToDoor.termID}"
+                        >Purpose of import</label>
+                      </td>
+                      <td style="width: 25%;">
+                        <ng-select appendTo="body" class="of-custom-select-type" [multiple]="false" [(ngModel)]="dTdPurposeOfIm" [disabled]="termofService !== serviceTerm.doorToDoor.termID">
+                          <ng-option
+                            *ngFor="let pupose of puposesList"
+                            [value]="pupose"
+                          >
+                            {{pupose}}
+                          </ng-option>
+                        </ng-select>
+                      </td>
+                    </tr>
+                  </table>
+                </table>
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel id="general-2">
+              <ng-template ngbPanelHeader let-opened="opened">
+                <button ngbPanelToggle class="btn btn-accordion"><span>{{ opened ? '&#045;' : '&#043;'}}
+                    Term of shipment<span style="color: red;"> *</span></span></button>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <table class="panel">
+                  <div class="card-header of-custom-card-active">
+                    <div class="custom-control custom-checkbox">
+                      <input
+                        [(ngModel)]="fclGroup" type="checkbox" class="custom-control-input mr-5"
+                        id="fclLclGroup1" name="fclGroup"
+                      >
+                      <label class="custom-control-label" for="fclLclGroup1"><b>FCL</b></label>
+                    </div>
+                  </div>
+                  <table class="panel-noheight mt-1" *ngIf="fclGroup">
+                    <tr>
+                      <table class="panel">
+                        <tr>
+                          <td style="width: 2%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">GP/DC</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">20'</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="gpdcFCL.container20">
+                          </td>
+                          <td style="width: 1%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">40'</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="gpdcFCL.container40">
+                          </td>
+                          <td style="width: 1%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">HQ</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="gpdcFCL.containerHQ">
+                          </td>
+                          <td style="width: 1%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">45'</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="gpdcFCL.contatner45">
+                          </td>
+                          <td style="width: 10%;"> </td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                  <table class="panel-noheight mt-1" *ngIf="fclGroup">
+                    <tr>
+                      <table class="panel">
+                        <tr>
+                          <td style="width: 2%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">RF</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">20'</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="rfFCL.container20">
+                          </td>
+                          <td style="width: 1%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">40'</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="rfFCL.container40">
+                          </td>
+                          <td style="width: 4%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">Requested temperature:</label>
+                          </td>
+                          <td style="width: 10%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="rfFCL.requestedTemperature">
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                  <table class="panel-noheight mt-1" *ngIf="fclGroup">
+                    <tr>
+                      <table class="panel">
+                        <tr>
+                          <td style="width: 2%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">OT</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">20'</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="otFCL.container20">
+                          </td>
+                          <td style="width: 1%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">40'</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="otFCL.container40">
+                          </td>
+                          <td style="width: 3%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">Cargo Dimensions</label>
+                          </td>
+                          <td style="width: 4%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="otFCL.cargoDimensions">
+                          </td>
+                          <td style="width: 3%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">Cargo Weight</label>
+                          </td>
+                          <td style="width: 4%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="otFCL.cargoWeight">
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                  <table class="panel-noheight mt-1" *ngIf="fclGroup">
+                    <tr>
+                      <table class="panel">
+                        <tr>
+                          <td style="width: 2%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">FR</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">20'</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="frFCL.container20">
+                          </td>
+                          <td style="width: 1%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">40'</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="frFCL.container40">
+                          </td>
+                          <td style="width: 3%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">Cargo Dimensions</label>
+                          </td>
+                          <td style="width: 4%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="frFCL.cargoDimensions">
+                          </td>
+                          <td style="width: 3%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">Cargo Weight</label>
+                          </td>
+                          <td style="width: 4%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="frFCL.cargoWeight">
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                  <table class="panel-noheight mt-1" *ngIf="fclGroup">
+                    <tr>
+                      <table class="panel">
+                        <tr>
+                          <td style="width: 2%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">ISO tank</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">20'</label>
+                          </td>
+                          <td style="width: 1%;">
+                            <input [disabled]="!fclGroup" type="text"  class="form-control form-control-sm" [(ngModel)]="isoFCL.container20">
+                          </td>
+                          <td style="width: 1%;">
+                            <label [ngClass]="{'of-custom-label-inactive' : !fclGroup}" class="lbl-custom-left">Type</label>
+                          </td>
+                          <td style="width: 5%;">
+                            <ng-select class="of-custom-select-type" [multiple]="false" [(ngModel)]="isoFCL.type">
+                              <ng-option
+                                *ngFor="let type of ISOtypes"
+                                [value]="type"
+                              >
+                                {{ type }}
+                              </ng-option>
+                            </ng-select>
+                          </td>
+                          <td style="width: 10%;"></td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                  <div class="card-header of-custom-card-active" >
+                    <div class="custom-control custom-checkbox">
+                      <input
+                        [(ngModel)]="lclGroup"
+                        type="checkbox" class="custom-control-input mr-5"
+                        id="fclLclGroup2" name="lclGroup"
+                      >
+                      <label class="custom-control-label" for="fclLclGroup2"><b>LCL</b></label>
+                    </div>
+                  </div>
+                  <table class="panel-noheight mt-1" *ngIf="lclGroup">
+                    <tr>
+                      <table class="panel">
+                        <tr>
+                          <td style="width: 5%;">
+                            <label class="lbl-custom-left" [ngClass]="{'of-custom-label-inactive' : !lclGroup}">Volume:</label>
+                          </td>
+                          <td style="width: 25%;">
+                            <input type="text"  class="form-control form-control-sm" [disabled]="!lclGroup" [(ngModel)]="seaInquiry.volume">
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                  <table class="panel-noheight mt-1" *ngIf="lclGroup">
+                    <tr>
+                      <table class="panel">
+                        <tr>
+                          <td style="width: 5%;">
+                            <label class="lbl-custom-left" [ngClass]="{'of-custom-label-inactive' : !lclGroup}">Gross weight:</label>
+                          </td>
+                          <td style="width: 25%;">
+                            <input type="text"  class="form-control form-control-sm" [disabled]="!lclGroup" [(ngModel)]="seaInquiry.grossWeight">
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                  <table class="panel-noheight mt-1" *ngIf="lclGroup">
+                    <tr>
+                      <table class="panel">
+                        <td style="width: 1%;">
+                          <label class="checkbox">
+                            <input type="checkbox" [disabled]="!lclGroup" [(ngModel)]="seaInquiry.cargoIsUnstackable"/>
+                            <span class="default"></span>
+                          </label>
+                        </td>
+                        <td style="width: 6%;">
+                          <label class="lbl-custom-left" [ngClass]="{'of-custom-label-inactive' : !lclGroup}">Cargo is un-stackable</label>
+                        </td>
+                        <td style="width: 23%;">
+                        </td>
+                      </table>
+                    </tr>
+                  </table>
+                </table>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+        </tr>
+      </div>
+
+    </table>
+  </div>
+  <div class="modal-footer">
+    <table class="panel">
+      <tr>
+        <td></td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="save()"><span>Save</span></button>
+        </td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="cancel()">Cancel</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ng-container>
+
+
+

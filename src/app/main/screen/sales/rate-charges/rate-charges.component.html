@@ -1,0 +1,59 @@
+<div class="background">
+  <table class="panel">
+    <tr style="height: 31px; border-bottom: 0.5rem solid transparent;">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb breadcrumb-custom">
+          <li class="breadcrumb-item"><a [routerLink]="['/main/dash-board']">Home</a></li>
+          <li class="breadcrumb-item">Sales Executive</li>
+          <li class="breadcrumb-item active" aria-current="page">Rate & Charges</li>
+        </ol>
+      </nav>
+    </tr>
+    <tr style="border-bottom: 0.5rem solid transparent;">
+      <table class="panel">
+        <tr>
+          <ul ngbNav #nav="ngbNav" [(activeId)]="activeNav" class="nav-tabs">
+            <li [ngbNavItem]="1">
+              <a ngbNavLink routerLink="air-freight">Airfreght tariff</a>
+              <ng-template ngbNavContent class="of-grid-fixed-height">
+                <app-air-tariff></app-air-tariff>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+              <a ngbNavLink routerLink="fcl-tariff">FCL tariff</a>
+              <ng-template ngbNavContent>
+                <app-fcl-tariff></app-fcl-tariff>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+              <a ngbNavLink routerLink="lcl-tariff"> LCL Tariff</a>
+              <ng-template ngbNavContent>
+                <app-lcl-tariff></app-lcl-tariff>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="4">
+              <a ngbNavLink routerLink="trucking-charges"> Trucking Charges</a>
+              <ng-template ngbNavContent>
+                <app-trucking-charge></app-trucking-charge>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="5">
+              <a ngbNavLink routerLink="customs-clearance"> Customs Clearance</a>
+              <ng-template ngbNavContent>
+                <app-customs-clearance></app-customs-clearance>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="6">
+              <a ngbNavLink routerLink="local-charge-tariff"> Local charge tariff</a>
+              <ng-template ngbNavContent>
+                <app-local-charge></app-local-charge>
+              </ng-template>
+            </li>
+          </ul>
+          
+          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </tr>
+      </table>
+    </tr>
+  </table>
+</div>

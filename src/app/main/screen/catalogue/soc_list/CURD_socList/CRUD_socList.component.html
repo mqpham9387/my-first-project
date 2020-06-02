@@ -1,0 +1,118 @@
+<div class="background no-padding"><div class="modal-header">
+    <h6 class="modal-title"><label class="lbl-custom-left">Catalogue / SOC List / {{action}}
+            </label></h6>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+        <table class="panel-noheight">
+            
+            <tr style="height: 32px;">
+                <td style="width: 12%;" >
+                    <label class="lbl-custom-left">
+                        Cont No :
+                    </label>
+                </td>
+                <td style="width: 55%;">
+                    <input  class="form-control form-control-sm" type="text" [(ngModel)]="cont.contNo" >
+                </td>
+                <td style="width: 12%;" >
+                    <label class="lbl-custom-left">
+                        ISO :
+                    </label>
+                </td>
+                <td>
+                    <select  class="form-control form-control-sm" type="text" [(ngModel)]="cont.ISO" >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </td>
+            </tr>
+            <tr style="height: 32px;">
+                <td style="width: 12%;" >
+                    <label class="lbl-custom-left">
+                        Cont Type :
+                    </label>
+                </td>
+                <td>
+                    <select  class="form-control form-control-sm" type="text" [(ngModel)]="cont.contType" >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </td>
+                <td style="width: 12%;" >
+                    <label class="lbl-custom-left">
+                        Weight :
+                    </label>
+                </td>
+                <td>
+                    <input  class="form-control form-control-sm" type="text" [(ngModel)]="cont.weight" >
+                </td>
+            </tr>
+            <tr style="height: 32px;">
+                <td>
+                    <label class="lbl-custom-left">
+                        Description :
+                    </label>
+                </td>
+                <td colspan="3">
+                    <input  class="form-control form-control-sm" type="text" [(ngModel)]="cont.description" >
+                </td>
+            </tr>
+            <tr style="height: 32px;">
+                <td>
+                    <label class="lbl-custom-left">
+                        Origin :
+                    </label>
+                </td>
+                <td colspan="3">
+                    <input  class="form-control form-control-sm" type="text" [(ngModel)]="cont.origin" >
+                </td>
+            </tr>
+            <tr style="height: 32px;">
+                <td>
+                    <label class="lbl-custom-left">
+                        Owner:
+                    </label>
+                </td>
+                <td colspan="3">
+                    <input  class="form-control form-control-sm" type="text" [(ngModel)]="cont.owner" >
+                </td>
+            </tr>
+            <tr style="height: 32px;">
+                <td>
+                    <label class="lbl-custom-left">
+                        Vender :
+                    </label>
+                </td>
+                <td colspan="3">
+                    <input  class="form-control form-control-sm" type="text" [(ngModel)]="cont.vender" >
+                </td>
+            </tr>
+        </table>
+    </div>
+
+<div class="modal-footer" >
+    <table class="panel-noheight" >
+        <tr  >
+            <td></td>
+            <td style="width: 71px">
+                <button class="btn btn-custom btn-sm" type="button" (click)="save()">Save</button>
+            </td>
+            <div *ngIf="action=='Edit'; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock><td style="width: 71px">
+    <button class="btn btn-custom btn-sm" type="button"  >Delete</button>
+  </td></ng-template>
+<ng-template #elseBlock></ng-template>
+            <td style="width: 71px">
+                <button class="btn btn-custom btn-sm" type="button" (click)="close()" >Cancel</button>
+              </td>
+                     
+        </tr>
+    </table>
+</div>
+</div>

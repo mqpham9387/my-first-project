@@ -1,0 +1,892 @@
+<ng-container *ngIf="!isLoading">
+    <div class="modal-header">
+        <table class="panel">
+            <tr>
+                <td>
+                    <h6 class="modal-title"><label class="lbl-custom-left">Carrier -
+                            <span>{{ action === 'ADD' ? 'Add New' : 'Edit'}}</span></label></h6>
+                </td>
+            </tr>
+        </table>
+        <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <table class="panel">
+            <tr>
+                <ngb-tabset>
+                    <ngb-tab title="General">
+                        <ng-template ngbTabContent>
+                            <div class="scroll">
+                                <div style="height: 5px"></div>
+                                <table class="panel-noheight">
+                                    <tr>
+                                        <table class="panel">
+                                            <tr>
+                                                <td style="width: 12%;">
+                                                    <label class="lbl-custom-left">Category <span
+                                                            style="color: red;">*</span></label>
+                                                </td>
+                                                <td style="width: 20%;">
+                                                    <select class="form-control form-control-sm"
+                                                        [(ngModel)]="partner.category">
+                                                        <ng-container *ngFor="let category of categories">
+                                                            <option value="{{category.categoryID}}">
+                                                                {{category.categoryName}}</option>
+                                                        </ng-container>
+                                                    </select>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                    </tr>
+                                    <tr>
+                                        <table class="panel">
+                                            <tr>
+                                                <td style="width: 12%;">
+                                                    <label class="lbl-custom-left">ID</label>
+                                                </td>
+                                                <td style="width: 25%;">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control form-control-sm" disabled
+                                                            [(ngModel)]="partner.partnerID">
+                                                    </div>
+                                                </td>
+                                                <td style="width: 2%;"></td>
+                                                <td>
+                                                    <a style="color: var(--f-color); font-weight: bold; padding-left: 5px;"
+                                                        href="#"><u>Contracts</u></a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </tr>
+                                    <tr>
+                                        <table class="panel">
+                                            <tr>
+                                                <td style="width: 12%;">
+                                                    <label class="lbl-custom-left">Name (Abbr) <span
+                                                            style="color: red;">*</span></label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control form-control-sm" ngbAutofocus
+                                                        [(ngModel)]="partner.partnerNameAbbr">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </tr>
+                                    <tr>
+                                        <table class="panel">
+                                            <tr>
+                                                <td style="width: 12%;">
+                                                    <label class="lbl-custom-left">Name (Full-EN) <span
+                                                            style="color: red;">*</span></label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        [(ngModel)]="partner.partnerNameFullEN">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </tr>
+                                    <tr>
+                                        <table class="panel">
+                                            <tr>
+                                                <td style="width: 12%;">
+                                                    <label class="lbl-custom-left">Name (Full-VN)</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        [(ngModel)]="partner.partnerNameFullVN">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </tr>
+                                    <tr>
+                                        <table class="panel">
+                                            <tr>
+                                                <td style="width: 5px;"></td>
+                                                <td style="width: 8%;"></td>
+                                                <td style="width: 8%;">
+                                                    <input type="checkbox" [(ngModel)]="partner.lock">
+                                                    <label class="lbl-custom-left">Lock</label>
+                                                </td>
+                                                <td style="width: 8%;">
+                                                    <input type="checkbox" [(ngModel)]="partner.warning">
+                                                    <label class="lbl-custom-left">Warning</label>
+                                                </td>
+                                                <td style="width: 4%;"></td>
+                                                <td style="width: 12%;">
+                                                    <label class="lbl-custom-left">Warning Message</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        [(ngModel)]="partner.warningMessage"
+                                                        [disabled]="!partner.warning">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </tr>
+                                    <tr>
+                                        <table class="panel">
+                                            <tr>
+                                                <td style="width: 12%;">
+                                                    <label class="lbl-custom-left">Coordinated by</label>
+                                                </td>
+                                                <td style="width: 30%;">
+                                                    <of1-input-lookup2  class="contact"
+                                                        [(ngModel)]="carrier.saleManage">
+                                                    </of1-input-lookup2>
+                                                </td>
+                                                <td></td>
+                                                <td style="width: 16%;">
+                                                    <label class="lbl-custom-left">Mother/Sister Company</label>
+                                                </td>
+                                                <td style="width: 30%;">
+                                                    <of1-input-lookup2 class="carrier"
+                                                        [(ngModel)]="carrier.officeAgent">
+                                                    </of1-input-lookup2>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </tr>
+                                </table>
+                                <div style="height: 5px"></div>
+                                <ngb-accordion #general="ngbAccordion" activeIds="general-1">
+                                    <ngb-panel id="general-1">
+                                        <ng-template ngbPanelHeader let-opened="opened">
+                                            <button ngbPanelToggle
+                                                class="btn btn-accordion"><span>{{ opened ? '&#045;' : '&#043;'}}
+                                                    Contact info</span></button>
+                                            <div style="padding: .375rem 0rem;">
+                                                <button class="btn-collapse btn-sm"
+                                                    (click)="general.expandAll()">Expand
+                                                    all</button>
+                                            </div>
+                                            <div style="padding: .375rem 0rem;">
+                                                <button class="btn-collapse btn-sm"
+                                                    (click)="general.collapseAll()">Collapse
+                                                    all</button>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template ngbPanelContent>
+                                            <table class="panel">
+                                                <tr>
+                                                    <table class="panel">
+                                                        <tr>
+                                                            <td style="width: 14%;">
+                                                                <label class="lbl-custom-left">Main Addr (EN) <span
+                                                                        style="color: red;">*</span></label>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    [(ngModel)]="addressEN.addressInfo">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </tr>
+                                                <tr>
+                                                    <table class="panel">
+                                                        <tr>
+                                                            <td style="width: 14%;">
+                                                                <label class="lbl-custom-left">Main Addr (LC)</label>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    [(ngModel)]="addressVN.addressInfo">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </tr>
+                                                <tr>
+                                                    <table class="panel">
+                                                        <tr>
+                                                            <td style="width: 14%;">
+                                                                <label class="lbl-custom-left">Country <span
+                                                                        style="color: red;">*</span></label>
+                                                            </td>
+                                                            <td style="width: 16%;">
+                                                                <of1-input-lookup2 class="country"
+                                                                    [(ngModel)]="carrier.country"
+                                                                    >
+                                                                </of1-input-lookup2>
+                                                            </td>
+                                                            <td style="width: 2%;"></td>
+                                                            <td style="width: 8%;">
+                                                                <label class="lbl-custom-left">State</label>
+                                                            </td>
+                                                            <td style="width: 14%;">
+                                                                <of1-input-lookup2  class="state"
+                                                                    [(ngModel)]="carrier.state">
+                                                                </of1-input-lookup2>
+                                                            </td>
+                                                            <td style="width: 2%;"></td>
+                                                            <td style="width: 8%;">
+                                                                <label class="lbl-custom-left">City <span
+                                                                        style="color: red;">*</span></label>
+                                                            </td>
+                                                            <td style="width: 14%;">
+                                                                <of1-input-lookup2  class="city"
+                                                                    [(ngModel)]="carrier.city">
+                                                                </of1-input-lookup2>
+                                                            </td>
+                                                            <td style="width: 2%;"></td>
+                                                            <td style="width: 8%;">
+                                                                <label class="lbl-custom-left">Zip Code</label>
+                                                            </td>
+                                                            <td style="width: 12%;">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    [(ngModel)]="partner.zipCode">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </tr>
+                                                <ng-container
+                                                    *ngFor="let addr of arrAddr; index as indexAddr; last as lastAddr">
+                                                    <tr>
+                                                        <table class="panel">
+                                                            <tr>
+                                                                <td style="width: 14%;">
+                                                                    <label class="lbl-custom-left">Additional
+                                                                        Addr{{indexAddr+1}} (EN)</label>
+                                                                </td>
+                                                                <td style="width: 54%;">
+                                                                    <input type="text"
+                                                                        class="form-control form-control-sm"
+                                                                        [(ngModel)]="addr.addressInfo">
+                                                                </td>
+                                                                <td style="width: 5%;">
+                                                                <td style="width: 5%;">
+                                                                    <label class="lbl-custom-left">Note</label>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text"
+                                                                        class="form-control form-control-sm"
+                                                                        [(ngModel)]="addr.note">
+                                                                </td>
+                                                                <ng-container *ngIf="lastAddr">
+                                                                    <td style="width: 30px;">
+                                                                        <button class="btn btn-more btn-sm"
+                                                                            type="button" (click)="addMore()">
+                                                                            <i class="fas fa-plus-circle"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </ng-container>
+                                                            </tr>
+                                                        </table>
+                                                    </tr>
+                                                </ng-container>
+                                                <tr>
+                                                    <table class="panel">
+                                                        <tr>
+                                                            <td style="width: 14%;">
+                                                                <label class="lbl-custom-left">Tax Code</label>
+                                                            </td>
+                                                            <td style="width: 16%;">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    [(ngModel)]="partner.taxCode">
+                                                            </td>
+                                                            <td style="width: 2%;"></td>
+                                                            <td style="width: 8%;">
+                                                                <label class="lbl-custom-left">Phone 1 <span
+                                                                        style="color: red;">*</span></label>
+                                                            </td>
+                                                            <td style="width: 14%;">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    [(ngModel)]="partner.homePhone">
+                                                            </td>
+                                                            <td style="width: 2%;"></td>
+                                                            <td style="width: 8%;">
+                                                                <label class="lbl-custom-left">Phone 2</label>
+                                                            </td>
+                                                            <td style="width: 14%;">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    [(ngModel)]="partner.workPhone">
+                                                            </td>
+                                                            <td style="width: 2%;"></td>
+                                                            <td style="width: 8%;">
+                                                                <label class="lbl-custom-left">Fax</label>
+                                                            </td>
+                                                            <td style="width: 12%;">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    [(ngModel)]="partner.faxNumber">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </tr>
+                                                <tr>
+                                                    <table class="panel">
+                                                        <tr>
+                                                            <td style="width: 14%;">
+                                                                <label class="lbl-custom-left">Email <span
+                                                                        style="color: red;">*</span></label>
+                                                            </td>
+                                                            <td style="width: 32%;">
+                                                                <div class="input-group">
+                                                                    <input type="text"
+                                                                        class="form-control form-control-sm"
+                                                                        [(ngModel)]="partner.email">
+                                                                </div>
+                                                            </td>
+                                                            <td style="width: 8%;"></td>
+                                                            <td style="width: 14%;">
+                                                                <label class="lbl-custom-left">Website</label>
+                                                            </td>
+                                                            <td style="width: 32%;">
+                                                                <div class="input-group">
+                                                                    <input type="text"
+                                                                        class="form-control form-control-sm"
+                                                                        [(ngModel)]="partner.website">
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </tr>
+                                            </table>
+                                        </ng-template>
+                                    </ngb-panel>
+                                    <ngb-panel id="general-2">
+                                        <ng-template ngbPanelHeader let-opened="opened">
+                                            <button ngbPanelToggle
+                                                class="btn btn-accordion"><span>{{ opened ? '&#045;' : '&#043;'}}
+                                                    Note</span></button>
+                                        </ng-template>
+                                        <ng-template ngbPanelContent>
+                                            <table class="panel">
+                                                <tr>
+                                                    <table class="panel">
+                                                        <tr>
+                                                            <td style="width: 12%;">
+                                                                <label class="lbl-custom-left">Created</label>
+                                                            </td>
+                                                            <td style="width: 18%;">
+                                                                <of1-input-date disabled="true"
+                                                                    [(ngModel)]="partner.dateCreate">
+                                                                </of1-input-date>
+                                                            </td>
+                                                            <td style="width: 6%;"></td>
+                                                            <td style="width: 4%;">
+                                                                <label class="lbl-custom-left">by</label>
+                                                            </td>
+                                                            <td style="width: 18%;">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    disabled [(ngModel)]="partner.creator">
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </tr>
+                                                <tr>
+                                                    <table class="panel">
+                                                        <tr>
+                                                            <td style="width: 12%;">
+                                                                <label class="lbl-custom-left">Last updated</label>
+                                                            </td>
+                                                            <td style="width: 18%;">
+                                                                <of1-input-date disabled="true"
+                                                                    [(ngModel)]="partner.dateModify">
+                                                                </of1-input-date>
+                                                            </td>
+                                                            <td style="width: 6%;"></td>
+                                                            <td style="width: 4%;">
+                                                                <label class="lbl-custom-left">by</label>
+                                                            </td>
+                                                            <td style="width: 18%;">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    disabled [(ngModel)]="partner.creator">
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </tr>
+                                                <tr>
+                                                    <table class="panel">
+                                                        <tr>
+                                                            <td style="width: 12%;">
+                                                                <label class="lbl-custom-left">Note</label>
+                                                            </td>
+                                                            <td>
+                                                                <textarea type="text"
+                                                                    class="form-control form-control-sm" rows="5"
+                                                                    [(ngModel)]="partner.notes"></textarea>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </tr>
+                                            </table>
+                                        </ng-template>
+                                    </ngb-panel>
+                                </ngb-accordion>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab *ngIf="action==='EDIT'" title="Carrier Code">
+                        <ng-template ngbTabContent>
+                            <div class="scroll">
+                                <table class="panel">
+                                    <tr>
+                                        <table class="panel">
+                                            <tr style="height: 100%;">
+                                                <ag-grid-angular style="width: 100%; height: 100%;"
+                                                    class="ag-theme-balham" [columnDefs]="columnDefsCarrier"
+                                                    [rowData]="rowDataCarrier" rowSelection="single" editType="fullRow"
+                                                    [suppressMenuHide]="true" [defaultColDef]="defaultColDef"
+                                                    [frameworkComponents]="frameworkComponents">
+                                                </ag-grid-angular>
+                                            </tr>
+                                        </table>
+                                    </tr>
+                                </table>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Contact Persons">
+                        <ng-template ngbTabContent>
+                            <div class="scroll">
+                                <table class="panel">
+                                    <tr>
+                                        <table class="panel">
+                                            <tr style="height: 100%;">
+                                                <ag-grid-angular style="width: 100%; height: 100%;"
+                                                    class="ag-theme-balham" [columnDefs]="columnDefsCont"
+                                                    [rowData]="rowDataCont" rowSelection="single"
+                                                    rowModelType="infinite" [suppressMenuHide]="true"
+                                                    [defaultColDef]="defaultColDef"
+                                                    [frameworkComponents]="frameworkComponents"
+                                                    (rowDoubleClicked)="editCont($event)"
+                                                    (gridReady)="onGridReadyCont($event)">
+                                                </ag-grid-angular>
+                                            </tr>
+                                        </table>
+                                    </tr>
+                                    <tr style="height: 32px;">
+                                        <table class="panel">
+                                            <tr>
+                                                <td></td>
+                                                <td style="width: 91px">
+                                                    <button class="btn btn-custom btn-sm" type="button"
+                                                        (click)="addNewCont()">Add New</button>
+                                                </td>
+                                                <td style="width: 71px">
+                                                    <button class="btn btn-custom btn-sm" type="button"
+                                                        (click)="deleteCont()">Delete</button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </tr>
+                                </table>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Accounting Info">
+                        <ng-template ngbTabContent>
+                            <div class="scroll">
+                                <div style="height: 5px"></div>
+                                <table class="panel-noheight">
+                                    <tr>
+                                        <table class="panel">
+                                            <tr>
+                                                <td style="width: 22%;">
+                                                    <label class="lbl-custom-left">Accounting handled by 3rd
+                                                        party
+                                                        <span>
+                                                            <label class="lbl-custom" placement="right"
+                                                                ngbTooltip="All account receivable and payable of this partner will be included in the Statement of Account (SOA) of the 3rd party chosen here."
+                                                                tooltipClass="tooltip-info right"><sup><i
+                                                                        class="far fa-question-circle"></i></sup>
+                                                            </label>
+                                                        </span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <of1-input-lookup2  class="carrier"
+                                                        [(ngModel)]="carrier.accountReference">
+                                                    </of1-input-lookup2>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </tr>
+                                    <tr>
+                                        <div style="height: 5px"></div>
+                                        <ngb-accordion #general="ngbAccordion" activeIds="accounting-1">
+                                            <ngb-panel id="accounting-1">
+                                                <ng-template ngbPanelHeader let-opened="opened">
+                                                    <button ngbPanelToggle
+                                                        class="btn btn-accordion"><span>{{ opened ? '&#045;' : '&#043;'}}
+                                                            Credit term & conditions</span></button>
+                                                    <div style="padding: .375rem 0rem;">
+                                                        <button class="btn-collapse btn-sm"
+                                                            (click)="general.expandAll()">Expand
+                                                            all</button>
+                                                    </div>
+                                                    <div style="padding: .375rem 0rem;">
+                                                        <button class="btn-collapse btn-sm"
+                                                            (click)="general.collapseAll()">Collapse
+                                                            all</button>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template ngbPanelContent>
+                                                    <table class="panel">
+                                                        <tr>
+                                                            <table class="panel">
+                                                                <tr>
+                                                                    <td style="width: 16%;">
+                                                                        <label class="lbl-custom-left">Payment to be
+                                                                            made by
+                                                                        </label>
+                                                                    </td>
+                                                                    <td style="width: 8%;">
+                                                                        <of1-input-numeric minValue="0" maxValue="31"
+                                                                            [(ngModel)]="partner.termDaysETDETA">
+                                                                        </of1-input-numeric>
+                                                                    </td>
+                                                                    <td style="width: 24%;">
+                                                                        <label class="lbl-custom-left">day from ETD
+                                                                            (export) / ETA (import)</label>
+                                                                    </td>
+                                                                    <td style="width: 8%;">
+                                                                        <of1-input-numeric minValue="0" maxValue="31"
+                                                                            [(ngModel)]="partner.termDaysInvoiceDate">
+                                                                        </of1-input-numeric>
+                                                                    </td>
+                                                                    <td style="width: 18%;">
+                                                                        <label class="lbl-custom-left">day from invoice
+                                                                            date</label>
+                                                                    </td>
+                                                                    <td style="width: 8%;">
+                                                                        <of1-input-numeric minValue="0" maxValue="31"
+                                                                            [(ngModel)]="partner.termDaysMonthlyDate">
+                                                                        </of1-input-numeric>
+                                                                    </td>
+                                                                    <td style="width: 18%;">
+                                                                        <label class="lbl-custom-left">day of the
+                                                                            following month</label>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+                                                        <tr>
+                                                            <table class="panel">
+                                                                <tr>
+                                                                    <td style="width: 8%;">
+                                                                        <label class="lbl-custom-left">Credit limit:
+                                                                        </label>
+                                                                    </td>
+                                                                    <td style="width: 8%;">
+                                                                        <label class="lbl-custom-left">Amount</label>
+                                                                    </td>
+                                                                    <td style="width: 20%;">
+                                                                        <of1-input-numeric
+                                                                            [(ngModel)]="partner.termAmountForCredit">
+                                                                        </of1-input-numeric>
+                                                                    </td>
+                                                                    <td style="width: 4%;"></td>
+                                                                    <td style="width: 8%;">
+                                                                        <label class="lbl-custom-left">Currency</label>
+                                                                    </td>
+                                                                    <td style="width: 12%;">
+                                                                        <select class="form-control form-control-sm"
+                                                                            [(ngModel)]="partner.termCurrencyForCredit">
+                                                                            <ng-container
+                                                                                *ngFor="let currency of vCurrencies">
+                                                                                <option value="{{currency.currency}}">
+                                                                                    {{currency.currency}}</option>
+                                                                            </ng-container>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+                                                        <tr>
+                                                            <table class="panel">
+                                                                <tr>
+                                                                    <td style="width: 16%;">
+                                                                        <label class="lbl-custom-left">Note</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <textarea type="text"
+                                                                            class="form-control form-control-sm"
+                                                                            rows="5"
+                                                                            [(ngModel)]="partner.termNotes"></textarea>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+                                                    </table>
+                                                </ng-template>
+                                            </ngb-panel>
+                                            <ngb-panel id="accounting-2">
+                                                <ng-template ngbPanelHeader let-opened="opened">
+                                                    <button ngbPanelToggle
+                                                        class="btn btn-accordion"><span>{{ opened ? '&#045;' : '&#043;'}}
+                                                            Carrier's bank account</span></button>
+                                                </ng-template>
+                                                <ng-template ngbPanelContent>
+                                                    <table class="panel">
+                                                        <tr>
+                                                            <table class="panel">
+                                                                <tr>
+                                                                    <td style="width: 16%;">
+                                                                        <label class="lbl-custom-left">Account
+                                                                            name</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text"
+                                                                            class="form-control form-control-sm"
+                                                                            [(ngModel)]="partner.personAccountName">
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+                                                        <tr>
+                                                            <table class="panel">
+                                                                <tr>
+                                                                    <td style="width: 16%;">
+                                                                        <label class="lbl-custom-left">Account
+                                                                            number</label>
+                                                                    </td>
+                                                                    <td style="width: 25%;">
+                                                                        <input type="text"
+                                                                            class="form-control form-control-sm"
+                                                                            [(ngModel)]="partner.personAccountNumber">
+                                                                    </td>
+                                                                    <td style="width: 8%;"></td>
+                                                                    <td style="width: 8%;">
+                                                                        <label class="lbl-custom-left">Currency</label>
+                                                                    </td>
+                                                                    <td style="width: 16%;">
+                                                                        <select class="form-control form-control-sm"
+                                                                            [(ngModel)]="partner.currency">
+                                                                            <ng-container
+                                                                                *ngFor="let currency of vCurrencies">
+                                                                                <option value="{{currency.currency}}">
+                                                                                    {{currency.currency}}</option>
+                                                                            </ng-container>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+                                                        <tr>
+                                                            <table class="panel">
+                                                                <tr>
+                                                                    <td style="width: 16%;">
+                                                                        <label class="lbl-custom-left">Beneficiary's
+                                                                            name</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text"
+                                                                            class="form-control form-control-sm"
+                                                                            [(ngModel)]="partner.beneficiarysName">
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+                                                        <tr>
+                                                            <table class="panel">
+                                                                <tr>
+                                                                    <td style="width: 16%;">
+                                                                        <label class="lbl-custom-left">Beneficiary's
+                                                                            address</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text"
+                                                                            class="form-control form-control-sm"
+                                                                            [(ngModel)]="partner.beneficiarysAddress">
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+                                                        <tr>
+                                                            <table class="panel">
+                                                                <tr>
+                                                                    <td style="width: 16%;">
+                                                                        <label class="lbl-custom-left">Bank's
+                                                                            name</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text"
+                                                                            class="form-control form-control-sm"
+                                                                            [(ngModel)]="partner.bankName">
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+                                                        <tr>
+                                                            <table class="panel">
+                                                                <tr>
+                                                                    <td style="width: 16%;">
+                                                                        <label class="lbl-custom-left">Bank's
+                                                                            address</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text"
+                                                                            class="form-control form-control-sm"
+                                                                            [(ngModel)]="partner.bankAddress">
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+                                                        <tr>
+                                                            <table class="panel">
+                                                                <tr>
+                                                                    <td style="width: 16%;">
+                                                                        <label class="lbl-custom-left">Swift
+                                                                            code</label>
+                                                                    </td>
+                                                                    <td style="width: 25%;">
+                                                                        <input type="text"
+                                                                            class="form-control form-control-sm"
+                                                                            [(ngModel)]="partner.swiftCode">
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+                                                    </table>
+                                                </ng-template>
+                                            </ngb-panel>
+                                        </ngb-accordion>
+                                    </tr>
+                                </table>
+                                <div style="height: 5px"></div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Appraisal & Classification">
+                        <ng-template ngbTabContent>
+                            <div class="scroll">
+                                <table class="panel-noheight">
+                                    <tr>
+                                        <td>
+                                            <table class="panel">
+                                                <ng-container
+                                                    *ngFor="let partnerAppraisal of partnerAppraisals; index as rowIndex; last as last">
+                                                    <ng-container *ngIf="!partnerAppraisal.export">
+                                                        <tr>
+                                                            <table class="panel">
+                                                                <tr>
+                                                                    <td style="width: 2%;"></td>
+                                                                    <td style="width: 30%;">
+                                                                        <label
+                                                                            class="lbl-custom-left">{{partnerAppraisal.serviceName}}</label>
+                                                                    </td>
+                                                                    <td style="width: 18rem; padding: 0 0 0.125rem;">
+                                                                        <ngb-rating [max]="10"
+                                                                            [(rate)]="partnerAppraisal.priority">
+                                                                            <ng-template let-fill="fill"
+                                                                                let-index="index">
+                                                                                <span
+                                                                                    class="star">{{ fill === 100 ? '&#9733;' : '&#9734;'}}</span>
+                                                                            </ng-template>
+                                                                        </ngb-rating>
+                                                                    </td>
+                                                                    <td>
+                                                                        <pre
+                                                                            class="pre-custom-left">{{partnerAppraisal.priority}}/10</pre>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+                                                    </ng-container>
+                                                </ng-container>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table class="panel">
+                                                <ng-container
+                                                    *ngFor="let partnerAppraisal of partnerAppraisals; index as rowIndex; last as last">
+                                                    <ng-container *ngIf="partnerAppraisal.export">
+                                                        <tr>
+                                                            <table class="panel">
+                                                                <tr>
+                                                                    <td style="width: 2%;"></td>
+                                                                    <td style="width: 30%;">
+                                                                        <label
+                                                                            class="lbl-custom-left">{{partnerAppraisal.serviceName}}</label>
+                                                                    </td>
+                                                                    <td style="width: 18rem; padding: 0 0 0.125rem;">
+                                                                        <ngb-rating [max]="10"
+                                                                            [(rate)]="partnerAppraisal.priority">
+                                                                            <ng-template let-fill="fill"
+                                                                                let-index="index">
+                                                                                <span
+                                                                                    class="star">{{ fill === 100 ? '&#9733;' : '&#9734;'}}</span>
+                                                                            </ng-template>
+                                                                        </ngb-rating>
+                                                                    </td>
+                                                                    <td>
+                                                                        <pre
+                                                                            class="pre-custom-left">{{partnerAppraisal.priority}}/10</pre>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </tr>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="!partnerAppraisal.export&&last">
+                                                        <tr style="height: 46px;">
+                                                        </tr>
+                                                    </ng-container>
+                                                </ng-container>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <table class="panel">
+            <tr>
+                <td></td>
+                <td style="width: 71px">
+                    <button class="btn btn-custom btn-sm" type="button" (click)="delete()"
+                        *ngIf="action==='EDIT'">Delete</button>
+                </td>
+                <td style="width: 91px">
+                    <button class="btn btn-custom btn-sm" type="button" *ngIf="action==='EDIT'">Save
+                        As</button>
+                </td>
+                <td style="width: 71px">
+                    <button class="btn btn-custom btn-sm" type="button" (click)="save()">Save</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</ng-container>
+<ng-container *ngIf="isLoading">
+    <div class="d-flex justify-content-center" style="margin-top: 200px;">
+        <div> <h3>Loading</h3></div>
+    <div class="spinner-grow text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-secondary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-warning" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-info" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-light" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-dark" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+
+</div>
+</ng-container>

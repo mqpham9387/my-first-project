@@ -1,0 +1,94 @@
+<ng-container>
+  <div class="background">
+    <div class="modal-header">
+      <table class="panel">
+        <tr>
+          <td>
+            <h6 class="modal-title">
+              <label class="lbl-custom-left"> Add New - Local charge detail
+                <span></span></label>
+            </h6>
+          </td>
+        </tr>
+      </table>
+      <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding-top: 2rem;">
+      <form [formGroup]="localChargeForm">
+        <div class="container">
+          <table class="panel">
+            <tr>
+              <td style="width: 14%;"><label class="lbl-custom-left">Charge name</label></td>
+              <td style="width: 27%;">
+                <of1-input-lookup2 class="fee" formControlName="fee"></of1-input-lookup2>
+              </td>
+              <td style="width: 4%;"></td>
+              <td style="width: 9%;"><label class="lbl-custom-left">Amount</label></td>
+              <td style="width: 38%;">
+                <input type="text" class="form-control form-control-sm" formControlName="amount"/>
+              </td>
+            </tr>
+          </table>
+          <table class="panel">
+            <tr>
+              <td style="width: 14%;"><label class="lbl-custom-left">Charge per</label></td>
+              <td style="width: 27%;">
+                <input type="text" class="form-control form-control-sm" formControlName="chargePer"/>
+              </td>
+              <td style="width: 4%;"></td>
+              <td style="width: 9%;">
+                <label class="lbl-custom-left">Currency</label>
+              </td>
+              <td style="width: 38%;">
+                <of1-input-lookup [data]="currencys" class="currency" formControlName="currency"></of1-input-lookup>
+              </td>
+            </tr>
+          </table>
+          <table class="panel">
+            <tr>
+              <td style="width: 17%;">
+                <label class="lbl-custom-left">Notes</label>
+              </td>
+              <td style="width: 94%;">
+                <input type="text" class="form-control form-control-sm" formControlName="notes" />
+              </td>
+              <td>
+                
+              </td>
+              <td>
+                
+              </td>
+            </tr>
+          </table>
+            <tr>
+              <td style="width: 70px;"></td>
+            </tr>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <table class="panel">
+        <tr>
+          <td></td>
+          <td  style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="save()">
+              Save
+            </button>
+          </td>
+          <td  style="width: 71px;" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="cancel()">
+              Cancel
+            </button>
+          </td>
+          <td *ngIf="action == 'VIEW'" style="width: 71px;" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="close()">
+              Close
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ng-container>

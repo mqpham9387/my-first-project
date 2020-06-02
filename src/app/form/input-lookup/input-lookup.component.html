@@ -1,0 +1,11 @@
+<div class="input-group">
+  <input type="text" class="form-control form-control-sm" [class.field-require]="require"
+    (keydown)="inputLookupKeydown($event)" #inputLookupInstance="ngbTypeahead" [ngbTypeahead]="search" container="body"
+    [(ngModel)]="value" [inputFormatter]="formatter" [resultFormatter]="formatter" [editable]='false'
+    [disabled]="disable" />
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary btn-valid" type="button" tabindex="-1" [disabled]="disable" (click)="LookupValid()">
+      <i class="fas fa-ellipsis-h"></i>
+    </button>
+  </div>
+</div>

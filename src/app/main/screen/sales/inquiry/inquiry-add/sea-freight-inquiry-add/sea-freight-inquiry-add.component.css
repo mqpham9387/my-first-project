@@ -1,0 +1,130 @@
+@import '../../../../../../../styles.css';
+
+
+
+.of-custom-card-inactive {
+    color: #818182;
+    background-color: #dede96;
+    height: 35px;
+    margin-top: 2px;
+}
+.of-custom-card-active {
+    color: #000;
+    background-color: #dede96;
+    height: 35px;
+    margin-top: 2px;
+}
+.of-custom-card-sub-active {
+    color: #000;
+    background-color: #f0f0f0;
+    height: 35px;
+    margin-top: 2px;
+}
+.of-custom-label-inactive {
+    color: #a19f9f !important;
+}
+
+.modal-sea-inquiry {
+    height: 440px !important;
+}
+.gr-modal-sea-inquiry .modal-body div.scroll {
+    height: calc(440px - 1rem) !important;
+}
+.gr-modal-sea-inquiry .modal-content {
+    position: absolute;
+    top: calc((100vh - 650px) / 3);
+    right: 0;
+    bottom: 0;
+    left: calc((100vw - 950px) / 2);
+    height: 100% !important;
+    border-radius: 0;
+}
+::ng-deep .gr-modal-sea-inquiry .modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+::ng-deep .gr-modal-sea-inquiry .modal-dialog {
+    position: fixed;
+    margin: 0;
+    min-width: 950px;
+    height: 90vh;
+    padding: 0;
+    font-family: var(--main-font-family);
+    font-size: var(--default-font-size);
+}
+
+::ng-deep .gr-modal-sea-inquiry .modal-content {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    bottom: 0;
+    left: calc((100vw - 950px) / 2);
+    height: 90vh;
+    border-radius: 0;
+}
+
+::ng-deep .gr-modal-sea-inquiry .modal-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 42px;
+    padding: 0.25rem 0.5rem;
+    background: var(--bg-primary-color);
+}
+
+::ng-deep .gr-modal-sea-inquiry .modal-body {
+    position: absolute;
+    top: 43px;
+    width: 100%;
+    background: var(--bg-primary-color);
+    padding: 0.5rem !important;
+    height: 96%;
+}
+
+::ng-deep .gr-modal-sea-inquiry .modal-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 42px;
+    padding: 10px;
+    border-radius: 0;
+    background: var(--bg-primary-color);
+}
+
+::ng-deep .gr-modal-sea-inquiry .modal-body div.scroll {
+    height: calc(90vh - 136px - 1rem);
+}
+.gr-modal-sea-inquiry .modal-content::ng-deep {
+    background: #808027 !important;
+}
+
+/* Check box custom */
+.checkbox{background-color:#fff;display:inline-block;height:20px;margin:0 .25em;width:20px;border-radius:4px;border:1px solid #ccc;float:right}
+  .checkbox span{display:block;height:20px;position:relative;width:20px;padding:0}
+  .checkbox span:after{-moz-transform:scaleX(-1) rotate(135deg);-ms-transform:scaleX(-1) rotate(135deg);-webkit-transform:scaleX(-1) rotate(135deg);transform:scaleX(-1) rotate(135deg);-moz-transform-origin:left top;-ms-transform-origin:left top;-webkit-transform-origin:left top;transform-origin:left top;border-right:4px solid #fff;border-top:4px solid #fff;content:'';display:block;height:12px;left:3px;position:absolute;top:8px;width:10px}
+  .checkbox span:hover:after{border-color:#999}
+  .checkbox input{display:none}
+  .checkbox input:checked + span:after{-webkit-animation:check .8s;-moz-animation:check .8s;-o-animation:check .8s;animation:check .8s;border-color:#555}
+.checkbox input:checked + .default:after{border-color:#444}
+
+/* Custom select form */
+.ng-select.of-custom-select-type ::ng-deep {
+    border:0px;
+    min-height: 0px;
+
+    /* height: calc(1.5em + .5rem + 2px) !important; */
+    /* padding: .25rem; */
+    /* min-height: 12px; */
+  }
+
+  .ng-select.of-custom-select-type ::ng-deep .ng-select-container ::ng-deep {            
+    height: 28px;
+    min-height: 28px;
+}

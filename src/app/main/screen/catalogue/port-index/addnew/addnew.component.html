@@ -1,0 +1,243 @@
+
+<ng-container *ngIf="!isLoading">
+  <div class="background no-padding">
+    <div class="modal-header">
+      <h6 class="modal-title">
+        <label class="lbl-custom-left"
+          >Catalogue / Port Index / {{ action }}
+        </label>
+      </h6>
+      <button *ngIf="action!='View'"
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="close()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <button *ngIf="action=='View'"
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="cancel()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <table class="panel-noheight">
+        <tr >
+          <td style="width: 12%;">
+            <label class="lbl-custom-left">
+              Port Code<span style="color: red;">*</span> :
+            </label>
+          </td>
+          <td style="width: 38%;">
+            <input
+              class="form-control form-control-sm"
+              type="text"
+              [disabled]="disable"
+              [(ngModel)]="port.portID"
+            />
+          </td>
+          <td style="width: 20%;">
+            <label class="lbl-custom-left">
+              Port Name <span style="color: red;">*</span> :
+            </label>
+          </td>
+          <td>
+            <input
+              class="form-control form-control-sm"
+              type="text"
+              [disabled]="disable"
+              [(ngModel)]="port.portName"
+            />
+          </td>
+        </tr>
+        <tr >
+          <td>
+            <label class="lbl-custom-left">
+              City <span style="color: red;">*</span> :
+            </label>
+          </td>
+          <td>
+            <of1-input-lookup2
+              class="city"
+              [(ngModel)]="port.city"
+              [disable]="disable"
+            ></of1-input-lookup2>
+          </td>
+          <td>
+            <label class="lbl-custom-left">
+              Geographical region :
+            </label>
+          </td>
+          <td>
+            <select [(ngModel)]="port.zone" [disabled]="disable" class="form-control form-control-sm">
+              <option
+                *ngFor="let item of zoneApi; let i = index"
+                [value]="item.zoneID"
+                >{{ item.zoneName }}</option
+              >
+            </select>
+          </td>
+        </tr>
+        <tr >
+          <td>
+            <label class="lbl-custom-left">
+              Country <span style="color: red;">*</span> :
+            </label>
+          </td>
+          <td>
+            <of1-input-lookup2
+              class="country"
+              [disable]="disable"
+              [(ngModel)]="port.country"
+            ></of1-input-lookup2>
+          </td>
+          <td>
+            <label class="lbl-custom-left">
+              Mode :
+            </label>
+          </td>
+          <td>
+            <select
+              [(ngModel)]="port.typeService"
+              [disabled]="disable"
+              class="form-control form-control-sm"
+            >
+              <option></option>
+              <option *ngFor="let item of serviceapi; let i = index">{{
+                item.serviceName
+              }}</option>
+            </select>
+          </td>
+        </tr>
+        <tr >
+          <td>
+            <label class="lbl-custom-left">
+              Phone Number :
+            </label>
+          </td>
+          <td>
+            <input
+              class="form-control form-control-sm"
+              type="tel"
+              [disabled]="disable"
+              [(ngModel)]="port.telephoneNo"
+            />
+          </td>
+          <td>
+            <label class="lbl-custom-left">
+              CBM/KGS conversion ratio:
+            </label>
+          </td>
+          <td>
+            <input
+              class="form-control form-control-sm"
+              type="number"
+              [disabled]="disable"
+              [(ngModel)]="port.cbmperKGS"
+            />
+          </td>
+        </tr>
+        <tr >
+          <td>
+            <label class="lbl-custom-left">
+              Address :
+            </label>
+          </td>
+          <td colspan="3">
+            <input
+              class="form-control form-control-sm"
+              type="text"
+              [disabled]="disable"
+              [(ngModel)]="port.address"
+            />
+          </td>
+        </tr>
+        <tr >
+          <td>
+            <label class="lbl-custom-left">
+              Contact :
+            </label>
+          </td>
+          <td colspan="3">
+            <input
+              class="form-control form-control-sm"
+              type="text"
+              [disabled]="disable"
+              [(ngModel)]="port.notes"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
+  
+    <div class="modal-footer">
+      <table class="panel-noheight">
+        <tr>
+          <td></td>
+          <td *ngIf="action!='View'" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="save()">
+              Save
+            </button>
+          </td>
+          <div *ngIf="action == 'Edit'; then thenBlock; else elseBlock"></div>
+          <ng-template #thenBlock
+            ><td style="width: 71px;">
+              <button
+                class="btn btn-custom btn-sm"
+                type="button"
+                (click)="delete()"
+              >
+                Delete
+              </button>
+            </td></ng-template
+          >
+          <ng-template #elseBlock></ng-template>
+          <td *ngIf="action!='View'" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="close()">
+              Cancel
+            </button>
+          </td>
+          <td *ngIf="action=='View'" style="width: 71px;">
+            <button class="btn btn-custom btn-sm" type="button" (click)="cancel()">
+              Close
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="isLoading">
+  <div class="d-flex justify-content-center">
+  <div> <h3>Loading</h3></div>
+  <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-danger" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-warning" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-info" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-light" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-dark" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    
+
+</div></ng-container>

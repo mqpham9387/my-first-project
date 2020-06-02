@@ -1,0 +1,204 @@
+<ng-container>
+  <div class="modal-header">
+    <table class="panel">
+      <tr>
+        <td>
+          <h6 class="modal-title"><label class="lbl-custom-left">Sent Inquiry -
+              <span>Advance</span></label></h6>
+        </td>
+      </tr>
+    </table>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-air-freight">
+    <table class="panel" style="height: 100%;">
+      <tr>
+        <div style="height: 5px"></div>
+        <table class="panel-noheight">
+          <tr>
+            <table class="panel">
+              <tr>
+                <td style="width: 2%;"></td>
+                <td style="width: 1%;">
+                  <label class="checkbox">
+                    <input type="checkbox" [(ngModel)]="this.searchData[0].isCheck"
+                      (change)="toggleVisibility($event)" />
+                    <span class="default"></span>
+                  </label>
+                </td>
+                <td style="width: 8%;">
+                  <label class="lbl-custom-left">ID</label>
+                </td>
+                <td style="width: 22%;">
+                  <input type="text" name="inquiryID" [(ngModel)]="this.searchData[0].value"
+                    class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+              <tr>
+                <td style="width: 2%;"></td>
+                <td style="width: 1%;">
+                  <label class="checkbox">
+                    <input type="checkbox" [(ngModel)]="this.searchData[1].isCheck"
+                      (change)="toggleVisibility($event)" />
+                    <span class="default"></span>
+                  </label>
+                </td>
+                <td style="width: 18%;">
+                  <label class="lbl-custom-left">Commodity</label>
+                </td>
+                <td style="width: 12%;">
+                  <input type="text" name="commodity" [(ngModel)]="this.searchData[1].value"
+                    class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+              <tr>
+                <td style="width: 2%;"></td>
+                <td style="width: 1%;">
+                  <label class="checkbox">
+                    <input type="checkbox" [(ngModel)]="this.searchData[2].isCheck"
+                      (change)="toggleVisibility($event)" />
+                    <span class="default"></span>
+                  </label>
+                </td>
+                <td style="width: 5%;">
+                  <label class="lbl-custom-left">Type</label>
+                </td>
+                <td style="width: 25%;">
+                  <input type="text" name="type" [(ngModel)]="this.searchData[2].value"
+                    class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+              <tr>
+                <td style="width: 2%;"></td>
+                <td style="width: 1%;">
+                  <label class="checkbox">
+                    <input type="checkbox" [(ngModel)]="this.searchData[3].isCheck"
+                      (change)="toggleVisibility($event)" />
+                    <span class="default"></span>
+                  </label>
+                </td>
+                <td style="width: 5%;">
+                  <label class="lbl-custom-left">Client</label>
+                </td>
+                <td style="width: 25%;">
+                  <input type="text" name="client" [(ngModel)]="this.searchData[3].value"
+                    class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+              <tr>
+                <td style="width: 2%;"></td>
+                <td style="width: 1%;">
+                  <label class="checkbox">
+                    <input type="checkbox" [(ngModel)]="this.searchData[4].isCheck"
+                      (change)="toggleVisibility($event)" />
+                    <span class="default"></span>
+                  </label>
+                </td>
+                <td style="width: 5%;">
+                  <label class="lbl-custom-left">POL</label>
+                </td>
+                <td style="width: 25%;">
+                  <input type="text" name="pol" [(ngModel)]="this.searchData[4].value"
+                    class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+              <tr>
+                <td style="width: 2%;"></td>
+                <td style="width: 1%;">
+                  <label class="checkbox">
+                    <input type="checkbox" [(ngModel)]="this.searchData[5].isCheck"
+                      (change)="toggleVisibility($event)" />
+                    <span class="default"></span>
+                  </label>
+                </td>
+                <td style="width: 5%;">
+                  <label class="lbl-custom-left">POD</label>
+                </td>
+                <td style="width: 25%;">
+                  <input type="text" name="pod" [(ngModel)]="this.searchData[5].value"
+                    class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+              <tr>
+                <td style="width: 2%;"></td>
+                <td style="width: 1%;">
+                  <label class="checkbox">
+                    <input type="checkbox" [(ngModel)]="this.searchData[6].isCheck"
+                      (change)="toggleVisibility($event)" />
+                    <span class="default"></span>
+                  </label>
+                </td>
+                <td style="width: 5%;">
+                  <label class="lbl-custom-left">Created By</label>
+                </td>
+                <td style="width: 25%;">
+                  <input type="text" name="createdBy" [(ngModel)]="this.searchData[6].value"
+                    class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+              <tr>
+                <td style="width: 2%;"></td>
+                <td style="width: 1%;">
+                  <label class="checkbox">
+                    <input type="checkbox" [(ngModel)]="this.searchData[7].isCheck"
+                      (change)="toggleVisibility($event)" />
+                    <span class="default"></span>
+                  </label>
+                </td>
+                <td style="width: 5%;">
+                  <label class="lbl-custom-left">Send To</label>
+                </td>
+                <td style="width: 25%;">
+                  <input type="text" name="sendTo" [(ngModel)]="this.searchData[7].value"
+                    class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+              <tr>
+                <td style="width: 2%;"></td>
+                <td style="width: 1%;">
+                  <label class="checkbox">
+                    <input type="checkbox" [(ngModel)]="this.searchData[8].isCheck"
+                      (change)="toggleVisibility($event)" />
+                    <span class="default"></span>
+                  </label>
+                </td>
+                <td style="width: 5%;">
+                  <label class="lbl-custom-left">Term of Service</label>
+                </td>
+                <td style="width: 25%;">
+                  <input type="text" name="termofService" [(ngModel)]="this.searchData[8].value"
+                    class="form-control form-control-sm">
+                </td>
+                <td style="width: 2%;"></td>
+              </tr>
+            </table>
+          </tr>
+        </table>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <table class="panel">
+      <tr>
+        <td></td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="onApply()"><span>Apply</span>
+          </button>
+        </td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="close()">Cancel</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ng-container>

@@ -1,0 +1,87 @@
+<div class="background no-padding"><div class="modal-header">
+    <h6 class="modal-title"><label class="lbl-custom-left">Catalogue /Commodity / {{action}}
+            </label></h6>
+    <button *ngIf="action!='View'" type="button" class="btn-close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <button *ngIf="action=='View'" type="button" class="btn-close" aria-label="Close" (click)="cancel()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+        <table class="panel-noheight">
+            <div *ngIf="action=='Edit'||action=='View'; then thenBlock1 else elseBlock1"></div>
+<ng-template #thenBlock1><tr>
+    <td style="width: 12%;" >
+        <label class="lbl-custom-left">
+            ID :
+        </label>
+    </td>
+    <td style="width: 20%;">
+        <input class="form-control form-control-sm" type="text" [(ngModel)]="commodity.commodityID" readonly>
+    </td>
+    <td></td>
+</tr>
+
+  </ng-template>
+<ng-template #elseBlock1></ng-template>
+            <tr style="height: 35px;">
+                <td style="width: 12%;" >
+                    <label class="lbl-custom-left">
+                        HS Code<span style="color: red;">*</span> :
+                    </label>
+                </td>
+                <td>
+                    <input [disabled]="disable" class="form-control form-control-sm" type="text" [(ngModel)]="commodity.hsCode">
+                </td>
+                <td></td>
+            </tr>
+            <tr >
+                <td style="width: 12%;" >
+                    <label class="lbl-custom-left">
+                        Description_VN :
+                    </label>
+                </td>
+                <td colspan="2">
+                    <textarea rows="5" [disabled]="disable" class="form-control form-control-sm" type="text" [(ngModel)]="commodity.commodityName">
+                    </textarea>
+                </td>
+            </tr>
+            <tr style="height: 35px;">
+                <td style="width: 12%;" >
+                    <label class="lbl-custom-left">
+                        Description_EN :
+                    </label>
+                </td>
+                <td colspan="2">
+                    <textarea rows="5" [disabled]="disable" class="form-control form-control-sm" type="text" [(ngModel)]="commodity.commodityDescription">
+                    </textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+<div class="modal-footer" >
+    <table class="panel-noheight" >
+        <tr  >
+            <td></td>
+            <td *ngIf="action!='View'" style="width: 71px">
+                <button class="btn btn-custom btn-sm" type="button" (click)="save()">Save</button>
+            </td>
+            <div *ngIf="action=='Edit'||action!='View'; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock><td style="width: 71px">
+    <button class="btn btn-custom btn-sm" type="button" (click)="delete()" >Delete</button>
+  </td></ng-template>
+<ng-template #elseBlock></ng-template>
+            <td *ngIf="action!='View'" style="width: 71px">
+                <button class="btn btn-custom btn-sm" type="button" (click)="close()" >Cancel</button>
+              </td>
+              <td *ngIf="action=='View'" style="width: 71px">
+                <button class="btn btn-custom btn-sm" type="button" (click)="cancel()" >Close</button>
+              </td>
+
+        </tr>
+    </table>
+</div>
+</div>

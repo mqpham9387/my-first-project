@@ -1,0 +1,32 @@
+{
+    "/contact-service": {
+        "target": "http://112.109.94.142",
+        "secure": false,
+        "changeOrigin": true
+    },
+    "/partner-service": {
+        "target": "http://112.109.94.142",
+        "secure": false,
+        "changeOrigin": true
+    },
+    "/general-service": {
+        "target": "http://112.109.94.142",
+        "secure": false,
+        "changeOrigin": true
+    },
+    "/sales-service": {
+        "target": "http://112.109.94.142",
+        "secure": true,
+        "changeOrigin": true
+    },
+    "/catalogue-service": {
+        "target": "http://112.109.94.142",
+        "secure": false,
+        "changeOrigin": true
+    },
+    "/report-service": {
+        "target": "http://112.109.94.142",
+        "secure": false,
+        "changeOrigin": true
+    }
+}

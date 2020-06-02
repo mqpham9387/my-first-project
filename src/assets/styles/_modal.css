@@ -1,0 +1,200 @@
+div.scroll {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* gr-modal-full */
+
+.gr-modal-full .modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.gr-modal-full .modal-dialog {
+    position: fixed;
+    margin: 0;
+    min-width: 100vw;
+    height: 90vh;
+    padding: 0;
+    font-family: var(--main-font-family);
+    font-size: var(--default-font-size);
+}
+
+.gr-modal-full .modal-content {
+    position: absolute;
+    top: 5vh;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 90vh;
+    border-radius: 0;
+}
+
+.gr-modal-full .modal-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 42px;
+    padding: 0.25rem 0.5rem !important;
+    background: var(--bg-primary-color);
+}
+
+.gr-modal-full .modal-body {
+    position: absolute;
+    top: 43px;
+    width: 100%;
+    background: var(--bg-primary-color);
+    padding: 0.5rem !important;
+}
+
+.gr-modal-full .modal-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 42px;
+    padding: 10px;
+    border-radius: 0;
+    background: var(--bg-primary-color);
+}
+
+.gr-modal-full .modal-body div.scroll {
+    height: calc(90vh - 136px - 1rem);
+}
+
+.gr-modal-full .modal-body div.scroll.padding-10 {
+    padding: 0 5vw 0;
+}
+
+/* gr-modal-haft */
+
+.gr-modal-haft .modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.gr-modal-haft .modal-dialog {
+    position: fixed;
+    margin: 0;
+    min-width: 56vw;
+    height: 66vh;
+    padding: 0;
+    font-family: var(--main-font-family);
+    font-size: var(--default-font-size);
+}
+
+.gr-modal-haft .modal-content {
+    position: absolute;
+    top: 10vh;
+    right: 0;
+    bottom: 0;
+    left: 22vw;
+    height: 66vh;
+    border-radius: 0;
+}
+
+.gr-modal-haft .modal-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 52px;
+    padding: 1rem 1rem;
+    background: var(--bg-primary-color);
+}
+
+.gr-modal-haft .modal-body {
+    position: absolute;
+    top: 53px;
+    width: 100%;
+    background: var(--bg-primary-color);
+    padding: 0.5rem !important;
+}
+
+.gr-modal-haft .modal-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 42px;
+    padding: 10px;
+    border-radius: 0;
+    background: var(--bg-primary-color);
+}
+
+.gr-modal-haft .modal-body div.scroll {
+    height: calc(66vh - 96px - 1rem);
+}
+
+/* gr-modal-quarter */
+
+.gr-modal-quarter .modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.gr-modal-quarter .modal-dialog {
+    position: fixed;
+    margin: 0;
+    min-width: 40vw;
+    height: 32vh;
+    padding: 0;
+    font-family: var(--main-font-family);
+    font-size: var(--default-font-size);
+}
+
+.gr-modal-quarter .modal-content {
+    position: absolute;
+    top: 20vh;
+    right: 0;
+    bottom: 0;
+    left: 30vw;
+    height: 32vh;
+    border-radius: 0;
+}
+
+.gr-modal-quarter .modal-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 52px;
+    padding: 1rem 1rem;
+    background: var(--bg-primary-color);
+}
+
+.gr-modal-quarter .modal-body {
+    position: absolute;
+    top: 53px;
+    width: 100%;
+    background: var(--bg-primary-color);
+    padding: 0.5rem !important;
+}
+
+.gr-modal-quarter .modal-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 42px;
+    padding: 10px;
+    border-radius: 0;
+    background: var(--bg-primary-color);
+}
+
+.gr-modal-quarter .modal-body div.scroll {
+    height: calc(32vh - 96px - 1rem);
+}

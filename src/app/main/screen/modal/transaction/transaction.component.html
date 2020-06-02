@@ -1,0 +1,75 @@
+<ng-container *ngIf="!isLoading">
+  <div class="modal-header">
+    <table class="panel">
+      <tr>
+        <td>
+          <h6 class="modal-title"><label class="lbl-custom-left">Transaction -
+              <span>{{ action === 'ADD' ? 'Add New' : 'Edit'}}</span></label></h6>
+        </td>
+      </tr>
+    </table>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="panel">
+      <tr>
+        <div class="scroll">
+          <div style="height: 5px"></div>
+          <table class="panel-noheight">
+            <tr>
+              <table class="panel">
+                <tr>
+                  <td style="width: 20%;">
+                    <label class="lbl-custom-left">Content <span style="color: red;">*</span></label>
+                  </td>
+                  <td>
+                    <textarea type="text" class="form-control form-control-sm" rows="5"
+                      [(ngModel)]="dataClone.description"></textarea>
+                  </td>
+                </tr>
+              </table>
+            </tr>
+            <tr>
+              <table class="panel">
+                <tr>
+                  <td style="width: 20%;">
+                    <label class="lbl-custom-left">Created</label>
+                  </td>
+                  <td style="width: 28%;">
+                    <of1-input-date disabled="true" [(ngModel)]="dataClone.dateCreate">
+                    </of1-input-date>
+                  </td>
+                  <td style="width: 12%;"></td>
+                  <td style="width: 12%;">
+                    <label class="lbl-custom-left">by</label>
+                  </td>
+                  <td style="width: 28%;">
+                    <input type="text" class="form-control form-control-sm" disabled [(ngModel)]="dataClone.username">
+                  </td>
+                  <td></td>
+                </tr>
+              </table>
+            </tr>
+          </table>
+        </div>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <table class="panel">
+      <tr>
+        <td></td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button"
+            >Cancel</button>
+        </td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button"
+            (click)="save()">Save</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ng-container>

@@ -1,0 +1,720 @@
+<div class="background">
+  <div class="modal-header">
+    <table class="panel">
+      <tr>
+        <td>
+          <h6 class="modal-title">
+            <label class="lbl-custom-left">{{action}}-Seafreight booking request (with or without customs clearance & trucking)</label>
+          </h6>
+        </td>
+      </tr>
+    </table>
+    <button type="button" class="btn-close" aria-label="Close" (click)="cancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="padding-top: 5px;">
+    <form [formGroup]="myForm" >
+    <table class="panel">
+      <tr>
+        <ul ngbNav #nav="ngbNav" class="nav-tabs">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>General </a>
+            <ng-template ngbNavContent>
+              <div class="scroll">
+                <table class="panel">
+                  <tr>
+                    <td><label class="lbl-custom-left">Booking No. :<span style="color: red;">*</span></label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm">
+                    </td>
+                    <td><label class="lbl-custom-left">Create By : </label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm"  />
+                    </td>
+                    <td><label class="lbl-custom-left">Create On : </label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm"  />
+                    </td>
+                    <td></td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Quotation :</label
+                      >
+                    </td>
+                    <td colspan="2">
+                      <of1-input-lookup3
+                        class="quotation"
+                        fromControlName ="quotation">
+                      </of1-input-lookup3>
+                    </td>
+                    <td >
+                      <button
+                      class="btn btn-light btn-sm"
+                    >
+                      View
+                    </button>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Sent to* :<span style="color: red;">*</span>
+                      </label>
+                    </td>
+                    <td colspan="3">
+                      <of1-input-lookup3
+                        class="Sent"
+                        fromControlName ="Sent">
+                      </of1-input-lookup3>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Client :<span style="color: red;">*</span></label
+                      >
+                    </td>
+                    <td colspan ="3">
+                      <of1-input-lookup3
+                        class="Client"
+                        fromControlName ="Client">
+                      </of1-input-lookup3>
+                    </td>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >EDT :<span style="color: red;">*?</span></label
+                      >
+                    </td>
+                    <td colspan ="3">
+                      <of1-input-lookup3
+                      class="EDT"
+                      fromControlName ="EDT">
+                    </of1-input-lookup3>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Commodity :<span style="color: red;">*</span></label
+                      >
+                    </td>
+                    <td colspan ="3">
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Commodity type :<span style="color: red;">*</span></label
+                      >
+                    </td>
+                    <td colspan ="3">
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label class="lbl-custom-left">Shipper's PTC :<span style="color: red;">?</span></label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm">
+                    </td>
+                    <td><label class="lbl-custom-left">Phone:</label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                    <td><label class="lbl-custom-left">Consignee's PTC: <span style="color: red;">?</span></label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                    <td><label class="lbl-custom-left">Phone: </label></td>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Special requirements
+                      </label>
+                    </td>
+                    <td colspan="3">
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                      <label class="lbl-custom-left"
+                        >Carrier<span style="color: red;">*</span>
+                      </label>
+                    </td>
+                    <td colspan="3">
+                      <of1-input-lookup3
+                      class="Carrier"
+                      fromControlName ="Carrier">
+                    </of1-input-lookup3>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="lbl-custom-left">Notes </label>
+                    </td>
+                    <td colspan="7">
+                      <input type="text" class="form-control form-control-sm" />
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>Route </a>
+            <ng-template ngbNavContent>
+              <div class="scroll">
+                <table class="panel">
+                <tr>
+                  <td>
+                    <label class="lbl-custom-left"
+                      >POL :<span style="color: red;">?</span></label
+                    >
+                  </td>
+                  <td colspan="3">
+                    <of1-input-lookup3
+                        class="POL"
+                        fromControlName ="POL">
+                      </of1-input-lookup3>
+                  </td>
+                  <td>
+                    <label class="lbl-custom-left"
+                      >POD :<span style="color: red;">?</span>
+                    </label>
+                  </td>
+                  <td colspan="3">
+                    <of1-input-lookup3
+                        class="POD"
+                        fromControlName ="POD">
+                      </of1-input-lookup3>
+                  </td>
+                </tr>
+                </table>
+                <td></td>
+                <ngb-accordion #general2="ngbAccordion" activeIds="general-1">
+                  <ngb-panel id="general-1">
+                    <ng-template ngbPanelHeader let-opened="opened">
+                      <button ngbPanelToggle class="btn btn-accordion">
+                        <span
+                          >{{ opened ? "&#045;" : "&#043;" }} Term of
+                          service <span style="color: red;">*</span>
+                        </span>
+                      </button>
+
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                      <div class="scroll">
+                        <ngb-accordion
+                          #general1="ngbAccordion"
+                          activeIds="general-1,general-2,general-3,general-4"
+                        >
+                          <ngb-panel id="general-1">
+                            <ng-template
+                              ngbPanelHeader
+                              let-opened="opened"
+                            >
+                              <button
+                                ngbPanelToggle
+                                class="btn btn-accordion"
+                              >
+                                <div
+                                  class="custom-control custom-radio"
+                                >
+                                  <input
+                                    type="radio"
+                                    class="custom-control-input"
+                                    id="defaultGroupExample1"
+                                  />
+                                  <label
+                                    class="custom-control-label"
+                                    for="defaultGroupExample1"
+                                    >Port to port</label
+                                  >
+                                </div>
+                              </button>
+                              <div style="padding: .375rem 0rem;">
+                                <button class="btn-collapse btn-sm" (click)="general1.expandAll()">Expand
+                                    all</button>
+                            </div>
+                            <div style="padding: .375rem 0rem;">
+                                <button class="btn-collapse btn-sm"
+                                    (click)="general1.collapseAll()">Collapse
+                                    all</button>
+                            </div>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                              <table class="panel">
+                                <tr>
+                                  <td style="width: 60px;"></td>
+                                  <td style="width: 30%;">
+                                    <div
+                                      class="custom-control custom-checkbox"
+                                    >
+                                      <input
+                                        type="checkbox"
+                                        class="custom-control-input"
+                                        id="defaultGroupExample2"
+                                      />
+                                      <label
+                                        style="
+                                          color: white;
+                                          font-size: 14px;
+                                        "
+                                        class="custom-control-label"
+                                        for="defaultGroupExample2"
+                                        >Need customs clearance at
+                                        origin?</label
+                                      >
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div
+                                      class="custom-control custom-checkbox"
+                                    >
+                                      <input
+                                        type="checkbox"
+                                        class="custom-control-input"
+                                        id="defaultGroupExample3"
+                                      />
+                                      <label
+                                        style="
+                                          color: white;
+                                          font-size: 14px;
+                                        "
+                                        class="custom-control-label"
+                                        for="defaultGroupExample3"
+                                        >Need customs clearance at
+                                        destination?</label
+                                      >
+                                    </div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </ng-template>
+                          </ngb-panel>
+                          <ngb-panel id="general-2">
+                            <ng-template
+                              ngbPanelHeader
+                              let-opened="opened"
+                            >
+                              <button
+                                ngbPanelToggle
+                                class="btn btn-accordion"
+                              >
+                                <div
+                                  class="custom-control custom-radio"
+                                >
+                                  <input
+                                    type="radio"
+                                    class="custom-control-input"
+                                    id="defaultGroupExample1"
+                                  />
+                                  <label
+                                    class="custom-control-label"
+                                    for="defaultGroupExample1"
+                                    >Door to port</label
+                                  >
+                                </div>
+                              </button>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                              <table class="panel">
+                                <tr>
+                                  <td style="width: 150px;">
+                                    <label class="lbl-custom-left"
+                                      >Pick up address :</label
+                                    >
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      class="form-control form-control-sm"
+                                    />
+                                  </td>
+                                  <td style="width: 5%;"></td>
+                                  <td style="width: 150px;">
+                                    <label class="lbl-custom-left"
+                                      >Purpose of export
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <of1-input-lookup3
+                                    class="Purpose"
+                                    fromControlName ="Purpose">
+                                  </of1-input-lookup3>
+                                  </td>
+                                </tr>
+                              </table>
+                            </ng-template>
+                          </ngb-panel>
+                          <ngb-panel id="general-3">
+                            <ng-template
+                              ngbPanelHeader
+                              let-opened="opened"
+                            >
+                              <button
+                                ngbPanelToggle
+                                class="btn btn-accordion"
+                              >
+                                <div
+                                  class="custom-control custom-radio"
+                                >
+                                  <input
+                                    type="radio"
+                                    class="custom-control-input"
+                                    id="defaultGroupExample1"
+                                  />
+                                  <label
+                                    class="custom-control-label"
+                                    for="defaultGroupExample1"
+                                    >Port to door</label
+                                  >
+                                </div>
+                              </button>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                              <table class="panel">
+                                <tr>
+                                  <td style="width: 150px;">
+                                    <label class="lbl-custom-left"
+                                      >Delivery address :</label
+                                    >
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      class="form-control form-control-sm"
+                                    />
+                                  </td>
+                                  <td style="width: 5%;"></td>
+                                  <td style="width: 150px;">
+                                    <label class="lbl-custom-left"
+                                      >Purpose of import
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <of1-input-lookup3
+                                      class="Purpose of import"
+                                      fromControlName ="Purpose of import">
+                                    </of1-input-lookup3>
+                                  </td>
+                                </tr>
+                              </table>
+                            </ng-template>
+                          </ngb-panel>
+                          <ngb-panel id="general-4">
+                            <ng-template
+                              ngbPanelHeader
+                              let-opened="opened"
+                            >
+                              <button
+                                ngbPanelToggle
+                                class="btn btn-accordion"
+                              >
+                                <div
+                                  class="custom-control custom-radio"
+                                >
+                                  <input
+                                    type="radio"
+                                    class="custom-control-input"
+                                    id="defaultGroupExample1"
+                                  />
+                                  <label
+                                    class="custom-control-label"
+                                    for="defaultGroupExample1"
+                                    >Door to door</label
+                                  >
+                                </div>
+                              </button>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                              <table class="panel">
+                                <tr>
+                                  <td style="width: 150px;">
+                                    <label class="lbl-custom-left"
+                                      >Delivery address :</label
+                                    >
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      class="form-control form-control-sm"
+                                    />
+                                  </td>
+                                  <td style="width: 5%;"></td>
+                                  <td style="width: 150px;">
+                                    <label class="lbl-custom-left"
+                                      >Purpose of import
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <of1-input-lookup3
+                                      class="Purpose of import"
+                                      fromControlName ="Purpose of import">
+                                    </of1-input-lookup3>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="width: 150px;">
+                                    <label class="lbl-custom-left"
+                                      >Pick up address :</label
+                                    >
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      class="form-control form-control-sm"
+                                    />
+                                  </td>
+                                  <td style="width: 5%;"></td>
+                                  <td style="width: 150px;">
+                                    <label class="lbl-custom-left"
+                                      >Purpose of export
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <of1-input-lookup3
+                                      class="Purpose of export"
+                                      fromControlName ="Purpose of export">
+                                    </of1-input-lookup3>
+                                  </td>
+                                </tr>
+                              </table>
+                            </ng-template>
+                          </ngb-panel>
+                        </ngb-accordion>
+                      </div>
+                    </ng-template>
+                  </ngb-panel>
+                </ngb-accordion>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>Volume </a>
+            <ng-template ngbNavContent>
+              <ngb-accordion
+              #general="ngbAccordion"
+              activeIds="general-1,general-2"
+            >
+              <ngb-panel id="general-1">
+                <ng-template ngbPanelHeader let-opened="opened">
+                  <button ngbPanelToggle class="btn btn-accordion">
+                    <div class="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        id="defaultGroupExample1"
+                        formControlName="isFCL"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="defaultGroupExample1"
+                        >FCL</label
+                      >
+                    </div>
+                  </button>
+                  <div style="padding: 0.375rem 0rem; margin-right: 0px;">
+                    <button
+                      class="btn-collapse btn-sm"
+                      (click)="general.expandAll()"
+                    >
+                      Expand all
+                    </button>
+                  </div>
+                  <div
+                    style="
+                      padding: 0.375rem 0rem;
+                      padding-right: 0px !important;
+                    "
+                  >
+                    <button
+                      class="btn-collapse btn-sm"
+                      (click)="general.collapseAll()"
+                    >
+                      Collapse all
+                    </button>
+                  </div>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <table class="panel">
+                    <tr style="height: 259px;">
+                      <ag-grid-angular
+                        style="width: 100%; height: 100%;"
+                        class="ag-theme-balham"
+                        editType="fullRow"
+                        rowSelection="single"
+                        [defaultColDef]="defaultColDef"
+                        [columnDefs]="columnDefs"
+                        [frameworkComponents]="frameworkComponents"
+                        [rowData]="rowData"
+                        [suppressClickEdit]="true"
+                        (gridReady)="onGridReady($event)"
+                      >
+                      </ag-grid-angular>
+                    </tr>
+                    <tr>
+                      <table class="panel">
+                        <tr>
+                          <td></td>
+                          <td style="width: 91px;" *ngIf="editMode">
+                            <button
+                              class="btn btn-custom btn-sm"
+                            >
+                              Save
+                            </button>
+                          </td>
+                          <td style="width: 91px;" *ngIf="editMode">
+                            <button
+                              class="btn btn-custom btn-sm"
+
+                            >
+                              Cancel
+                            </button>
+                          </td>
+                          <td style="width: 150px;" *ngIf="!editMode">
+                            <button
+                              class="btn btn-custom btn-sm"
+                              type="button"
+                            >
+                              Add New Container
+                            </button>
+                          </td>
+                        </tr>
+                      </table>
+                    </tr>
+                  </table>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="general-2">
+                <ng-template ngbPanelHeader let-opened="opened">
+                  <button ngbPanelToggle class="btn btn-accordion">
+                    <div class="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        id="defaultGroupExample"
+                        formControlName="isLCL"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="defaultGroupExample"
+                        >LCL</label
+                      >
+                    </div>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <table class="panel" class="abc">
+                    <tr>
+                      <td style="width: 150px;">
+                        <label class="lbl-custom-left">Volume: </label>
+                      </td>
+                      <td style="width: 300px;">
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          formControlName="volume"
+                        />
+                      </td>
+                      <td style="width: 5%;"></td>
+                      <td>
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            class="custom-control-input"
+                            id="cargoIsUnstackable"
+                            formControlName="cargoIsUnstackable"
+                          />
+                          <label
+                            class="custom-control-label"
+                            for="cargoIsUnstackable"
+                            style="color: white; font-size: 14px;"
+                            >Cargo is un-stackable
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 150px;">
+                        <label class="lbl-custom-left"
+                          >Gross weight :
+                        </label>
+                      </td>
+                      <td style="width: 300px;">
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          formControlName="grossWeight"
+                        />
+                      </td>
+                    </tr>
+                  </table>
+                </ng-template>
+              </ngb-panel>
+              </ngb-accordion>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav"></div>
+      </tr>
+    </table>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <table class="panel">
+      <tr>
+        <td></td>
+        <td style="width: 180px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Make a booking cancellation
+          </button>
+        </td>
+        <td style="width: 180px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Make a booking confirmation
+
+          </button>
+        </td>
+        <td style="width: 150px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Make a booking rejection
+
+          </button>
+        </td>
+        <td style="width: 100px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Export to email
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Forward
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Delete
+          </button>
+        </td>
+        <td style="width: 101px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Edit
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Save
+          </button>
+        </td>
+        <td style="width: 71px;">
+          <button class="btn btn-custom btn-sm" type="button">
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

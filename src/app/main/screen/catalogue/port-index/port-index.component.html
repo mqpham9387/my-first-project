@@ -1,0 +1,49 @@
+<div class="background">
+  <table class="panel">
+    <tr style="height: 31px; border-bottom: 0.5rem solid transparent;">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb breadcrumb-custom">
+          <li class="breadcrumb-item"><a>Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Catalogue</li>
+          <li class="breadcrumb-item active" aria-current="page">Port Index</li>
+        </ol>
+      </nav>
+    </tr>
+    <tr style="border-bottom: 0.5rem solid transparent;">
+      <ag-grid-angular
+        style="width: 100%; height: 100%;"
+        class="ag-theme-balham"
+        [columnDefs]="columnDefs"
+        rowSelection="single"
+        [suppressMenuHide]="true"
+        [defaultColDef]="defaultColDef"
+        suppressColumnVirtualisation=true
+        [frameworkComponents]="frameworkComponents"
+        rowModelType="infinite"
+        [paginationPageSize]="paginationPageSize"
+        [components]="components"
+        [cacheBlockSize]="cacheBlockSize"
+        [pagination]="true"
+        (rowDoubleClicked)="view($event)"
+        (gridReady)="onGridReady($event)"
+      >
+      </ag-grid-angular>
+    </tr>
+    <tr style="height: 32px;">
+      <table class="panel">
+        <tr>
+          <td></td>
+          <td style="width: 91px;">
+            <button
+              class="btn btn-custom btn-sm"
+              type="button"
+              (click)="addnew()"
+            >
+              Add New
+            </button>
+          </td>
+        </tr>
+      </table>
+    </tr>
+  </table>
+</div>

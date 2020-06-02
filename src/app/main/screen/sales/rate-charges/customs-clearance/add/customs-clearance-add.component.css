@@ -1,0 +1,53 @@
+::ng-deep .modal {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+  }
+  ::ng-deep div.card-header {
+    padding: 0;
+    background: var(--bg-tertiary-color);
+    display: flex;
+  }
+  .custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #007bff;
+    background-color: #007bff!important;
+  }
+  .custom-control-input:disabled~.custom-control-label, .custom-control-input[disabled]~.custom-control-label {
+    color: white;
+  }
+  ::ng-deep div.card-body {
+    padding: 0.5rem;
+    background: var(--bg-primary-color);
+    overflow: visible;
+  }
+  ::ng-deep .ng-select .ng-select-container {
+    min-height: 27.5px;
+   
+  }
+  ::ng-deep .ng-select.ng-select-single .ng-select-container {
+   height: 27.5px;
+   
+  }
+  ::ng-deep .ng-select .ng-select-container .ng-value-container .ng-input {
+    margin-left: -5px;
+    font-size: 12px;
+   font-family: var(--type-1);
+  }
+  ::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+    margin-left: -4px;
+    margin-top: 3px;
+    font-size: 12px;
+   font-family: var(--type-1);
+  }
+  ::ng-deep input:disabled {
+    background-color: white!important;
+  
+  }
+
+  .aux-container {
+    min-height: 268px;
+    padding-top: 51px;
+  }

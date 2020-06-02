@@ -1,0 +1,92 @@
+<div class="scroll" style="overflow-x: hidden;">
+  <div class="row" style="padding-bottom: 2px;">
+    <div class="col">
+      <div class="row">
+        <div class="col col-lg-2"><label class="lbl-custom-left">From</label></div>
+        <div class="col col-lg-8">
+          <of1-input-date
+            fromDate="01/01/2010"
+            toDate="dateTimeLimit"
+            placement="bottom" placementErr="right"
+            [(ngModel)]="fromDate">
+          </of1-input-date>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="row">
+        <div class="col col-md-1"><label class="lbl-custom-left">To</label></div>
+        <div class="col col-md-8">
+          <of1-input-date
+            fromDate="01/01/2010"
+            toDate="dateTimeLimit"
+            placement="bottom" placementErr="right"
+            [(ngModel)]="toDate">
+          </of1-input-date>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg">
+      <div class="row">
+        <div class="col col-md-3"><label class="lbl-custom-left">Criterion</label></div>
+        <div class="col col-md-8">
+          <ng-select class="of-custom-select-type" [multiple]="false" [(ngModel)]="selectedCri">
+            <ng-option *ngFor="let criterion of criterions" [value]="criterion.columnName">{{criterion.headerName}}</ng-option>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col col-md-2"><label class="lbl-custom-left">Value</label></div>
+        <div class="col col-md-9">
+          <input class="form-control form-control-sm" type="text" [(ngModel)]="criterionValue">
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <button class="btn btn-light btn-sm" style="margin: 0px 20px 5px 10px;" (click)="searchAdvance()">Advance</button>
+        <button class="btn btn-light btn-sm" style="margin: 0px 20px 5px 10px;" (click)="getListReceivedInquiries()">Apply</button>
+      </div>
+    </div>
+  </div>
+  <div  class="row pl-5" style="padding-bottom: 10px;">
+    <div class="" *ngFor="let item of searchData | keyvalue">
+      <button *ngIf="item.value.isCheck && item.value.value && item.value.value !== null"  type="button" class="btn btn-light mr-1" aria-label="Close" (click)="onRemoveSeachItem(item)">
+        <span >{{item.value.columnName}} - {{item.value.value}}</span><span class="ml-1" aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <table class="panel" style="height: calc(100vh - 280px);">
+    <tr style="height: 100%;">
+      <ag-grid-angular style="width: 100%; height: 100%;" #receivedInquiryGrid class="ag-theme-balham" [defaultColDef]="defaultColDef"
+        [suppressMenuHide]="true" [rowData]="rowData" [columnDefs]="columnSentInquiryDefs" [gridOptions]="gridOptions"
+        [cacheOverflowSize]="cacheOverflowSize" [maxConcurrentDatasourceRequests]="maxConcurrentDatasourceRequests"
+        [infiniteInitialRowCount]="infiniteInitialRowCount" [pagination]=true rowSelection="single"
+        (gridReady)="onGridReadyOfReceived($event)" (paginationChanged)="onPaginationChanged($event)"
+        [frameworkComponents]="frameworkComponents" rowModelType="infinite">
+      </ag-grid-angular>
+    </tr>
+  </table>
+  <table>
+    <tr style="height: 28px;">
+      <table class="panel">
+        <tr>
+          <td></td>
+          <td style="width: 151px">
+            <!-- <button class="btn btn-custom btn-sm" type="button">Import</button> -->
+          </td>
+          <td style="width: 71px">
+            <button class="btn btn-custom btn-sm" type="button" (click)="makeInquiry()">Add new</button>
+          </td>
+          
+          <td style="width: 71px">
+            <button class="btn btn-custom btn-sm" type="button">Close</button>
+          </td>
+          
+        </tr>
+      </table>
+    </tr>
+  </table>
+</div>

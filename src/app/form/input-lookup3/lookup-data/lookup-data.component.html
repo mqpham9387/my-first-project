@@ -1,0 +1,52 @@
+<div class="modal-header">
+  <table class="panel">
+    <tr>
+      <td>
+        <h6 class="modal-title">
+          <label class="lbl-custom-left">{{ class }} - Lookup</label>
+        </h6>
+      </td>
+    </tr>
+  </table>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="scroll">
+    <ag-grid-angular
+      style="width: 100%; height: 100%;"
+      class="ag-theme-balham"
+      [columnDefs]="columnDefs"
+      [rowSelection]="single"
+      (gridReady)="onGridReady($event)"
+      [suppressMenuHide]="true"
+      [defaultColDef]="defaultColDef"
+      [pagination]="true"
+      [frameworkComponents]="frameworkComponents"
+      (rowDoubleClicked)="valided($event)"
+      rowModelType="infinite"
+      [paginationPageSize]="paginationPageSize"
+      [cacheBlockSize]="cacheBlockSize"
+    >
+    </ag-grid-angular>
+  </div>
+</div>
+<div class="modal-footer">
+  <table class="panel">
+    <tr>
+      <td></td>
+      <td style="width: 91px;">
+        <button class="btn btn-custom btn-sm" type="button">Add New</button>
+      </td>
+      <td style="width: 71px;">
+        <button class="btn btn-custom btn-sm" type="button">Edit</button>
+      </td>
+    </tr>
+  </table>
+</div>

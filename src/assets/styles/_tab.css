@@ -1,0 +1,23 @@
+.nav {
+    background-color: var(--bg-primary-color);
+}
+
+.nav .nav-link {
+    background-color: var(--bg-primary-color);
+    color: var(--f-color);
+}
+
+.nav .nav-link.active {
+    background-color: var(--bg-tertiary-color);;
+    color: var(--bg-super-primary-color);
+}
+
+.nav .nav-link.disabled {
+    color: var(--bg-super-primary-color);
+}
+
+div.tab-content {
+    position: relative;
+    height: calc(100% - 35px);
+    padding: 10px 0 0;
+}

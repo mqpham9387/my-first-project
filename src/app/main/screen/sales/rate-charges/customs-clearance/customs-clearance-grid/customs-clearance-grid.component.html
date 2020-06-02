@@ -1,0 +1,20 @@
+<ag-grid-angular
+#fclTariffGrid
+style="height: 300px;"
+class="ag-theme-balham"
+[defaultColDef]="defaultColDef"
+[suppressMenuHide]="true"
+[rowData]="rowData"
+[columnDefs]="columnDefs"
+[gridOptions]="gridOptions"
+[cacheOverflowSize]="cacheOverflowSize"
+[maxConcurrentDatasourceRequests]="maxConcurrentDatasourceRequests"
+[infiniteInitialRowCount]="infiniteInitialRowCount"
+[pagination]=true
+rowSelection="single"
+(gridReady)="onGridReady($event)"
+(paginationChanged)="onPaginationChanged($event)"
+[frameworkComponents]="frameworkComponents"
+rowModelType="infinite"
+>
+</ag-grid-angular>

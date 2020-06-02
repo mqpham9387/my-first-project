@@ -1,0 +1,22 @@
+.background{
+  position:fixed;
+  top: auto;
+  height: auto;
+  right:0;
+  left:0;
+  overflow: auto;
+}
+.modal {
+  position:fixed;
+  top: 10px;
+  right:0;
+  left:0;
+  overflow: auto;
+}
+.modal-dialog {
+  max-width: 100vw!important;
+}
+.m
+input::placeholder{
+  text-align: right;
+}

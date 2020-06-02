@@ -1,0 +1,493 @@
+<ng-container *ngIf="!isLoading">
+  <div class="modal-header">
+    <table class="panel">
+      <tr>
+        <td>
+          <h6 class="modal-title"><label class="lbl-custom-left">
+              <span>Airfreight (with/without customs clearance & trucking)</span></label>
+          </h6>
+        </td>
+      </tr>
+    </table>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="panel">
+      <div class="scroll">
+        <tr>
+          <div style="height: 5px"></div>
+          <table class="panel-noheight">
+            <tr>
+              <table class="panel">
+                <tr>
+                  <td style="width: 6%;">
+                    <label class="lbl-custom-left">Commodity<span style="color: red;"> *</span></label>
+                  </td>
+                  <td style="width: 10%;">
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="airInquiry.commodity">
+                  </td>
+                  <td style="width: 5%;">
+                    <label class="lbl-custom-left">Commodity type<span style="color: red;"> *</span></label>
+                  </td>
+                  <td style="width: 9%;">
+                    <ng-select class="of-custom-select-type" [multiple]="false" [(ngModel)]="airInquiry.commodityType">
+                      <ng-option
+                        *ngFor="let commo of (commodities | async)"
+                        [value]="commo.commodityID"
+                      >
+                        {{ commo.commodityName }}
+                      </ng-option>
+                    </ng-select>
+                  </td>
+                </tr>
+              </table>
+            </tr>
+          </table>
+          <table class="panel-noheight">
+            <tr>
+              <table class="panel">
+                <tr>
+                  <td style="width: 6%;">
+                    <label class="lbl-custom-left">Airport of origin</label>
+                  </td>
+                  <td style="width: 10%;">
+                    <of1-input-lookup [data]="ports | async" class="port" [(ngModel)]="airInquiry.portofLoading"></of1-input-lookup>
+                  </td>
+                  <td style="width: 14%;"></td>
+                </tr>
+              </table>
+            </tr>
+          </table>
+          <table class="panel-noheight">
+            <tr>
+              <table class="panel">
+                <tr>
+                  <td style="width: 6%;">
+                    <label class="lbl-custom-left">Airport of destination</label>
+                  </td>
+                  <td style="width: 10%;">
+                    <of1-input-lookup [data]="ports | async" class="port" [(ngModel)]="airInquiry.portofDischarge"></of1-input-lookup>
+                  </td>
+                  <td style="width: 14%;"></td>
+                </tr>
+              </table>
+            </tr>
+          </table>
+          <table class="panel-noheight">
+            <tr>
+              <table class="panel">
+                <tr>
+                  <td style="width: 6%;">
+                    <label class="lbl-custom-left">Gross weight<span style="color: red;"> *</span></label>
+                  </td>
+                  <td style="width: 10%;">
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="airInquiry.grossWeight" required>
+                  </td>
+                  <td style="width: 14%;"></td>
+                </tr>
+              </table>
+            </tr>
+          </table>
+          <table class="panel-noheight">
+            <tr>
+              <table class="panel">
+                <tr>
+                  <td style="width: 6%;">
+                    <label class="lbl-custom-left">Volume</label>
+                  </td>
+                  <td style="width: 10%;">
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="airInquiry.volume" required>
+                  </td>
+                  <td style="width: 14%;"></td>
+                </tr>
+              </table>
+            </tr>
+          </table>
+          <table class="panel-noheight">
+            <tr>
+              <table class="panel">
+                <tr>
+                  <td style="width: 1%;">
+                    <label class="checkbox">
+                      <input type="checkbox" [(ngModel)]="airInquiry.cargoIsUnstackable"/>
+                      <span class="default"></span>
+                    </label>
+                  </td>
+                  <td style="width: 8%;">
+                    <label class="lbl-custom-left">Cargo is un-stackable</label>
+                  </td>
+                  <td style="width: 11%;"></td>
+              </table>
+            </tr>
+          </table>
+          <div style="height: 5px"></div>
+            <ngb-accordion #general="ngbAccordion" activeIds="general-1">
+              <ngb-panel id="general-1">
+                <ng-template ngbPanelHeader let-opened="opened">
+                  <button ngbPanelToggle class="btn btn-accordion">
+                    <span>{{ opened ? '&#045;' : '&#043;'}}
+                      Term of service<span style="color: red;"> *</span></span>
+                  </button>
+                  <div style="padding: .375rem 0rem;">
+                    <button class="btn-collapse btn-sm" (click)="general.expandAll()">Expand
+                      all</button>
+                  </div>
+                  <div style="padding: .375rem 0rem;">
+                    <button class="btn-collapse btn-sm" (click)="general.collapseAll()">Collapse
+                      all</button>
+                  </div>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <table class="panel">
+                    <div class="card-header of-custom-card-active">
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input"
+                          id="defaultGroupExample1"
+                          name="termofService"
+                          [value]="serviceTerm.portToPort.termID" [(ngModel)]="termofService"
+                          [checked]="termofService === serviceTerm.portToPort.termID ">
+                        <label class="custom-control-label" for="defaultGroupExample1">PORT TO PORT</label>
+                      </div>
+                    </div>
+                    <table class="panel-noheight" *ngIf="termofService === serviceTerm.portToPort.termID">
+                      <tr>
+                        <table class="panel">
+                          <tr>
+                            <td style="width: 15%;">
+                              <div class="card-header of-custom-card-sub-active">
+                                <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input mr-5"  [disabled]="termofService !== serviceTerm.portToPort.termID"
+                                      [checked]="termofService === serviceTerm.portToPort.termID && customsClearanceMethod === 'CUSTOM_CLEARANCE_AT_ORIGIN'"
+                                      id="defaultGroupExampleSub1"
+                                    [(ngModel)]="airInquiry.customsClearanceAtOrigin"
+                                  >
+                                  <label [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.portToPort.termID}"
+                                    class="custom-control-label" for="defaultGroupExampleSub1"
+                                  >Need customs clearance at origin?</label>
+                                </div>
+                              </div>
+                            </td>
+                            <td style="width: 15%;">
+                              <div class="card-header of-custom-card-sub-active">
+                                <div class="custom-control custom-checkbox">
+                                  <input [disabled]="termofService !== serviceTerm.portToPort.termID" type="checkbox" 
+                                    class="custom-control-input mr-5" id="defaultGroupExampleSub2"
+                                    [checked]="termofService === serviceTerm.portToPort.termID && customsClearanceMethod === 'CUSTOM_CLEARANCE_AT_DESTINATION'"
+                                    value="CUSTOM_CLEARANCE_AT_DESTINATION"
+                                    [(ngModel)]="airInquiry.customsClearanceAtDestination"
+                                  >
+                                  <label [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.portToPort.termID}" class="custom-control-label" for="defaultGroupExampleSub2">Need customs clearance at destination?</label>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </tr>
+                    </table>
+                    <div class="card-header of-custom-card-active">
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="defaultGroupExample2"
+                          name="termofService"
+                          [value]="serviceTerm.doorToPort.termID" [(ngModel)]="termofService"
+                        >
+                        <label class="custom-control-label" for="defaultGroupExample2">DOOR TO PORT</label>
+                      </div>
+                    </div>
+                    <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.doorToPort.termID">
+                      <tr>
+                        <td style="width: 5%;">
+                          <label class="lbl-custom-left" [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.doorToPort.termID}">Pick up address</label>
+                        </td>
+                        <td style="width: 25%;">
+                          <input
+                            type="text" 
+                            class="form-control form-control-sm"
+                            [disabled]="termofService !== serviceTerm.doorToPort.termID"
+                            [(ngModel)]="dTpPickupAt"
+                          >
+                        </td>
+                      </tr>
+                    </table>
+                    <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.doorToPort.termID">
+                      <tr>
+                        <td style="width: 5%;">
+                          <label
+                            class="lbl-custom-left"
+                            [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.doorToPort.termID}"
+                          >Purpose of export</label>
+                        </td>
+                        <td style="width: 25%;">
+                          <ng-select class="of-custom-select-type" [multiple]="false" [(ngModel)]="dTpPurposeOfEx" [disabled]="termofService !== serviceTerm.doorToPort.termID">
+                            <ng-option
+                              *ngFor="let pupose of puposesList"
+                              [value]="pupose"
+                            >
+                              {{pupose}}
+                            </ng-option>
+                          </ng-select>
+                        </td>
+                      </tr>
+                    </table>
+                    <div class="card-header of-custom-card-active">
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="defaultGroupExample3"
+                          name="termofService"
+                          [value]="serviceTerm.portToDoor.termID" [(ngModel)]="termofService"
+                        >
+                        <label class="custom-control-label" for="defaultGroupExample3">PORT TO DOOR</label>
+                      </div>
+                    </div>
+                    <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.portToDoor.termID">
+                      <tr>
+                        <table class="panel">
+                          <tr>
+                            <td style="width: 5%;">
+                              <label class="lbl-custom-left" [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.portToDoor.termID}">Delivery address</label>
+                            </td>
+                            <td style="width: 25%;">
+                              <input type="text" 
+                                class="form-control form-control-sm"
+                                [disabled]="termofService !== serviceTerm.portToDoor.termID"
+                                [(ngModel)]="pTdDliveryTo"
+                              >
+                            </td>
+                          </tr>
+                        </table>
+                      </tr>
+                    </table>
+                    <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.portToDoor.termID">
+                      <tr>
+                        <td style="width: 5%;">
+                          <label
+                            class="lbl-custom-left"
+                            [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.portToDoor.termID}"
+                          >Purpose of import</label>
+                        </td>
+                        <td style="width: 25%;">
+                          <ng-select appendTo="body" class="of-custom-select-type" [multiple]="false" [(ngModel)]="pTdPurposeOfIm" [disabled]="termofService !== serviceTerm.portToDoor.termID">
+                            <ng-option
+                              *ngFor="let pupose of puposesList"
+                              [value]="pupose"
+                            >
+                              {{pupose}}
+                            </ng-option>
+                          </ng-select>
+                        </td>
+                      </tr>
+                    </table>
+                    <div class="card-header of-custom-card-active">
+                      <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="defaultGroupExample4"
+                          name="termofService"
+                          [value]="serviceTerm.doorToDoor.termID" [(ngModel)]="termofService"
+                        >
+                        <label class="custom-control-label" for="defaultGroupExample4">DOOR TO DOOR</label>
+                      </div>
+                    </div>
+                    <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.doorToDoor.termID">
+                      <tr>
+                        <table class="panel">
+                          <tr>
+                            <td style="width: 5%;">
+                              <label class="lbl-custom-left" [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.doorToDoor.termID}">Pick up address</label>
+                            </td>
+                            <td style="width: 25%;">
+                              <input type="text"  class="form-control form-control-sm" [disabled]="termofService !== serviceTerm.doorToDoor.termID" [(ngModel)]="dTdPickupAt">
+                            </td>
+                          </tr>
+                        </table>
+                      </tr>
+                    </table>
+                    <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.doorToDoor.termID">
+                      <tr>
+                        <table class="panel">
+                          <tr>
+                            <td style="width: 5%;">
+                              <label class="lbl-custom-left" [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.doorToDoor.termID}">Delivery address</label>
+                            </td>
+                            <td style="width: 25%;">
+                              <input type="text"  class="form-control form-control-sm" [disabled]="termofService !== serviceTerm.doorToDoor.termID" [(ngModel)]="dTdDeliveryTo">
+                            </td>
+                          </tr>
+                        </table>
+                      </tr>
+                    </table>
+                    <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.doorToDoor.termID">
+                      <tr>
+                        <td style="width: 5%;">
+                          <label
+                            class="lbl-custom-left"
+                            [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.doorToDoor.termID}"
+                          >Purpose of export</label>
+                        </td>
+                        <td style="width: 25%;">
+                          <ng-select appendTo="body" class="of-custom-select-type" [multiple]="false" [(ngModel)]="dTdPurposeOfEx" [disabled]="termofService !== serviceTerm.doorToDoor.termID">
+                            <ng-option
+                              *ngFor="let pupose of puposesList"
+                              [value]="pupose"
+                            >
+                              {{pupose}}
+                            </ng-option>
+                          </ng-select>
+                        </td>
+                      </tr>
+                    </table>
+                    <table class="panel-noheight mt-1" *ngIf="termofService === serviceTerm.doorToDoor.termID">
+                      <tr>
+                        <td style="width: 5%;">
+                          <label
+                            class="lbl-custom-left"
+                            [ngClass]="{'of-custom-label-inactive' : termofService !== serviceTerm.doorToDoor.termID}"
+                          >Purpose of import</label>
+                        </td>
+                        <td style="width: 25%;">
+                          <ng-select appendTo="body" class="of-custom-select-type" [multiple]="false" [(ngModel)]="dTdPurposeOfIm" [disabled]="termofService !== serviceTerm.doorToDoor.termID">
+                            <ng-option
+                              *ngFor="let pupose of puposesList"
+                              [value]="pupose"
+                            >
+                              {{pupose}}
+                            </ng-option>
+                          </ng-select>
+                        </td>
+                      </tr>
+                    </table>
+                  </table>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="general-2">
+                <ng-template ngbPanelHeader let-opened="opened">
+                  <button ngbPanelToggle class="btn btn-accordion"><span>{{ opened ? '&#045;' : '&#043;'}}
+                    Type of package<span style="color: red;"> *</span></span></button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <table class="panel">
+                    <div class="card-header" class="of-custom-card-active">
+                      <div class="custom-control">
+                        <label class="ofone-label" for="">Palletized</label>
+                      </div>
+                    </div>
+                    <table class="panel-noheight mt-1">
+                      <tr>
+                        <table class="panel">
+                          <td style="width: 5%;">
+                            <label class="lbl-custom-left">Quantity</label>
+                          </td>
+                          <td style="width: 2%;">
+                            <input type="text"  class="form-control form-control-sm" [(ngModel)]="airInquiry.palletQuantity">
+                          </td>
+                          <td style="width: 5%;">
+                            <label class="lbl-custom-left">GW of each pallet</label>
+                          </td>
+                          <td style="width: 18%;">
+                            <input type="text"  class="form-control form-control-sm" [(ngModel)]="airInquiry.eachPalletGrossWeight">
+                          </td>
+                        </table>
+                      </tr>
+                    </table>
+                    <table class="panel-noheight mt-1">
+                      <tr>
+                        <table class="panel">
+                          <td style="width: 5%;">
+                            <label class="lbl-custom-left">Dimensions of each pallet</label>
+                          </td>
+                          <td style="width: 12%;">
+                            <input type="text"  class="form-control form-control-sm" [(ngModel)]="airInquiry.eachPalletDimension">
+                          </td>
+                          <td style="width: 13%;">
+                          </td>
+                        </table>
+                      </tr>
+                    </table>
+                    <table class="panel-noheight mt-1">
+                    </table>
+                    
+                    <div class="card-header" class="of-custom-card-active">
+                      <div class="custom-control">
+                        <label class="ofone-label" for="">Non-palletized</label>
+                      </div>
+                    </div>
+                    <table class="panel-noheight mt-1">
+                      <tr>
+                        <table class="panel">
+                          <td style="width: 5%;">
+                            <label class="lbl-custom-left">Quantity</label>
+                          </td>
+                          <td style="width: 12%;">
+                            <input type="text"  class="form-control form-control-sm" [(ngModel)]="airInquiry.nonPalletPackageQuantity">
+                          </td>
+                          <td style="width: 13%;">
+                          </td>
+                        </table>
+                      </tr>
+                    </table>
+                    
+                    <div class="card-header" class="of-custom-card-active">
+                      <table class="panel-noheight">
+                        <tr>
+                          <table class="panel">
+                            <tr>
+                              <td style="width: 1%;">
+                                <label class="checkbox" style="margin-top: 0.5em;">
+                                  <input type="checkbox" [(ngModel)]="airInquiry.needExpressService"/>
+                                  <span class="default"></span>
+                                </label>
+                              </td>
+                              <td style="width: 26%;">
+                                <label class="lbl-custom-left" style="margin-top:0.5em; color:rgb(58, 58, 58);">Need express service</label>
+                              </td>
+                            </tr>
+                          </table>
+                        </tr>
+                      </table>
+                    </div>
+                    <table class="panel-noheight">
+                      <tr>
+                        <table class="panel">
+                          <tr>
+                            <td style="width: 6%;">
+                              <label class="lbl-custom-left">Deadline for delivery</label>
+                            </td>
+                            <td style="width: 12%;">
+                              <of1-input-date
+                                  [disabled]="!airInquiry.needExpressService"
+                                  fromDate="01/01/2010"
+                                  toDate="dateTimeLimit"
+                                  placement="top" placementErr="right"
+                                  [(ngModel)]="airInquiry.deadlineDelivery">
+                              </of1-input-date>
+                            </td>
+                            <td style="width: 12%;">
+                            </td>
+                          </tr>
+                        </table>
+                      </tr>
+                    </table>
+                  </table>
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+        </tr>
+      </div>
+
+    </table>
+  </div>
+  <div class="modal-footer">
+    <table class="panel">
+      <tr>
+        <td></td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="save()"><span>Save</span></button>
+        </td>
+        <td style="width: 71px">
+          <button class="btn btn-custom btn-sm" type="button" (click)="cancel()">Cancel</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ng-container>
+
+
+

@@ -1,0 +1,11 @@
+@import '../../../../../styles.css';
+.tab-content > .tab-pane {
+    display: none;
+  }
+  .tab-content > .active {
+    display: block;
+    height: 100% !important;
+  }
+  .tab-pane {
+    height: 100% !important;
+  }

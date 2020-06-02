@@ -1,0 +1,193 @@
+<table class="panel">
+  <tr style="height: 37px;">
+    <nav class="navbar navbar-expand-lg navbar-custom no-padding" id="menu">
+      <div class="navbar-collapse" [class.collapse]="" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['dash-board']">
+              Home
+            </a>
+          </li>
+          <ng-container *ngFor="let menu of menus">
+            <li class="nav-item" ngbDropdown>
+              <a class="nav-link" ngbDropdownToggle id="navbarDropdownMenuLink" role="button">
+                {{menu.name}}
+              </a>
+              <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" id="navbarDropdownMenuLink1" class="dropdown-submenu" role="menu">
+                <ng-container *ngFor="let sbmenu of menu.child ,let i = index" >
+                  <ng-container *ngIf="!sbmenu.clicked&&sbmenu.child; then thenBlock; else elseBlock"></ng-container>
+                  <ng-template #thenBlock>
+                    <li class="dropdown-submenu">
+                    <a class="dropdown-item disabled" >{{sbmenu.id}}. {{sbmenu.name}}<i style="line-height: 24px;display: inline-block;margin-right: -15px;font-size: 11px;" class="fas fa-angle-right float-right"></i></a>
+                    <ul *ngIf="menu.child[i].child" class="dropdown-menu">
+                      <ng-container *ngFor="let sbmenu of menu.child[i].child">
+                        <ng-container *ngIf="!sbmenu.clicked; then thenBlock; else elseBlock"></ng-container>
+                        <ng-template #thenBlock>
+                          <a class="dropdown-item" style="color: grey;"  tabindex="-1"  >{{i+1}}.{{sbmenu.id}}. {{sbmenu.name}}</a>
+                        </ng-template>
+                        <ng-template #elseBlock>
+                          <a class="dropdown-item" [routerLink]="['/main/'+sbmenu.url]" (click)="redirectTo(sbmenu.url)">{{i+1}}.{{sbmenu.id}}. {{sbmenu.name}}</a>
+                        </ng-template>
+                      </ng-container>
+                    </ul>
+                  </li>
+                  </ng-template>
+                  <ng-template #elseBlock>
+                    <a *ngIf="!sbmenu.clicked" style="color: grey;" class="dropdown-item">{{sbmenu.id}}. {{sbmenu.name}}</a>
+                    <a *ngIf="sbmenu.clicked" class="dropdown-item" [routerLink]="['/main/'+sbmenu.url]">{{sbmenu.id}}. {{sbmenu.name}}</a>
+                  </ng-template>
+                </ng-container>
+              </div>
+              
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <div style="padding-right: 10px;">
+        <button type="button" class="btn btn-default btn-custom-1 btn-sm" (click)="ShowSearchBar()">Search</button>
+      </div>
+      <div style="padding-right: 10px;">
+        <button type="button" class="btn btn-default btn-custom-1 btn-sm" >SignOut</button>
+      </div>
+    </nav>
+
+    <div id="SearchBar" [class.show]="SearchbarShow">
+      <table id="Search">
+        <tr>
+          <div class="row">
+            <div class="col-md-6 pl-2 pr-2">
+              <select class="form-control form-control-sm" [(ngModel)]="combobox">
+                <ng-container *ngFor="let cboSearch of cboSearchs">
+                  <option value="{{cboSearch.value}}">{{cboSearch.text}}</option>
+                </ng-container>
+              </select>
+            </div>
+            <div class="col-md-6 pl-2 pr-2">
+              <input type="text" class="form-control form-control-sm" id="searchvalue">
+            </div>
+          </div>
+        </tr>
+        <tr>
+          <div class="row">
+            <div class="col-md-4 pl-2 pr-2">
+              <div> Branch/Office:</div>
+            </div>
+            <div class="col-md-8 pl-2 pr-2">
+              <select class="form-control form-control-sm">
+                <option value="BEECRX">BEECRX</option>
+                <option value="BEEDN">BEEDN</option>
+                <option value="BEEHCM">BEEHCM</option>
+                <option value="BEEHN">BEEHN</option>
+              </select>
+            </div>
+          </div>
+        </tr>
+        <tr>
+          <div class="row">
+            <div class="col-md-5 pl-2 pr-2">
+              <label class="cus-container">
+                <input type="checkbox" name="dateoption"  /> Date options:
+              </label>
+            </div>
+            <div class="col-md-7 pl-2 pr-2">
+              <select class="form-control form-control-sm" >
+                <option value="Created">Created</option>
+                <option value="ETA">ETA</option>
+                <option value="ETD">ETD</option>
+              </select>
+            </div>
+          </div>
+        </tr>
+        <tr>
+          <div class="row">
+            <div class="col-md-5 pl-5 pr-2">
+              <div>from date:</div>
+            </div>
+            <div class="col-md-7 pl-2 pr-2">
+              <div class="input-group">
+                <of1-input-date yearAgo="70" placement="left" placementErr="left">
+                </of1-input-date>
+              </div>
+            </div>
+          </div>
+        </tr>
+        <tr>
+          <div class="row">
+            <div class="col-md-5 pl-5 pr-2">
+              <div>to date:</div>
+            </div>
+            <div class="col-md-7 pl-2 pr-2">
+              <div class="input-group">
+                <of1-input-date yearAgo="70" placement="left" placementErr="left">
+                </of1-input-date>
+              </div>
+            </div>
+          </div>
+        </tr>
+        <tr>
+          <div class="row">
+            <div class="col-md-6 pl-2 pr-2">
+              <button type="button" class="btn-custom" id="Expand" (click)="ExpandSearch()">Expand......</button>
+            </div>
+            <div class="col-md-6 pl-2 pr-2">
+              <button type="button" class="btn-custom" (click)="SearchSubmit()">Search</button>
+            </div>
+          </div>
+        </tr>
+        <tr class="custom-expand" [class.show]="expand">
+          <table>
+            <tr>
+              <div class="row">
+                <div class="col-md-6 pl-2 pr-2"><input type="checkbox"> Buying rate</div>
+                <div class="col-md-6 pl-2 pr-2"><input type="checkbox"> Selling rate</div>
+              </div>
+            </tr>
+            <tr>
+              <div class="row">
+                <div class="col-md-12 pl-2 pr-2"><input type="checkbox"> Invalid FCL Shipment</div>
+              </div>
+            </tr>
+            <tr>
+              <div class="row">
+                <div class="col-md-6 pl-2 pr-2"><input type="checkbox"> Shipment finish</div>
+                <div class="col-md-6 pl-2 pr-2"><input type="checkbox"> Shipment changed</div>
+              </div>
+            </tr>
+            <tr>
+              <div class="row">
+                <div class="col-md-6 pl-2 pr-2"><input type="checkbox"> Void</div>
+              </div>
+            </tr>
+            <tr>
+              <div class="row">
+                <div class="col-md-12 pl-2 pr-2"><input type="checkbox"> Sent trucking request</div>
+              </div>
+            </tr>
+          </table>
+        </tr>
+      </table>
+    </div>
+  </tr>
+  <tr>
+    <table class="panel">
+      <tr style="height: 100%;">
+        <div style="width: 100%; height: 100%;">
+          <router-outlet></router-outlet>
+        </div>
+      </tr>
+    </table>
+  </tr>
+  <tr style="height: 28px;">
+    <div class="footer" style="height: 28px; background-color: var(--bg-tertiary-color)">
+      <table class="panel">
+        <tr>
+          <td></td>
+          <td>
+            <label class="lbl-copyright">Copyright <span>&#169;</span> by OPENFREIGHTONE</label>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </tr>
+</table>
